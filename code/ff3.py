@@ -9,28 +9,35 @@ TWEAK_LEN = 56
 
 
 class FF3:
-    def __init__(self, K, radix=RADIX):
-        self.K = K
+    def __init__(self, key, radix=RADIX):
+        self.K = key
         self.radix = radix
-        self.cipher = AES.new(K, AES.MODE_ECB)
+        self.cipher = AES.new(key, AES.MODE_ECB)
 
-    def encrypt(self, T, X):
-        n = len(X)
+    def encrypt(self, tweak, plaintext):
+
+        if not (len(tweak) == TWEAK_LEN):
+            raise ValueError(f"Tweak must be {TWEAK_LEN} bits")
+
+        if not (MIN_LEN <= len(plaintext) <= MAX_LEN):
+            raise ValueError(f"Plaintext must have length between {MIN_LEN} and {MAX_LEN}")
+
+        n = len(plaintext)
         u = int(math.ceil(n / 2))
         v = n - u
 
-        A, B = X[:u], X[u:]
+        A, B = plaintext[:u], plaintext[u:]
 
-        Tl = BitArray(T[:28]) + BitArray('0b0000')
-        Tr = BitArray(T[32:56]) + BitArray(T[28:32]) + BitArray('0b0000')
+        tweak_left = BitArray(tweak[:28]) + BitArray('0b0000')
+        tweak_right = BitArray(tweak[32:56]) + BitArray(tweak[28:32]) + BitArray('0b0000')
 
         for i in range(8):
             if (i % 2) == 0:
                 m = u
-                W = Tr
+                W = tweak_right
             else:
                 m = v
-                W = Tl
+                W = tweak_left
 
             # TODO: Use correct order of significance
             P = (W ^ BitArray(i.to_bytes(4, 'big'))) + int(B).to_bytes(12, 'big')
@@ -44,22 +51,29 @@ class FF3:
 
         return A + B
 
-    def decrypt(self, T, X):
-        n = len(X)
+    def decrypt(self, tweak, ciphertext):
+
+        if not (len(tweak) == TWEAK_LEN):
+            raise ValueError(f"Tweak must be {TWEAK_LEN} bits")
+
+        if not (MIN_LEN <= len(ciphertext) <= MAX_LEN):
+            raise ValueError(f"Plaintext must have length between {MIN_LEN} and {MAX_LEN}")
+
+        n = len(ciphertext)
         u = int(math.ceil(n / 2))
         v = n - u
-        A, B = X[:u], X[u:]
+        A, B = ciphertext[:u], ciphertext[u:]
 
-        Tl = BitArray(T[:28]) + BitArray('0b0000')
-        Tr = BitArray(T[32:56]) + BitArray(T[28:32]) + BitArray('0b0000')
+        tweak_left = BitArray(tweak[:28]) + BitArray('0b0000')
+        tweak_right = BitArray(tweak[32:56]) + BitArray(tweak[28:32]) + BitArray('0b0000')
 
         for i in reversed(range(8)):
             if (i % 2) == 0:
                 m = u
-                W = Tr
+                W = tweak_right
             else:
                 m = v
-                W = Tl
+                W = tweak_left
 
             P = (W ^ BitArray(i.to_bytes(4, 'big'))) + int(A).to_bytes(12, 'big')
             S = self.cipher.encrypt(P.bytes)
@@ -74,15 +88,15 @@ class FF3:
 
 
 if __name__ == '__main__':
-    T = BitArray(get_random_bytes(TWEAK_LEN // 8))
-    K = get_random_bytes(16)
+    tweak = BitArray(get_random_bytes(TWEAK_LEN // 8))
+    key = get_random_bytes(16)
 
-    ff3_cypher = FF3(K)
+    ff3_cypher = FF3(key)
 
     X = '1234567'
 
-    ciphertext = ff3_cypher.encrypt(T, X)
-    plaintext = ff3_cypher.decrypt(T, ciphertext)
+    ciphertext = ff3_cypher.encrypt(tweak, X)
+    plaintext = ff3_cypher.decrypt(tweak, ciphertext)
 
     print(ciphertext)
     print(plaintext)
