@@ -3,7 +3,7 @@ import logging
 from bitstring import BitArray
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
-from utils import num_radix
+from utils.utils import num_radix, str_radix, reverse
 
 # Constants
 RADIX = 10
@@ -14,7 +14,7 @@ TWEAK_LEN = 56
 class FF3:
 
     def __init__(self, key, radix=RADIX):
-        self.K = key
+        self.K = reverse(key)
         self.radix = radix
         self.cipher = AES.new(key, AES.MODE_ECB)
 
@@ -22,7 +22,7 @@ class FF3:
         """
         Encrypt plaintext with FF3-1 cipher
         :param tweak: 56 bit
-        :param plaintext: Variable length plaintext in
+        :param plaintext: numeral string with length n, where 6 <= n <= 10
         :return:
         """
         if not (len(tweak) == TWEAK_LEN):
@@ -52,12 +52,16 @@ class FF3:
 
             # TODO: Use correct order of significance
             # TODO: Refactor P
-            P = (W ^ BitArray(i.to_bytes(4, 'big'))) + int(B).to_bytes(12, 'big')
-            S = self.cipher.encrypt(P.bytes)
+            print(f"B: {B}")
+            # P = (W ^ BitArray(i.to_bytes(4, 'big'))) + int(B).to_bytes(12, 'little')
+            P = (W ^ BitArray(i.to_bytes(4, 'big'))) + num_radix(self.radix, reverse(B)).to_bytes(12, 'big')
+            print(f"P: {bytes(P)}")
+            print(f"reverse(P): {bytes(reverse(P))}")
+            S = self.cipher.encrypt(bytes(reverse(P)))
             y = int.from_bytes(S, 'big')
-            c = (num_radix(self.radix, A) + y) % (self.radix ** m)
+            c = (num_radix(self.radix, reverse(A)) + y) % (self.radix ** m)
 
-            C = str(int(c))
+            C = str_radix(self.radix, m, c)
             A = B
             B = C
 
@@ -74,7 +78,7 @@ class FF3:
             raise ValueError(f"Tweak must be {TWEAK_LEN} bits")
 
         if not (MIN_LEN <= len(ciphertext) <= MAX_LEN):
-            raise ValueError(f"Plaintext must have length between {MIN_LEN} and {MAX_LEN}")
+            raise ValueError(f"Ciphertext must have length between {MIN_LEN} and {MAX_LEN}")
 
         n = len(ciphertext)
         u = int(ceil(n / 2))
@@ -92,12 +96,12 @@ class FF3:
                 m = v
                 W = tweak_left
 
-            P = (W ^ BitArray(i.to_bytes(4, 'big'))) + int(A).to_bytes(12, 'big')
-            S = self.cipher.encrypt(P.bytes)
+            P = (W ^ BitArray(i.to_bytes(4, 'big'))) + num_radix(self.radix, reverse(A)).to_bytes(12, 'big')
+            S = self.cipher.encrypt(bytes(reverse(P)))
             y = int.from_bytes(S, 'big')
-            c = (num_radix(self.radix, B) - y) % (self.radix ** m)
+            c = (num_radix(self.radix, reverse(B)) - y) % (self.radix ** m)
 
-            C = str(int(c))
+            C = str_radix(self.radix, m, c)
             B = A
             A = C
 
@@ -110,10 +114,10 @@ if __name__ == '__main__':
 
     ff3_cipher = FF3(key)
 
-    X = '12345678'
+    X = '123456789'
 
     ciphertext = ff3_cipher.encrypt(tweak, X)
     plaintext = ff3_cipher.decrypt(tweak, ciphertext)
 
     print(ciphertext)
-    print(plaintext)
+    print(reverse(plaintext))

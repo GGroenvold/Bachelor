@@ -19,4 +19,5 @@ def str_radix(radix, length, number):
     return ''.join(string)
 
 
-
+def reverse(string):
+    return string[::-1]
