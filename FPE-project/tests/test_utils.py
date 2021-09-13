@@ -1,4 +1,4 @@
-from code.utils import num_radix, str_radix
+from utils.utils import num_radix, str_radix
 
 number = '12345'
 

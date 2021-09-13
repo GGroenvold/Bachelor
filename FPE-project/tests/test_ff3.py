@@ -1,5 +1,5 @@
 import pytest
-from code.ff3 import FF3
+from ff3.ff3 import FF3
 from bitstring import BitArray
 
 KEY = b'2\\\x9f\xbb\xd9\x91X4[dP\xc90\x14\xa5\xd8'
