@@ -6,7 +6,7 @@ from Crypto.Random import get_random_bytes
 from utils import num_radix
 
 # Constants
-RADIX = 10
+RADIX = 10  
 MIN_LEN, MAX_LEN = 6, 10
 TWEAK_LEN = 56
 

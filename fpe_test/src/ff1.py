@@ -2,7 +2,7 @@
 # need real Tweak and t
 # need own ceil func
 import math
-from utils.utils import num_radix, str_radix
+from utils import num_radix, str_radix
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 
