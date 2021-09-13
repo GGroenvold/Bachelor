@@ -3,6 +3,7 @@ import logging
 from bitstring import BitArray
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
+from utils import num_radix
 
 # Constants
 RADIX = 10
@@ -19,9 +20,9 @@ class FF3:
 
     def encrypt(self, tweak, plaintext):
         """
-
+        Encrypt plaintext with FF3-1 cipher
         :param tweak: 56 bit
-        :param plaintext:
+        :param plaintext: Variable length plaintext in
         :return:
         """
         if not (len(tweak) == TWEAK_LEN):
@@ -50,10 +51,11 @@ class FF3:
                 W = tweak_left
 
             # TODO: Use correct order of significance
+            # TODO: Refactor P
             P = (W ^ BitArray(i.to_bytes(4, 'big'))) + int(B).to_bytes(12, 'big')
             S = self.cipher.encrypt(P.bytes)
             y = int.from_bytes(S, 'big')
-            c = (int(A) + y) % (self.radix ** m)
+            c = (num_radix(self.radix, A) + y) % (self.radix ** m)
 
             C = str(int(c))
             A = B
@@ -93,7 +95,7 @@ class FF3:
             P = (W ^ BitArray(i.to_bytes(4, 'big'))) + int(A).to_bytes(12, 'big')
             S = self.cipher.encrypt(P.bytes)
             y = int.from_bytes(S, 'big')
-            c = (int(B) - y) % (self.radix ** m)
+            c = (num_radix(self.radix, B) - y) % (self.radix ** m)
 
             C = str(int(c))
             B = A
@@ -106,12 +108,9 @@ if __name__ == '__main__':
     tweak = BitArray(get_random_bytes(TWEAK_LEN // 8))
     key = get_random_bytes(16)
 
-    print(tweak)
-    print(key)
-
     ff3_cipher = FF3(key)
 
-    X = '1234567'
+    X = '12345678'
 
     ciphertext = ff3_cipher.encrypt(tweak, X)
     plaintext = ff3_cipher.decrypt(tweak, ciphertext)
