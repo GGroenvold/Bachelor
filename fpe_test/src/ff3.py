@@ -3,7 +3,7 @@ import logging
 from bitstring import BitArray
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
-from utils.utils import num_radix, str_radix, reverse
+from utils import num_radix, str_radix, reverse
 
 # Constants
 RADIX = 10  
@@ -52,16 +52,16 @@ class FF3:
 
             # TODO: Use correct order of significance
             # TODO: Refactor P
-            print(f"B: {B}")
+            # print(f"B: {B}")
             # P = (W ^ BitArray(i.to_bytes(4, 'big'))) + int(B).to_bytes(12, 'little')
-            P = (W ^ BitArray(i.to_bytes(4, 'big'))) + num_radix(self.radix, reverse(B)).to_bytes(12, 'big')
-            print(f"P: {bytes(P)}")
-            print(f"reverse(P): {bytes(reverse(P))}")
-            S = self.cipher.encrypt(bytes(reverse(P)))
+            P = (W ^ BitArray(i.to_bytes(4, 'big'))) + BitArray(num_radix(self.radix, reverse(B)).to_bytes(12, 'big'))
+            # print(P.bin[0:6])
+            # print(reverse(P).bin[-6:])
+            S = reverse(self.cipher.encrypt(bytes(reverse(P))))
             y = int.from_bytes(S, 'big')
             c = (num_radix(self.radix, reverse(A)) + y) % (self.radix ** m)
 
-            C = str_radix(self.radix, m, c)
+            C = reverse(str_radix(self.radix, m, c))
             A = B
             B = C
 
@@ -96,12 +96,12 @@ class FF3:
                 m = v
                 W = tweak_left
 
-            P = (W ^ BitArray(i.to_bytes(4, 'big'))) + num_radix(self.radix, reverse(A)).to_bytes(12, 'big')
-            S = self.cipher.encrypt(bytes(reverse(P)))
+            P = (W ^ BitArray(i.to_bytes(4, 'big'))) + BitArray(num_radix(self.radix, reverse(A)).to_bytes(12, 'big'))
+            S = reverse(self.cipher.encrypt(bytes(reverse(P))))
             y = int.from_bytes(S, 'big')
             c = (num_radix(self.radix, reverse(B)) - y) % (self.radix ** m)
 
-            C = str_radix(self.radix, m, c)
+            C = reverse(str_radix(self.radix, m, c))
             B = A
             A = C
 
@@ -120,4 +120,4 @@ if __name__ == '__main__':
     plaintext = ff3_cipher.decrypt(tweak, ciphertext)
 
     print(ciphertext)
-    print(reverse(plaintext))
+    print(plaintext)
