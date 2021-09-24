@@ -22,3 +22,8 @@ def str_radix(radix, length, number):
 
 def reverse(string):
     return string[::-1]
+
+
+def map_from_numeral_string(numeral_string, mapping):
+    return [mapping(numeral) for numeral in numeral_string]
+

@@ -9,12 +9,13 @@ from utils import num_radix, str_radix, reverse
 RADIX = 10  
 MIN_LEN, MAX_LEN = 6, 10
 TWEAK_LEN = 56
+MAPPING = {}
 
 
 class FF3:
 
-    def __init__(self, key, radix=RADIX):
-        self.K = reverse(key)
+    def __init__(self, key, radix=RADIX, mapping = MAPPING):
+        self.key = reverse(key)
         self.radix = radix
         self.cipher = AES.new(key, AES.MODE_ECB)
 
@@ -50,7 +51,6 @@ class FF3:
                 m = v
                 W = tweak_left
 
-            # TODO: Use correct order of significance
             # TODO: Refactor P
             # print(f"B: {B}")
             # P = (W ^ BitArray(i.to_bytes(4, 'big'))) + int(B).to_bytes(12, 'little')
@@ -114,7 +114,7 @@ if __name__ == '__main__':
 
     ff3_cipher = FF3(key)
 
-    X = '123456789'
+    X = ['1', '2', '3', '4', '5', '6', '7']
 
     ciphertext = ff3_cipher.encrypt(tweak, X)
     plaintext = ff3_cipher.decrypt(tweak, ciphertext)
