@@ -1,7 +1,7 @@
-def num_radix(radix, number):
+def num_radix(radix, numbers):
     x = 0
-    for digit in number:
-        x = x * radix + int(digit)
+    for numeral in numbers:
+        x = x * radix + int(numeral)
     return x
 
 
@@ -12,11 +12,12 @@ def str_radix(radix, length, number):
     if not (0 <= number <= radix ** length):
         raise ValueError(f"{number} is not in range [0;{radix}^{length}]")
 
-    string = [''] * length
+    numerals = ['']*length
+
     for i in range(length):
-        string[length - 1 - i] = str(number % radix)
+        numerals[length - 1 - i] = str(number % radix)
         number = number // radix
-    return ''.join(string)
+    return numerals
 
 
 def reverse(string):
