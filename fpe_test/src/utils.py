@@ -25,5 +25,5 @@ def reverse(string):
 
 
 def map_from_numeral_string(numeral_string, mapping):
-    return [mapping(numeral) for numeral in numeral_string]
+    return [mapping[numeral] for numeral in numeral_string]
 
