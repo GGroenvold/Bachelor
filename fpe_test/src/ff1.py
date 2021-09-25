@@ -87,8 +87,7 @@ def encrypt_main(msg,T,key,radix):
         B = C
     return(A+B)
 
-def decrypt (cphTxt, T, key):
-    radix = 26
+def decrypt_main (cphTxt, T, key, radix):
     t = len(T)
     n = len(cphTxt)
 
@@ -104,7 +103,7 @@ def decrypt (cphTxt, T, key):
         n.to_bytes(4,'big') + t.to_bytes(4,'big')
 
     for i in range(9,-1,-1):
-        Q = T + (0).to_bytes((-t-b-1) % 16,'big') + (i).to_bytes(1,'big') + (num_radix(radix, A)%2**32).to_bytes(4,'big')
+        Q = T + (0).to_bytes((-t-b-1) % 16,'big') + (i).to_bytes(1,'big') + num_radix(radix, A).to_bytes(b,'big')
         #print(P)
         R = PRF(P+Q)
         S = R
@@ -142,6 +141,24 @@ def encrypt(msg,T,key,format):
         print(ciphertext)
     return ciphertext
 
+def decrypt(msg,T,key,format):
+    if format == Format.NAME:
+        radix = 26
+        mapping = nameDictE
+        cipherNumerals = map_from_numeral_string(msg,mapping)
+        plainNumerals = decrypt_main(cipherNumerals,T,key,radix)
+        plaintext = ''.join(map_from_numeral_string(plainNumerals,nameDictD))
+        print(plaintext)
+    if format == Format.STRING:
+        radix = 36
+        mapping = stringDictE
+        cipherNumerals = map_from_numeral_string(msg,mapping)
+        plainNumerals = decrypt_main(cipherNumerals,T,key,radix)
+        plaintext = ''.join(map_from_numeral_string(plainNumerals,stringDictD))
+        print(plaintext)
+    return plaintext
 
-encrypt('0123456789abcdefghi',T,key,Format.STRING)
+
+ciphertext = encrypt('0123456789abcdefghi',T,key,Format.STRING)
+decrypt(ciphertext,T,key,Format.STRING)
 #print("--- %s seconds ---" % (time.time() - start_time))
