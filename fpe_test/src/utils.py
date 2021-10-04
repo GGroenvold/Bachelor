@@ -27,3 +27,10 @@ def reverse(string):
 def map_from_numeral_string(numeral_string, mapping):
     return [mapping[numeral] for numeral in numeral_string]
 
+def map_from_name(name, mapping):
+    print(name)
+    print(mapping[name])
+    return (mapping[(name)])
+
+
+
