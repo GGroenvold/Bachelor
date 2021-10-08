@@ -1,13 +1,12 @@
 #Ceil function
 import math
-from utils import num_radix, str_radix,map_from_numeral_string, map_from_name
+from utils import *
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from enum import Enum, auto
 import time
 import binascii
 import json
-from numpy import arange
 
 start_time = time.time()
 
@@ -20,17 +19,27 @@ class Format(Enum):
     DATE = auto()
     NAME = auto()
 
-letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-numbers = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25']
+data = json.loads(open("names.json", "r").read())
+names = []
+for name in data['names']:
+    names.append(name['name'])
 
-letters2 = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-numbers2 = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35']
+domain = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+          'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+          '0','1','2','3','4','5','6','7','8','9',
+          '.','-','!','#','$','£','%','&','\'','*','+','/','=','?','^','_','´','{','}','|']
+lower_letter_index = 0
+upper_letter_index = 26
+integer_index = 52
+special_signs_index = 62
 
-lettersDictE = dict(zip(letters,numbers))
-lettersDictD = dict(zip(numbers,letters))
-
-stringDictE = dict(zip(letters2,numbers2))
-stringDictD = dict(zip(numbers2,letters2))
+mapping_letters = get_mapping_from_domain(domain[:integer_index])
+mapping_upper_letters = get_mapping_from_domain(domain[upper_letter_index:integer_index])
+mapping_lower_letters = get_mapping_from_domain(domain[:upper_letter_index])
+mapping_email_tail = get_mapping_from_domain(domain[:upper_letter_index]+domain[integer_index:special_signs_index+2])
+mapping_letters_integer = get_mapping_from_domain(domain[:special_signs_index])
+mapping_all = get_mapping_from_domain(domain)
+mapping_name = get_mapping_from_domain(names)
 
 T = bytes.fromhex('3737373770717273373737')
 key = bytes.fromhex('2B7E151628AED2A6ABF7158809CF4F3C')
@@ -45,10 +54,6 @@ def PRF(X):
         Xj =  X[j*16:(j*16)+16]
         Yj = cipher.encrypt(bytes(A^B for A,B in zip(Yj,Xj)))
     return Yj
-
-def get_mapping_from_domain(domain):
-    index = list(map(str, arange(1,len(domain)+1).tolist()))
-    return [dict(zip(domain,index)), dict(zip(index,domain))]
 
 def encrypt_main(msg,T,key,radix):
 
@@ -130,48 +135,56 @@ def encrypt(msg,T,key,format):
 
     if format == Format.CREDITCARD:
         #how much in depth do we wanna go?
-            #do we wanna check if input is a valid card number?
-            #do we wanna check if output is a valid card number?
+            #should we check other parameters than checkSum?
             #should card number length be 16, or should we allow other credit card formats as well?
-        radix = 10
         msg = msg.replace(' ', '')
-        print(msg)
-        ciphertext = ''.join(encrypt_main(msg, T, key, radix))
-        ciphertext = ciphertext[:4] + ' ' + ciphertext[4:8] + ' ' + ciphertext[8:12] + ' ' + ciphertext[12:16]
+        if (msg[len(msg)-1]!=validateCard(msg[:len(msg)-1])):    
+            raise ValueError(f"{msg} is not a valid credit card number")
+        radix = 10
+        ciphertext = ''.join(encrypt_main(msg[:len(msg)-1], T, key, radix))
+        ciphertext = ciphertext[:4] + ' ' + ciphertext[4:8] + ' ' + ciphertext[8:12] + ' ' + ciphertext[12:] + validateCard(ciphertext)
         print(ciphertext)
         return ciphertext
 
     if format == Format.LETTERS:
-        #make lowercase or supper uppercase?
-        radix = 26
-        mapping = lettersDictE
-        plainNumerals = map_from_numeral_string(msg,mapping)
+        radix = len(mapping_letters)
+        mapping = mapping_letters
+        plainNumerals = map_from_numeral_string(msg,mapping[0])
         cipherNumerals = encrypt_main(plainNumerals,T,key,radix)
-        ciphertext = ''.join(map_from_numeral_string(cipherNumerals,lettersDictD))
+        ciphertext = ''.join(map_from_numeral_string(cipherNumerals,mapping[1]))
         print(ciphertext)
 
     if format == Format.STRING:
-        #make lowercase or support uppercase?
-        radix = 36
-        mapping = stringDictE
-        plainNumerals = map_from_numeral_string(msg,mapping)
+        mapping = mapping_letters_integer
+        radix = len(mapping[0])
+        plainNumerals = map_from_numeral_string(msg,mapping[0])
         cipherNumerals = encrypt_main(plainNumerals,T,key,radix)
-        ciphertext = ''.join(map_from_numeral_string(cipherNumerals,stringDictD))
+        ciphertext = ''.join(map_from_numeral_string(cipherNumerals,mapping[1]))
         print(ciphertext)
 
     if format == Format.EMAIL:
         #check if email is valid?
         #check if cphtxt is valid?
-        #split email into Recipient, Domain name, Top-level domain
+        #split email into Recipient, Domain name, Top-level domain?
+        #create random length?
         msg = msg.lower()
-        domain=letters2+['@','.','!','#','$','£','%','&','\'','*','+','-','/','=','?','^','_','´','{','}','|']
-        radix = len(domain)
-        mapping = get_mapping_from_domain(domain)
-        plainNumerals =  map_from_numeral_string(msg,mapping[0])
-        cipherNumerals = encrypt_main(plainNumerals,T,key,radix)
-        print(cipherNumerals)
-        ciphertext = ''.join(map_from_numeral_string(cipherNumerals,mapping[1]))
-        ciphertext = ciphertext[:(len(ciphertext)//2)] + '@' + ciphertext[(len(ciphertext)//2):]
+        break_index = msg.find('@')
+        msg1 =msg[:break_index]
+        msg2 =msg[break_index+1:]
+        mapping1 = mapping_all
+        mapping2 = mapping_email_tail
+        radix1 = len(mapping1[0])
+        radix2 = len(mapping2[0])
+
+        plainNumerals1 =  map_from_numeral_string(msg1,mapping1[0])
+        plainNumerals2 =  map_from_numeral_string(msg2,mapping2[0])
+        cipherNumerals1 = encrypt_main(plainNumerals1,T,key,radix1)
+        cipherNumerals2 = encrypt_main(plainNumerals2,T,key,radix2)
+        print(cipherNumerals1)
+        print(cipherNumerals2)
+        ciphertext1 = ''.join(map_from_numeral_string(cipherNumerals1,mapping1[1]))
+        ciphertext2 = ''.join(map_from_numeral_string(cipherNumerals2,mapping2[1]))
+        ciphertext = ciphertext1 + '@' + ciphertext2
         print(ciphertext)
         
     if format == Format.DATE:
@@ -185,20 +198,14 @@ def encrypt(msg,T,key,format):
         print(ciphertext)
 
     if format == Format.NAME:
-        #change encrypt_main so it works?
-        data = json.loads(open("names.json", "r").read())
-        names = []
-        #numbers = []
-        for name in data['names']:
-            names.append(name['name'])
-            #numbers.append(name['number'])
-        radix = len(names)
-        mapping = get_mapping_from_domain(names)
-        plainNumerals =  map_from_name(msg,mapping[0])
+        mapping = mapping_name
+        radix = len(mapping_name[0])
+        plainNumerals = map_from_name(msg,mapping[0])
         cipherNumerals = encrypt_main(plainNumerals,T,key,radix)
-        print(cipherNumerals)
-        ciphertext = ''.join(map_from_name(cipherNumerals[0],mapping[1]))
+        ciphertext = ''.join(map_from_name(cipherNumerals,mapping[1]))
+        #insert ciphernumerals[0] above to make it runnable
         print(ciphertext)
+        
     return ciphertext
     
 def decrypt(msg,T,key,format):
@@ -208,37 +215,46 @@ def decrypt(msg,T,key,format):
         print(plaintext)
 
     if format == Format.CREDITCARD:
-        radix = 10
         msg = msg.replace(' ', '')
-        print(msg)
-        plaintext = ''.join(decrypt_main(msg, T, key, radix))
-        plaintext = plaintext[:4] + ' ' + plaintext[4:8] + ' ' + plaintext[8:12] + ' ' + plaintext[12:16]
+        if (msg[len(msg)-1]!=validateCard(msg[:len(msg)-1])):    
+            raise ValueError(f"{msg} is not a valid credit card number")
+        radix = 10
+        plaintext = ''.join(decrypt_main(msg[:len(msg)-1], T, key, radix))
+        plaintext = plaintext[:4] + ' ' + plaintext[4:8] + ' ' + plaintext[8:12] + ' ' + plaintext[12:] + validateCard(plaintext)
         print(plaintext)
 
     if format == Format.LETTERS:
-        radix = 26
-        mapping = lettersDictE
-        cipherNumerals = map_from_numeral_string(msg,mapping)
-        plainNumerals = decrypt_main(cipherNumerals,T,key,radix)
-        plaintext = ''.join(map_from_numeral_string(plainNumerals,lettersDictD))
-        print(plaintext)
-
-    if format == Format.STRING:
-        radix = 36
-        mapping = stringDictE
-        cipherNumerals = map_from_numeral_string(msg,mapping)
-        plainNumerals = decrypt_main(cipherNumerals,T,key,radix)
-        plaintext = ''.join(map_from_numeral_string(plainNumerals,stringDictD))
-        print(plaintext)
-
-    if format == Format.EMAIL:        
-        msg = msg[:((len((msg))-1)//2)] + msg[(((len(msg))-1)//2)+1:]
-        domain=letters2+['@','.','!','#','$','£','%','&','\'','*','+','-','/','=','?','^','_','´','{','}','|']
-        radix = len(domain)
-        mapping = get_mapping_from_domain(domain)
+        mapping = mapping_letters
+        radix = len(mapping[0])
         cipherNumerals = map_from_numeral_string(msg,mapping[0])
         plainNumerals = decrypt_main(cipherNumerals,T,key,radix)
         plaintext = ''.join(map_from_numeral_string(plainNumerals,mapping[1]))
+        print(plaintext)
+
+    if format == Format.STRING:
+        mapping = mapping_letters_integers
+        radix = len(mapping[0])
+        cipherNumerals = map_from_numeral_string(msg,mapping[0])
+        plainNumerals = decrypt_main(cipherNumerals,T,key,radix)
+        plaintext = ''.join(map_from_numeral_string(plainNumerals,mapping[1]))
+        print(plaintext)
+
+    if format == Format.EMAIL:        
+        break_index = msg.find('@')
+        msg1 =msg[:break_index]
+        msg2 =msg[break_index+1:]
+        mapping1 = mapping_all
+        mapping2 = mapping_email_tail
+        radix1 = len(mapping1[0])
+        radix2 = len(mapping2[0])
+
+        cipherNumerals1 =  map_from_numeral_string(msg1,mapping1[0])
+        cipherNumerals2 =  map_from_numeral_string(msg2,mapping2[0])
+        plainNumerals1 = decrypt_main(cipherNumerals1,T,key,radix1)
+        plainNumerals2 = decrypt_main(cipherNumerals2,T,key,radix2)
+        plaintext1 = ''.join(map_from_numeral_string(plainNumerals1,mapping1[1]))
+        plaintext2 = ''.join(map_from_numeral_string(plainNumerals2,mapping2[1]))
+        plaintext = plaintext1 + '@' + plaintext2
         print(plaintext)
 
     if format == Format.DATE:
@@ -249,22 +265,15 @@ def decrypt(msg,T,key,format):
         print(plaintext)
 
     if format == Format.NAME:
-        data = json.loads(open("names.json", "r").read())
-        names = []
-        #numbers = []
-        for name in data['names']:
-            names.append(name['name'])
-            #numbers.append(name['number'])
-        radix = len(names)
-        mapping = get_mapping_from_domain(names)
-        cipherNumerals = map_from_name(msg, mapping[0])
+        mapping = mapping_name
+        radix = len(mapping_name[0])
+        cipherNumerals =  map_from_name(msg,mapping[0])
         plainNumerals = decrypt_main(cipherNumerals,T,key,radix)
-        print(plainNumerals)
-        plaintext = ''.join(map_from_name(plainNumerals[0],mapping[1]))
+        plaintext = ''.join(map_from_name(plainNumerals,mapping[1]))
+        #insert plainnumerals[0] above to make it runnable
         print(plaintext)
 
     return plaintext
-
-ciphertext = encrypt('1234567abcd8',T,key,Format.STRING)
-decrypt(ciphertext,T,key,Format.STRING)
+ciphertext = encrypt('4012888888881881',T,key,Format.CREDITCARD)
+decrypt(ciphertext,T,key,Format.CREDITCARD)
 #print("--- %s seconds ---" % (time.time() - start_time))
