@@ -14,17 +14,17 @@ def ff3_cipher():
 
 def test_encrypt_plaintext_format(ff3_cipher):
     with pytest.raises(ValueError):
-        assert ff3_cipher.encrypt(TWEAK, '123')
-        assert ff3_cipher.encrypt(TWEAK, '12345678910')
+        assert ff3_cipher.encrypt_numeral_string(TWEAK, '123')
+        assert ff3_cipher.encrypt_numeral_string(TWEAK, '12345678910')
 
 
 def test_encrypt_tweak_format(ff3_cipher):
     with pytest.raises(ValueError):
-        assert ff3_cipher.encrypt(BitArray('0b0000'), '123456')
-        assert ff3_cipher.encrypt(BitArray('0xe7e2f5d699b30c10'), '123456')
+        assert ff3_cipher.encrypt_numeral_string(BitArray('0b0000'), '123456')
+        assert ff3_cipher.encrypt_numeral_string(BitArray('0xe7e2f5d699b30c10'), '123456')
 
 
 @pytest.mark.parametrize("plaintext", PLAINTEXTS)
 def test_decrypt(ff3_cipher, plaintext):
-    ciphertext = ff3_cipher.encrypt(TWEAK, plaintext)
-    assert ff3_cipher.decrypt(TWEAK, ciphertext) == plaintext
+    ciphertext = ff3_cipher.encrypt_numeral_string(TWEAK, plaintext)
+    assert ff3_cipher.decrypt_numeral_string(TWEAK, ciphertext) == plaintext
