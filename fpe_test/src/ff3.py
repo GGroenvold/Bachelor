@@ -3,7 +3,7 @@ from bitstring import BitArray
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from utils import num_radix, str_radix, reverse
-from format import *
+from format_translator import *
 
 # Constants
 MIN_LEN, MAX_LEN = 2, 100
@@ -124,7 +124,7 @@ if __name__ == '__main__':
 
     ff3_cipher = FF3(key)
 
-    X = "abc"
+    X = "1234"
 
     print(X)
 

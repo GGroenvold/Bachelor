@@ -5,7 +5,7 @@ from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 import time
 import binascii
-from format import *
+from format_translator import *
 
 start_time = time.time()
 
