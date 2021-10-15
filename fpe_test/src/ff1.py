@@ -4,6 +4,7 @@ from utils import *
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from enum import Enum, auto
+from re import sub
 import time
 import binascii
 import json
@@ -18,28 +19,36 @@ class Format(Enum):
     EMAIL = auto()
     DATE = auto()
     NAME = auto()
+    #CPR = auto()
 
 data = json.loads(open("names.json", "r").read())
 names = []
 for name in data['names']:
     names.append(name['name'])
 
-domain = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
-          'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-          '0','1','2','3','4','5','6','7','8','9',
-          '.','-','!','#','$','£','%','&','\'','*','+','/','=','?','^','_','´','{','}','|']
-lower_letter_index = 0
-upper_letter_index = 26
-integer_index = 52
-special_signs_index = 62
+data = json.loads(open("top-lvl-domains.json", "r").read())
+top_lvl_domains = []
+for top_lvl_domain in data['top-lvl-domains']:
+    top_lvl_domains.append(top_lvl_domain['top-lvl-domain'])
 
-mapping_letters = get_mapping_from_domain(domain[:integer_index])
-mapping_upper_letters = get_mapping_from_domain(domain[upper_letter_index:integer_index])
-mapping_lower_letters = get_mapping_from_domain(domain[:upper_letter_index])
-mapping_email_tail = get_mapping_from_domain(domain[:upper_letter_index]+domain[integer_index:special_signs_index+2])
-mapping_letters_integer = get_mapping_from_domain(domain[:special_signs_index])
+domain = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','æ','ø','å',
+          'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Æ','Ø','Å',
+          '0','1','2','3','4','5','6','7','8','9',
+          '.','-','!','#','$','£','%','&','\'','*','+','/','=','?','^','_','´','{','}','|',' ',',','@','"','(',')',';',':','<','>','`','~']
+lower_letter_end = 29
+upper_letter_end = 58
+integer_end = 68
+email_signs_end = 88
+
+mapping_letters = get_mapping_from_domain(domain[:upper_letter_end])
+mapping_upper_letters = get_mapping_from_domain(domain[lower_letter_end:upper_letter_end])
+mapping_lower_letters = get_mapping_from_domain(domain[:lower_letter_end])
+mapping_email_tail = get_mapping_from_domain(domain[:lower_letter_end]+domain[upper_letter_end:integer_end+2])
+mapping_letters_integer = get_mapping_from_domain(domain[:integer_end])
 mapping_all = get_mapping_from_domain(domain)
 mapping_name = get_mapping_from_domain(names)
+mapping_top_lvl_domains = get_mapping_from_domain(top_lvl_domains)
+
 
 T = bytes.fromhex('3737373770717273373737')
 key = bytes.fromhex('2B7E151628AED2A6ABF7158809CF4F3C')
@@ -147,7 +156,7 @@ def encrypt(msg,T,key,format):
         return ciphertext
 
     if format == Format.LETTERS:
-        radix = len(mapping_letters)
+        radix = len(mapping_letters[0])
         mapping = mapping_letters
         plainNumerals = map_from_numeral_string(msg,mapping[0])
         cipherNumerals = encrypt_main(plainNumerals,T,key,radix)
@@ -168,23 +177,27 @@ def encrypt(msg,T,key,format):
         #split email into Recipient, Domain name, Top-level domain?
         #create random length?
         msg = msg.lower()
-        break_index = msg.find('@')
-        msg1 =msg[:break_index]
-        msg2 =msg[break_index+1:]
+        first_break_index = msg.find('@')
+        second_break_index = msg.rfind('.')
+        msg1 = msg[:first_break_index]
+        msg2 = msg[first_break_index+1:second_break_index]
+        msg3 = msg[second_break_index+1:]
         mapping1 = mapping_all
         mapping2 = mapping_email_tail
+        mapping3 = mapping_top_lvl_domains
         radix1 = len(mapping1[0])
         radix2 = len(mapping2[0])
-
+        radix3 = len(mapping3[0])
         plainNumerals1 =  map_from_numeral_string(msg1,mapping1[0])
         plainNumerals2 =  map_from_numeral_string(msg2,mapping2[0])
+        plainNumerals3 =  map_from_name(msg3,mapping3[0])
         cipherNumerals1 = encrypt_main(plainNumerals1,T,key,radix1)
         cipherNumerals2 = encrypt_main(plainNumerals2,T,key,radix2)
-        print(cipherNumerals1)
-        print(cipherNumerals2)
+        cipherNumerals3 = str((int(plainNumerals3) + int(''.join(plainNumerals1) + ''.join(plainNumerals2)))%radix3)
         ciphertext1 = ''.join(map_from_numeral_string(cipherNumerals1,mapping1[1]))
         ciphertext2 = ''.join(map_from_numeral_string(cipherNumerals2,mapping2[1]))
-        ciphertext = ciphertext1 + '@' + ciphertext2
+        ciphertext3 = ''.join(map_from_name(cipherNumerals3,mapping3[1]))
+        ciphertext = ciphertext1 + '@' + ciphertext2 + '.' + ciphertext3
         print(ciphertext)
         
     if format == Format.DATE:
@@ -192,9 +205,11 @@ def encrypt(msg,T,key,format):
         # do we wanna check if output is valid?
         # should we split it up into day-month | year ?
         # what format do we wanna output? {dd/mm/yyyy, dd-mm-yyyy, dd/mm-yyyy, dd mm yyyy, dd.mm.yyyy, other?}
+        clean_msg = sub(r"\D", "", msg)
         radix = 10
-        ciphertext = ''.join(encrypt_main(msg, T, key, radix))
+        ciphertext = ''.join(encrypt_main(clean_msg, T, key, radix))
         ciphertext = ciphertext[:2] + '.' + ciphertext[2:4] + '.' + ciphertext[4:]
+        #we can use our msg to keep the format insted of just creating our own format.. maybe somehow
         print(ciphertext)
 
     if format == Format.NAME:
@@ -232,35 +247,44 @@ def decrypt(msg,T,key,format):
         print(plaintext)
 
     if format == Format.STRING:
-        mapping = mapping_letters_integers
+        mapping = mapping_letters_integer
         radix = len(mapping[0])
         cipherNumerals = map_from_numeral_string(msg,mapping[0])
         plainNumerals = decrypt_main(cipherNumerals,T,key,radix)
         plaintext = ''.join(map_from_numeral_string(plainNumerals,mapping[1]))
         print(plaintext)
 
-    if format == Format.EMAIL:        
-        break_index = msg.find('@')
-        msg1 =msg[:break_index]
-        msg2 =msg[break_index+1:]
+    if format == Format.EMAIL:  
+        
+        first_break_index = msg.find('@')
+        second_break_index = msg.rfind('.')
+
+        msg1 =msg[:first_break_index]
+        msg2 = msg[first_break_index+1:second_break_index]
+        msg3 = msg[second_break_index+1:]
         mapping1 = mapping_all
         mapping2 = mapping_email_tail
+        mapping3 = mapping_top_lvl_domains
         radix1 = len(mapping1[0])
         radix2 = len(mapping2[0])
+        radix3 = len(mapping3[0])
 
         cipherNumerals1 =  map_from_numeral_string(msg1,mapping1[0])
         cipherNumerals2 =  map_from_numeral_string(msg2,mapping2[0])
+        cipherNumerals3 =  map_from_name(msg3,mapping3[0])
         plainNumerals1 = decrypt_main(cipherNumerals1,T,key,radix1)
         plainNumerals2 = decrypt_main(cipherNumerals2,T,key,radix2)
+        plainNumerals3 = str((int(cipherNumerals3) - int(''.join(plainNumerals1) + ''.join(plainNumerals2)))%radix3)
         plaintext1 = ''.join(map_from_numeral_string(plainNumerals1,mapping1[1]))
         plaintext2 = ''.join(map_from_numeral_string(plainNumerals2,mapping2[1]))
-        plaintext = plaintext1 + '@' + plaintext2
+        plaintext3 = ''.join(map_from_name(plainNumerals3,mapping3[1]))
+        plaintext = plaintext1 + '@' + plaintext2 + '.' + plaintext3
         print(plaintext)
 
     if format == Format.DATE:
-        msg = msg = msg[:2] + msg[3:5] + msg[6:10]
+        clean_msg = sub(r"\D", "", msg)
         radix = 10
-        plaintext = ''.join(decrypt_main(msg,T,key,radix))
+        plaintext = ''.join(decrypt_main(clean_msg,T,key,radix))
         plaintext = plaintext[:2] + '.' + plaintext[2:4] + '.' + plaintext[4:]
         print(plaintext)
 
