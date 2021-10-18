@@ -182,6 +182,21 @@ def encrypt(msg, T, key, format):
         ciphertext = ''.join(map_from_name(cipherNumerals, mapping[1]))
         # insert ciphernumerals[0] above to make it runnable
         print(ciphertext)
+    if format == Format.CPR:
+        if (msg[len(msg) - 1] != validateCPR(msg[:len(msg) - 1])):
+            raise ValueError(f"{msg} is not a valid CPR number")
+        mapping = mapping_dates
+        radix1 = 10
+        radix2 = len(mapping[0])
+        msg1 = msg[:4]
+        msg2 = msg[4:9]
+        plainNumerals = map_from_name(msg1,mapping[0])
+        ciphertext1 = ''.join(encrypt_main(msg2, T, key, radix1))
+        ciphertext2 = map_from_name(str((int(plainNumerals) + int(msg2)) % radix2),mapping[1])
+        ciphertext = ciphertext2 + ciphertext1
+        ciphertext = ciphertext + validateCPR(ciphertext)
+        print(ciphertext)
+        return ciphertext
 
     return ciphertext
 
@@ -259,10 +274,25 @@ def decrypt(msg, T, key, format):
         plaintext = ''.join(map_from_name(plainNumerals, mapping[1]))
         # insert plainnumerals[0] above to make it runnable
         print(plaintext)
+        
+    if format == Format.CPR:
+        if (msg[len(msg) - 1] != validateCPR(msg[:len(msg) - 1])):
+            raise ValueError(f"{msg} is not a valid CPR number")
+        mapping = mapping_dates
+        radix1 = 10
+        radix2 = len(mapping[0])
+        msg1 = msg[:4]
+        msg2 = msg[4:9]
+        cipherNumerals = map_from_name(msg1,mapping[0])
+        plainNumerals1 = ''.join(decrypt_main(msg2, T, key, radix1))
+        plainNumerals2 = map_from_name(str((int(cipherNumerals) - int(plainNumerals1)) % radix2),mapping[1])
+        plainNumerals = plainNumerals2 + plainNumerals1
+        plaintext = plainNumerals + validateCPR(plainNumerals)
+        print(plaintext)
+        return plaintext
 
     return plaintext
 
-
-ciphertext = encrypt('4012888888881881', T, key, Format.CREDITCARD)
-decrypt(ciphertext, T, key, Format.CREDITCARD)
+ciphertext = encrypt('1306920517', T, key, Format.CPR)
+decrypt(ciphertext, T, key, Format.CPR)
 # print("--- %s seconds ---" % (time.time() - start_time))

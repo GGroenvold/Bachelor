@@ -9,3 +9,4 @@ class Format(Enum):
     EMAIL = auto()
     DATE = auto()
     NAME = auto()
+    CPR = auto()

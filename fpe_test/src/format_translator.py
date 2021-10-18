@@ -4,15 +4,23 @@ from format_validator import validate_format
 import json
 
 RADIX_DEFAULT = 10
-data = json.loads(open("names.json", "r").read())
-names = []
-for name in data['names']:
-    names.append(name['name'])
 
+data = json.loads(open("dates.json", "r").read())
+dates = []
+for i in data['dates']:
+    dates.append(i['date'])
+    
 data = json.loads(open("top-lvl-domains.json", "r").read())
 top_lvl_domains = []
 for top_lvl_domain in data['top-lvl-domains']:
     top_lvl_domains.append(top_lvl_domain['top-lvl-domain'])
+    
+
+
+data = json.loads(open('names.json', "r").read())
+names = []
+for name in data['names']:
+    names.append(name['name'])
 
 DOMAIN = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','æ','ø','å',
           'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Æ','Ø','Å',
@@ -29,6 +37,7 @@ mapping_lower_letters = get_mapping_from_domain(DOMAIN[:LOWER_LETTER_END])
 mapping_email_tail = get_mapping_from_domain(DOMAIN[:LOWER_LETTER_END]+DOMAIN[UPPER_LETTER_END:INTEGER_END+2])
 mapping_letters_integer = get_mapping_from_domain(DOMAIN[:INTEGER_END])
 mapping_all = get_mapping_from_domain(DOMAIN)
+mapping_dates = get_mapping_from_domain(dates)
 mapping_name = get_mapping_from_domain(names)
 mapping_top_lvl_domains = get_mapping_from_domain(top_lvl_domains)
 

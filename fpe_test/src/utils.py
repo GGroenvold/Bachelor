@@ -48,3 +48,10 @@ def validateCard(cardNumber):
         else:
             sum += int(cardNumber[index])
     return str((10 - sum) % 10)
+
+def validateCPR(CPR):
+        weights = [4, 3, 2, 7, 6, 5, 4, 3, 2]
+        sum = 0
+        for digit in range(len(CPR)):
+            sum += (int(CPR[digit]) * weights[digit])
+        return str(11 - (sum % 11))
