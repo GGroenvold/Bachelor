@@ -25,11 +25,11 @@ for name in data['names']:
 DOMAIN = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','æ','ø','å',
           'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Æ','Ø','Å',
           '0','1','2','3','4','5','6','7','8','9',
-          '.','-','!','#','$','£','%','&','\'','*','+','/','=','?','^','_','´','{','}','|',' ',',','@','"','(',')',';',':','<','>','`','~']
+          '.','-','!','#','$','£','%','&','\'','*','+','/','=','?','^','_','´','{','}','|',' ',',','(',')',':','<','>','`','~','é']
 LOWER_LETTER_END = 29
 UPPER_LETTER_END = 58
 INTEGER_END = 68
-EMAIL_SIGNS_END = 88
+EMAIL_SIGNS_END = 85
 
 mapping_letters = get_mapping_from_domain(DOMAIN[:UPPER_LETTER_END])
 mapping_upper_letters = get_mapping_from_domain(DOMAIN[LOWER_LETTER_END:UPPER_LETTER_END])

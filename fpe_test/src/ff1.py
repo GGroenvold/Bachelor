@@ -12,12 +12,12 @@ from format_translator import *
 start_time = time.time()
 
 
-T = bytes.fromhex('3737373770717273373737')
-key = bytes.fromhex('2B7E151628AED2A6ABF7158809CF4F3C')
-cipher = AES.new(key, AES.MODE_ECB)
+#T = bytes.fromhex('3737373770717273373737')
+#key = bytes.fromhex('2B7E151628AED2A6ABF7158809CF4F3C')
+#cipher = AES.new(key, AES.MODE_ECB)
 
 
-def PRF(X):
+def PRF(X,cipher):
     m = int((len(X) * 8) / 128)
     Y0 = b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
     for j in range(m):
@@ -28,7 +28,7 @@ def PRF(X):
     return Yj
 
 
-def encrypt_main(msg, T, key, radix):
+def encrypt_main(msg, T, key, radix,cipher):
     t = len(T)
     n = len(msg)
 
@@ -45,7 +45,7 @@ def encrypt_main(msg, T, key, radix):
 
     for i in range(10):
         Q = T + (0).to_bytes((-t - b - 1) % 16, 'big') + (i).to_bytes(1, 'big') + num_radix(radix, B).to_bytes(b, 'big')
-        R = PRF(P + Q)
+        R = PRF(P + Q,cipher)
         S = R
         for j in range(1, int(math.ceil(d / 16))):
             S = S + cipher.encrypt(bytes(A ^ B for A, B in zip(R, (j).to_bytes(16, 'big'))))
@@ -62,7 +62,7 @@ def encrypt_main(msg, T, key, radix):
     return (A + B)
 
 
-def decrypt_main(cphTxt, T, key, radix):
+def decrypt_main(cphTxt, T, key, radix,cipher):
     t = len(T)
     n = len(cphTxt)
 
@@ -79,8 +79,7 @@ def decrypt_main(cphTxt, T, key, radix):
 
     for i in range(9, -1, -1):
         Q = T + (0).to_bytes((-t - b - 1) % 16, 'big') + (i).to_bytes(1, 'big') + num_radix(radix, A).to_bytes(b, 'big')
-        # print(P)
-        R = PRF(P + Q)
+        R = PRF(P + Q,cipher)
         S = R
         for j in range(1, int(math.ceil(d / 16))):
             S = S + cipher.encrypt(bytes(A ^ B for A, B in zip(R, (j).to_bytes(16, 'big'))))
@@ -98,10 +97,11 @@ def decrypt_main(cphTxt, T, key, radix):
 
 
 def encrypt(msg, T, key, format):
+    cipher = AES.new(key, AES.MODE_ECB)
+
     if format == Format.DIGITS:
         radix = 10
-        ciphertext = ''.join(encrypt_main(msg, T, key, radix))
-        print(ciphertext)
+        ciphertext = ''.join(encrypt_main(msg, T, key, radix,cipher))
         return ciphertext
 
     if format == Format.CREDITCARD:
@@ -112,27 +112,23 @@ def encrypt(msg, T, key, format):
         if (msg[len(msg) - 1] != validateCard(msg[:len(msg) - 1])):
             raise ValueError(f"{msg} is not a valid credit card number")
         radix = 10
-        ciphertext = ''.join(encrypt_main(msg[:len(msg) - 1], T, key, radix))
+        ciphertext = ''.join(encrypt_main(msg[:len(msg) - 1], T, key, radix,cipher))
         ciphertext = ciphertext[:4] + ' ' + ciphertext[4:8] + ' ' + ciphertext[8:12] + ' ' + ciphertext[12:] + validateCard(ciphertext)
-        print(ciphertext)
-        return ciphertext
 
     if format == Format.LETTERS:
         radix = len(mapping_letters[0])
         mapping = mapping_letters
         plainNumerals = map_from_numeral_string(msg, mapping[0])
-        cipherNumerals = encrypt_main(plainNumerals, T, key, radix)
+        cipherNumerals = encrypt_main(plainNumerals, T, key, radix,cipher)
         ciphertext = ''.join(map_from_numeral_string(cipherNumerals, mapping[1]))
-        print(ciphertext)
 
     if format == Format.STRING:
-        mapping = mapping_letters_integer
+        mapping = mapping_all
         radix = len(mapping[0])
         plainNumerals = map_from_numeral_string(msg, mapping[0])
-        cipherNumerals = encrypt_main(plainNumerals, T, key, radix)
+        cipherNumerals = encrypt_main(plainNumerals, T, key, radix,cipher)
         ciphertext = ''.join(map_from_numeral_string(cipherNumerals, mapping[1]))
-        print(ciphertext)
-
+        
     if format == Format.EMAIL:
         # check if email is valid?
         # check if cphtxt is valid?
@@ -153,15 +149,14 @@ def encrypt(msg, T, key, format):
         plainNumerals1 =  map_from_numeral_string(msg1,mapping1[0])
         plainNumerals2 =  map_from_numeral_string(msg2,mapping2[0])
         plainNumerals3 =  map_from_name(msg3,mapping3[0])
-        cipherNumerals1 = encrypt_main(plainNumerals1,T,key,radix1)
-        cipherNumerals2 = encrypt_main(plainNumerals2,T,key,radix2)
-        cipherNumerals3 = str((int(plainNumerals3) + int(''.join(plainNumerals1) + ''.join(plainNumerals2)))%radix3)
+        cipherNumerals1 = encrypt_main(plainNumerals1,T,key,radix1,cipher)
+        cipherNumerals2 = encrypt_main(plainNumerals2,T,key,radix2,cipher)
+        cipherNumerals3 = str((int(plainNumerals3) + int(''.join(plainNumerals1)) + int(''.join(plainNumerals2)) + int.from_bytes(key,'big'))%radix3)
         ciphertext1 = ''.join(map_from_numeral_string(cipherNumerals1,mapping1[1]))
         ciphertext2 = ''.join(map_from_numeral_string(cipherNumerals2,mapping2[1]))
         ciphertext3 = ''.join(map_from_name(cipherNumerals3,mapping3[1]))
         ciphertext = ciphertext1 + '@' + ciphertext2 + '.' + ciphertext3
-        print(ciphertext)
-
+        
     if format == Format.DATE:
         # do we wanna check if input is valid?
         # do we wanna check if output is valid?
@@ -169,19 +164,18 @@ def encrypt(msg, T, key, format):
         # what format do we wanna output? {dd/mm/yyyy, dd-mm-yyyy, dd/mm-yyyy, dd mm yyyy, dd.mm.yyyy, other?}
         clean_msg = sub(r"\D", "", msg)
         radix = 10
-        ciphertext = ''.join(encrypt_main(clean_msg, T, key, radix))
+        ciphertext = ''.join(encrypt_main(clean_msg, T, key, radix,cipher))
         ciphertext = ciphertext[:2] + '.' + ciphertext[2:4] + '.' + ciphertext[4:]
         #we can use our msg to keep the format insted of just creating our own format.. maybe somehow
-        print(ciphertext)
-
+        
     if format == Format.NAME:
         mapping = mapping_name
         radix = len(mapping_name[0])
         plainNumerals = map_from_name(msg, mapping[0])
-        cipherNumerals = encrypt_main(plainNumerals, T, key, radix)
+        cipherNumerals = encrypt_main(plainNumerals, T, key, radix,cipher)
         ciphertext = ''.join(map_from_name(cipherNumerals, mapping[1]))
         # insert ciphernumerals[0] above to make it runnable
-        print(ciphertext)
+        
     if format == Format.CPR:
         if (msg[len(msg) - 1] != validateCPR(msg[:len(msg) - 1])):
             raise ValueError(f"{msg} is not a valid CPR number")
@@ -191,47 +185,44 @@ def encrypt(msg, T, key, format):
         msg1 = msg[:4]
         msg2 = msg[4:9]
         plainNumerals = map_from_name(msg1,mapping[0])
-        ciphertext1 = ''.join(encrypt_main(msg2, T, key, radix1))
-        ciphertext2 = map_from_name(str((int(plainNumerals) + int(msg2)) % radix2),mapping[1])
+        ciphertext1 = ''.join(encrypt_main(msg2, T, key, radix1,cipher))
+        ciphertext2 = map_from_name(str((int(plainNumerals) + (int(msg2) + int.from_bytes(key,'big'))) % radix2),mapping[1])
         ciphertext = ciphertext2 + ciphertext1
         ciphertext = ciphertext + validateCPR(ciphertext)
-        print(ciphertext)
-        return ciphertext
+        
 
     return ciphertext
 
 
 def decrypt(msg, T, key, format):
+    cipher = AES.new(key, AES.MODE_ECB)
+
     if format == Format.DIGITS:
         radix = 10
-        plaintext = ''.join(decrypt_main(msg, T, key, radix))
-        print(plaintext)
+        plaintext = ''.join(decrypt_main(msg, T, key, radix,cipher))
 
     if format == Format.CREDITCARD:
         msg = msg.replace(' ', '')
         if (msg[len(msg) - 1] != validateCard(msg[:len(msg) - 1])):
             raise ValueError(f"{msg} is not a valid credit card number")
         radix = 10
-        plaintext = ''.join(decrypt_main(msg[:len(msg) - 1], T, key, radix))
+        plaintext = ''.join(decrypt_main(msg[:len(msg) - 1], T, key, radix,cipher))
         plaintext = plaintext[:4] + ' ' + plaintext[4:8] + ' ' + plaintext[8:12] + ' ' + plaintext[12:] + validateCard(plaintext)
-        print(plaintext)
-
+        
     if format == Format.LETTERS:
         mapping = mapping_letters
         radix = len(mapping[0])
         cipherNumerals = map_from_numeral_string(msg, mapping[0])
-        plainNumerals = decrypt_main(cipherNumerals, T, key, radix)
+        plainNumerals = decrypt_main(cipherNumerals, T, key, radix,cipher)
         plaintext = ''.join(map_from_numeral_string(plainNumerals, mapping[1]))
-        print(plaintext)
-
+        
     if format == Format.STRING:
         mapping = mapping_letters_integer
         radix = len(mapping[0])
         cipherNumerals = map_from_numeral_string(msg, mapping[0])
-        plainNumerals = decrypt_main(cipherNumerals, T, key, radix)
+        plainNumerals = decrypt_main(cipherNumerals, T, key, radix,cipher)
         plaintext = ''.join(map_from_numeral_string(plainNumerals, mapping[1]))
-        print(plaintext)
-
+        
     if format == Format.EMAIL:  
         
         first_break_index = msg.find('@')
@@ -250,27 +241,25 @@ def decrypt(msg, T, key, format):
         cipherNumerals1 =  map_from_numeral_string(msg1,mapping1[0])
         cipherNumerals2 =  map_from_numeral_string(msg2,mapping2[0])
         cipherNumerals3 =  map_from_name(msg3,mapping3[0])
-        plainNumerals1 = decrypt_main(cipherNumerals1,T,key,radix1)
-        plainNumerals2 = decrypt_main(cipherNumerals2,T,key,radix2)
-        plainNumerals3 = str((int(cipherNumerals3) - int(''.join(plainNumerals1) + ''.join(plainNumerals2)))%radix3)
+        plainNumerals1 = decrypt_main(cipherNumerals1,T,key,radix1,cipher)
+        plainNumerals2 = decrypt_main(cipherNumerals2,T,key,radix2,cipher)
+        plainNumerals3 = str((int(cipherNumerals3) - int(''.join(plainNumerals1) + ''.join(plainNumerals2 + int.from_bytes(key,'big'))))%radix3)
         plaintext1 = ''.join(map_from_numeral_string(plainNumerals1,mapping1[1]))
         plaintext2 = ''.join(map_from_numeral_string(plainNumerals2,mapping2[1]))
         plaintext3 = ''.join(map_from_name(plainNumerals3,mapping3[1]))
         plaintext = plaintext1 + '@' + plaintext2 + '.' + plaintext3
-        print(plaintext)
-
+        
     if format == Format.DATE:
         clean_msg = sub(r"\D", "", msg)
         radix = 10
-        plaintext = ''.join(decrypt_main(clean_msg, T, key, radix))
+        plaintext = ''.join(decrypt_main(clean_msg, T, key, radix,cipher))
         plaintext = plaintext[:2] + '.' + plaintext[2:4] + '.' + plaintext[4:]
-        print(plaintext)
-
+        
     if format == Format.NAME:
         mapping = mapping_name
         radix = len(mapping_name[0])
         cipherNumerals = map_from_name(msg, mapping[0])
-        plainNumerals = decrypt_main(cipherNumerals, T, key, radix)
+        plainNumerals = decrypt_main(cipherNumerals, T, key, radix,cipher)
         plaintext = ''.join(map_from_name(plainNumerals, mapping[1]))
         # insert plainnumerals[0] above to make it runnable
         print(plaintext)
@@ -284,15 +273,13 @@ def decrypt(msg, T, key, format):
         msg1 = msg[:4]
         msg2 = msg[4:9]
         cipherNumerals = map_from_name(msg1,mapping[0])
-        plainNumerals1 = ''.join(decrypt_main(msg2, T, key, radix1))
-        plainNumerals2 = map_from_name(str((int(cipherNumerals) - int(plainNumerals1)) % radix2),mapping[1])
+        plainNumerals1 = ''.join(decrypt_main(msg2, T, key, radix1,cipher))
+        plainNumerals2 = map_from_name(str((int(cipherNumerals) - (int(plainNumerals1) + int.from_bytes(key,'big'))) % radix2),mapping[1])
         plainNumerals = plainNumerals2 + plainNumerals1
         plaintext = plainNumerals + validateCPR(plainNumerals)
-        print(plaintext)
-        return plaintext
-
+        
     return plaintext
 
-ciphertext = encrypt('1306920517', T, key, Format.CPR)
-decrypt(ciphertext, T, key, Format.CPR)
+#ciphertext = encrypt('1306920517', T, key, Format.CPR)
+#decrypt(ciphertext, T, key, Format.CPR)
 # print("--- %s seconds ---" % (time.time() - start_time))

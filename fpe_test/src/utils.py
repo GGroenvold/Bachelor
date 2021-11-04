@@ -54,4 +54,7 @@ def validateCPR(CPR):
         sum = 0
         for digit in range(len(CPR)):
             sum += (int(CPR[digit]) * weights[digit])
-        return str(11 - (sum % 11))
+        if(11 - (sum % 11))%11==10:
+            return '0'
+        else:
+            return str((11 - (sum % 11))%11)
