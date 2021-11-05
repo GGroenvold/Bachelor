@@ -1,2 +1,5 @@
 .idea
 /.vs
+
+/pics
+/fpe_test/src/__pycache__
