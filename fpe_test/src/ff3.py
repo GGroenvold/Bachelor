@@ -1,4 +1,4 @@
-from math import ceil
+from math import ceil, log
 from bitstring import BitArray
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
@@ -6,10 +6,14 @@ from utils import num_radix, str_radix, reverse
 from format_translator import *
 
 # Constants
-MIN_LEN, MAX_LEN = 2, 100
+MIN_LEN = 2
 TWEAK_LEN = 56
 MAPPING = Format.DIGITS
 FORMAT = Format.DEFAULT
+
+
+def max_len(radix):
+    return 2 * int(log(2**96, radix))
 
 
 class FF3:
@@ -22,14 +26,14 @@ class FF3:
         """
         Encrypt plaintext with FF3-1 cipher
         :param tweak: 56 bit
-        :param numeral_string: numeral string with length n, where 6 <= n <= 10
+        :param numeral_string: numeral string with length n, where MIN_LEN <= n <= max_len
         :return:
         """
         if not (len(tweak) == TWEAK_LEN):
             raise ValueError(f"Tweak must be {TWEAK_LEN} bits")
 
-        if not (MIN_LEN <= len(numeral_string) <= MAX_LEN):
-            raise ValueError(f"Plaintext must have length between {MIN_LEN} and {MAX_LEN}")
+        if not (MIN_LEN <= len(numeral_string) <= max_len(radix)):
+            raise ValueError(f"Plaintext must have length between {MIN_LEN} and {max_len(radix)}")
 
         n = len(numeral_string)
         u = int(ceil(n / 2))
@@ -80,8 +84,8 @@ class FF3:
         if not (len(tweak) == TWEAK_LEN):
             raise ValueError(f"Tweak must be {TWEAK_LEN} bits")
 
-        if not (MIN_LEN <= len(numeral_string) <= MAX_LEN):
-            raise ValueError(f"Ciphertext must have length between {MIN_LEN} and {MAX_LEN}")
+        if not (MIN_LEN <= len(numeral_string) <= max_len(radix)):
+            raise ValueError(f"Ciphertext must have length between {MIN_LEN} and {max_len(radix)}")
 
         n = len(numeral_string)
         u = int(ceil(n / 2))
@@ -124,12 +128,12 @@ if __name__ == '__main__':
 
     ff3_cipher = FF3(key)
 
-    X = "1234"
+    X = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
     print(X)
 
-    ciphertext = ff3_cipher.encrypt(tweak, X, Format.LETTERS)
-    plaintext = ff3_cipher.decrypt(tweak, ciphertext, Format.LETTERS)
+    ciphertext = ff3_cipher.encrypt(tweak, X, Format.STRING)
+    plaintext = ff3_cipher.decrypt(tweak, ciphertext, Format.STRING)
 
     print(ciphertext)
     print(plaintext)
