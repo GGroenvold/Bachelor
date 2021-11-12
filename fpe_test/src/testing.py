@@ -19,8 +19,9 @@ def encrypt(msg, T, key, format):
     cipher = AES.new(key, AES.MODE_ECB)
 
     if format == Format.DIGITS:
+        msg = [int(x) for x in msg]
         radix = 10
-        ciphertext = ''.join(ff11.encrypt(msg, T, key, radix,cipher))
+        ciphertext = ''.join([str(x) for x in ff11.encrypt(msg, T, key, radix,cipher)])
         return ciphertext
 
     if format == Format.CREDITCARD:
@@ -30,8 +31,9 @@ def encrypt(msg, T, key, format):
         msg = msg.replace(' ', '')
         if (msg[len(msg) - 1] != validateCard(msg[:len(msg) - 1])):
             raise ValueError(f"{msg} is not a valid credit card number")
+        msg = [int(x) for x in msg]
         radix = 10
-        ciphertext = ''.join(ff11.encrypt(msg[:len(msg) - 1], T, key, radix,cipher))
+        ciphertext = ''.join([str(x) for x in ff11.encrypt(msg[:len(msg) - 1], T, key, radix,cipher)])
         ciphertext = ciphertext[:4] + ' ' + ciphertext[4:8] + ' ' + ciphertext[8:12] + ' ' + ciphertext[12:] + validateCard(ciphertext)
 
     if format == Format.LETTERS:
@@ -70,7 +72,10 @@ def encrypt(msg, T, key, format):
         plainNumerals3 =  map_from_name(msg3,mapping3[0])
         cipherNumerals1 = ff11.encrypt(plainNumerals1,T,key,radix1,cipher)
         cipherNumerals2 = ff11.encrypt(plainNumerals2,T,key,radix2,cipher)
-        cipherNumerals3 = str((int(plainNumerals3) + int(''.join(plainNumerals1)) + int(''.join(plainNumerals2)) + int.from_bytes(key,'big'))%radix3)
+        cipherNumerals3 = (plainNumerals3 + 
+                           int(''.join([str(x) for x in plainNumerals1]) + 
+                               ''.join([str(x) for x in plainNumerals2]) +
+                               str(int.from_bytes(key,'big'))))%radix3
         ciphertext1 = ''.join(map_from_numeral_string(cipherNumerals1,mapping1[1]))
         ciphertext2 = ''.join(map_from_numeral_string(cipherNumerals2,mapping2[1]))
         ciphertext3 = ''.join(map_from_name(cipherNumerals3,mapping3[1]))
@@ -118,15 +123,17 @@ def decrypt(msg, T, key, format):
     cipher = AES.new(key, AES.MODE_ECB)
 
     if format == Format.DIGITS:
+        msg = [int(x) for x in msg]
         radix = 10
-        plaintext = ''.join(ff11.decrypt(msg, T, key, radix,cipher))
+        plaintext = ''.join([str(x) for x in ff11.decrypt(msg, T, key, radix,cipher)])
 
     if format == Format.CREDITCARD:
         msg = msg.replace(' ', '')
         if (msg[len(msg) - 1] != validateCard(msg[:len(msg) - 1])):
             raise ValueError(f"{msg} is not a valid credit card number")
+        msg = [int(x) for x in msg]
         radix = 10
-        plaintext = ''.join(ff11.decrypt(msg[:len(msg) - 1], T, key, radix,cipher))
+        plaintext = ''.join([str(x) for x in ff11.decrypt(msg[:len(msg) - 1], T, key, radix,cipher)])
         plaintext = plaintext[:4] + ' ' + plaintext[4:8] + ' ' + plaintext[8:12] + ' ' + plaintext[12:] + validateCard(plaintext)
         
     if format == Format.LETTERS:
@@ -163,25 +170,28 @@ def decrypt(msg, T, key, format):
         cipherNumerals3 =  map_from_name(msg3,mapping3[0])
         plainNumerals1 = ff11.decrypt(cipherNumerals1,T,key,radix1,cipher)
         plainNumerals2 = ff11.decrypt(cipherNumerals2,T,key,radix2,cipher)
-        plainNumerals3 = str((int(cipherNumerals3) - int(''.join(plainNumerals1) + ''.join(plainNumerals2 + int.from_bytes(key,'big'))))%radix3)
+        plainNumerals3 = (cipherNumerals3 -
+                           int(''.join([str(x) for x in plainNumerals1]) + 
+                           ''.join([str(x) for x in plainNumerals2]) + 
+                           str(int.from_bytes(key,'big'))))%radix3
         plaintext1 = ''.join(map_from_numeral_string(plainNumerals1,mapping1[1]))
         plaintext2 = ''.join(map_from_numeral_string(plainNumerals2,mapping2[1]))
         plaintext3 = ''.join(map_from_name(plainNumerals3,mapping3[1]))
         plaintext = plaintext1 + '@' + plaintext2 + '.' + plaintext3
         
-    if format == Format.DATE:
-        clean_msg = sub(r"\D", "", msg)
-        radix = 10
-        plaintext = ''.join(ff11.decrypt(clean_msg, T, key, radix,cipher))
-        plaintext = plaintext[:2] + '.' + plaintext[2:4] + '.' + plaintext[4:]
-        
-    if format == Format.NAME:
-        mapping = mapping_name
-        radix = len(mapping_name[0])
-        cipherNumerals = map_from_name(msg, mapping[0])
-        plainNumerals = ff11.decrypt(cipherNumerals, T, key, radix,cipher)
-        plaintext = ''.join(map_from_name(plainNumerals, mapping[1]))
-        # insert plainnumerals[0] above to make it runnable
+#    if format == Format.DATE:
+#        clean_msg = sub(r"\D", "", msg)
+#        radix = 10
+#        plaintext = ''.join(ff11.decrypt(clean_msg, T, key, radix,cipher))
+#        plaintext = plaintext[:2] + '.' + plaintext[2:4] + '.' + plaintext[4:]
+#        
+#    if format == Format.NAME:
+#        mapping = mapping_name
+#        radix = len(mapping_name[0])
+#        cipherNumerals = map_from_name(msg, mapping[0])
+#        plainNumerals = ff11.decrypt(cipherNumerals, T, key, radix,cipher)
+#        plaintext = ''.join(map_from_name(plainNumerals, mapping[1]))
+#        # insert plainnumerals[0] above to make it runnable
         
     if format == Format.CPR:
         if (msg[len(msg) - 1] != validateCPR(msg[:len(msg) - 1])):
@@ -202,6 +212,6 @@ def decrypt(msg, T, key, format):
 
 
 for _ in range(1):
-    ciphertext = encrypt('hello', T, key, Format.LETTERS)
-    decrypt(ciphertext,T,key,Format.LETTERS)
+    ciphertext = encrypt('557384000asdf +9623716', T, key, Format.STRING)
+    print(decrypt(ciphertext,T,key,Format.STRING))
 print("--- %s seconds ---" % (time.time() - start_time))

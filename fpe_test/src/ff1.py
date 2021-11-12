@@ -150,11 +150,15 @@ def encrypt(msg, T, key, format):
         plainNumerals3 =  map_from_name(msg3,mapping3[0])
         cipherNumerals1 = encrypt_main(plainNumerals1,T,key,radix1,cipher)
         cipherNumerals2 = encrypt_main(plainNumerals2,T,key,radix2,cipher)
-        cipherNumerals3 = str((int(plainNumerals3) + int(''.join(plainNumerals1)) + int(''.join(plainNumerals2)) + int.from_bytes(key,'big'))%radix3)
+        cipherNumerals3 = (plainNumerals3 + 
+                           int(''.join([str(x) for x in plainNumerals1])) + 
+                           int(''.join([str(x) for x in plainNumerals2])) + 
+                           int.from_bytes(key,'big'))%radix3
         ciphertext1 = ''.join(map_from_numeral_string(cipherNumerals1,mapping1[1]))
         ciphertext2 = ''.join(map_from_numeral_string(cipherNumerals2,mapping2[1]))
         ciphertext3 = ''.join(map_from_name(cipherNumerals3,mapping3[1]))
         ciphertext = ciphertext1 + '@' + ciphertext2 + '.' + ciphertext3
+        print(ciphertext)
         
     if format == Format.DATE:
         # do we wanna check if input is valid?
@@ -280,6 +284,6 @@ def decrypt(msg, T, key, format):
         
     return plaintext
 for _ in range(1):
-    ciphertext = encrypt('hello@student.dtu.dk', T, key, Format.EMAIL)
-    decrypt(ciphertext,T,key,Format.EMAIL)
+    ciphertext = encrypt('email@email.com', T, key, Format.EMAIL)
+    #decrypt(ciphertext,T,key,Format.EMAIL)
 print("--- %s seconds ---" % (time.time() - start_time))
