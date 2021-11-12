@@ -4,7 +4,7 @@ from numpy import arange
 def num_radix(radix, numbers):
     x = 0
     for numeral in numbers:
-        x = x * radix + int(numeral)
+        x = x * radix + numeral
     return x
 
 
@@ -18,7 +18,7 @@ def str_radix(radix, length, number):
     numerals = [''] * length
 
     for i in range(length):
-        numerals[length - 1 - i] = str(number % radix)
+        numerals[length - 1 - i] = number % radix
         number = number // radix
     return numerals
 
@@ -36,7 +36,7 @@ def map_from_name(name, mapping):
 
 
 def get_mapping_from_domain(domain):
-    index = list(map(str, arange(0, len(domain)).tolist()))
+    index = list(map(int, arange(0, len(domain)).tolist()))
     return [dict(zip(domain, index)), dict(zip(index, domain))]
 
 

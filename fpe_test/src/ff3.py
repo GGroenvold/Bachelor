@@ -124,12 +124,12 @@ if __name__ == '__main__':
 
     ff3_cipher = FF3(key)
 
-    X = "1234"
+    X = "abababababababababababababab"
 
     print(X)
 
-    ciphertext = ff3_cipher.encrypt(tweak, X, Format.LETTERS)
-    plaintext = ff3_cipher.decrypt(tweak, ciphertext, Format.LETTERS)
+    ciphertext = ff3_cipher.encrypt(tweak, X, Format.STRING)
+    plaintext = ff3_cipher.decrypt(tweak, ciphertext, Format.STRING)
 
     print(ciphertext)
     print(plaintext)
