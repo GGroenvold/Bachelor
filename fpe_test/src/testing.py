@@ -144,7 +144,7 @@ def decrypt(msg, T, key, format):
         plaintext = ''.join(map_from_numeral_string(plainNumerals, mapping[1]))
         
     if format == Format.STRING:
-        mapping = mapping_letters_integer
+        mapping = mapping_all
         radix = len(mapping[0])
         cipherNumerals = map_from_numeral_string(msg, mapping[0])
         plainNumerals = ff11.decrypt(cipherNumerals, T, key, radix,cipher)
@@ -211,7 +211,7 @@ def decrypt(msg, T, key, format):
     return plaintext
 
 
-for _ in range(1):
-    ciphertext = encrypt('557384000asdf +9623716', T, key, Format.STRING)
-    print(decrypt(ciphertext,T,key,Format.STRING))
+for i in range(100000):
+    ciphertext = encrypt('bababa@email.dk', T, key, Format.EMAIL)
+    decrypt(ciphertext, T, key, Format.EMAIL)
 print("--- %s seconds ---" % (time.time() - start_time))
