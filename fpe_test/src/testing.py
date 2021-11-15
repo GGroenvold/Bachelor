@@ -211,7 +211,7 @@ def decrypt(msg, T, key, format):
     return plaintext
 
 
-for i in range(100000):
+for i in range(10000):
     ciphertext = encrypt('bababa@email.dk', T, key, Format.EMAIL)
     decrypt(ciphertext, T, key, Format.EMAIL)
 print("--- %s seconds ---" % (time.time() - start_time))

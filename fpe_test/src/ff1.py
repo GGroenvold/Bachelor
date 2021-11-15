@@ -151,14 +151,13 @@ def encrypt(msg, T, key, format):
         cipherNumerals1 = encrypt_main(plainNumerals1,T,key,radix1,cipher)
         cipherNumerals2 = encrypt_main(plainNumerals2,T,key,radix2,cipher)
         cipherNumerals3 = (plainNumerals3 + 
-                           int(''.join([str(x) for x in plainNumerals1])) + 
-                           int(''.join([str(x) for x in plainNumerals2])) + 
-                           int.from_bytes(key,'big'))%radix3
+                           int(''.join([str(x) for x in plainNumerals1]) + 
+                               ''.join([str(x) for x in plainNumerals2]) +
+                               str(int.from_bytes(key,'big'))))%radix3
         ciphertext1 = ''.join(map_from_numeral_string(cipherNumerals1,mapping1[1]))
         ciphertext2 = ''.join(map_from_numeral_string(cipherNumerals2,mapping2[1]))
         ciphertext3 = ''.join(map_from_name(cipherNumerals3,mapping3[1]))
         ciphertext = ciphertext1 + '@' + ciphertext2 + '.' + ciphertext3
-        print(ciphertext)
         
     if format == Format.DATE:
         # do we wanna check if input is valid?
@@ -227,8 +226,7 @@ def decrypt(msg, T, key, format):
         plainNumerals = decrypt_main(cipherNumerals, T, key, radix,cipher)
         plaintext = ''.join(map_from_numeral_string(plainNumerals, mapping[1]))
         
-    if format == Format.EMAIL:  
-        
+    if format == Format.EMAIL:            
         first_break_index = msg.find('@')
         second_break_index = msg.rfind('.')
 
@@ -247,7 +245,10 @@ def decrypt(msg, T, key, format):
         cipherNumerals3 =  map_from_name(msg3,mapping3[0])
         plainNumerals1 = decrypt_main(cipherNumerals1,T,key,radix1,cipher)
         plainNumerals2 = decrypt_main(cipherNumerals2,T,key,radix2,cipher)
-        plainNumerals3 = str((int(cipherNumerals3) - int(''.join(plainNumerals1) + ''.join(plainNumerals2 + int.from_bytes(key,'big'))))%radix3)
+        plainNumerals3 = (cipherNumerals3 -
+                           int(''.join([str(x) for x in plainNumerals1]) + 
+                           ''.join([str(x) for x in plainNumerals2]) + 
+                           str(int.from_bytes(key,'big'))))%radix3
         plaintext1 = ''.join(map_from_numeral_string(plainNumerals1,mapping1[1]))
         plaintext2 = ''.join(map_from_numeral_string(plainNumerals2,mapping2[1]))
         plaintext3 = ''.join(map_from_name(plainNumerals3,mapping3[1]))
@@ -284,6 +285,6 @@ def decrypt(msg, T, key, format):
         
     return plaintext
 for _ in range(100000):
-    ciphertext = encrypt('557384000asdf +9623716', T, key, Format.STRING)
-    decrypt(ciphertext,T,key,Format.STRING)
+    ciphertext = encrypt('example@email.com', T, key, Format.EMAIL)
+    decrypt(ciphertext,T,key,Format.EMAIL)
 print("--- %s seconds ---" % (time.time() - start_time))

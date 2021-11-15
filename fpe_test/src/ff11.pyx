@@ -69,14 +69,14 @@ cdef bytes PRF(bytes X,cipher):
 
 cdef list encrypt_main(list msg, bytes T, bytes key, radix, cipher):
     cdef int n = len(msg)
-    cdef t = len(T)
+    cdef int t = len(T)
     cdef int u = n / 2
     cdef int v = n - u
     cdef int j
-    m = v
     cdef int l
     cdef int i
     cdef int g 
+    cdef int m = v
 
     cdef int * plainNumerals = <int *> malloc(n*sizeof(int))
 
@@ -142,11 +142,11 @@ cdef list encrypt_main(list msg, bytes T, bytes key, radix, cipher):
 
 cdef list decrypt_main(list msg, bytes T, bytes key, radix, cipher):
     cdef int n = len(msg)
-    cdef t = len(T)
+    cdef int t = len(T)
     cdef int u = n / 2
     cdef int v = n - u
     cdef int j
-    m = u
+    cdef int m = u
     cdef int l
     cdef int i
 
@@ -180,6 +180,7 @@ cdef list decrypt_main(list msg, bytes T, bytes key, radix, cipher):
     cdef bytes Q
     cdef bytes R
 
+
     for i in range(9, -1, -1):
         Q = T + (0).to_bytes((-t - b - 1) % 16, 'big') + (i).to_bytes(1, 'big') + num_radix(radix, A, m).to_bytes(b, 'big')
         R = PRF(P + Q,cipher)
@@ -198,7 +199,7 @@ cdef list decrypt_main(list msg, bytes T, bytes key, radix, cipher):
         C = str_radix(radix, m, c)
         memcpy(B, A, l*sizeof(int))
         memcpy(A, C, m*sizeof(int))
-    
+
     cdef int *SUM = <int *> malloc(n*sizeof(int))
 
     if not SUM:

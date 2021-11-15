@@ -5,19 +5,19 @@ import json
 
 RADIX_DEFAULT = 10
 
-data = json.loads(open("dates.json", "r").read())
+data = json.loads(open("src/dates.json", "r").read())
 dates = []
 for i in data['dates']:
     dates.append(i['date'])
     
-data = json.loads(open("top-lvl-domains.json", "r").read())
+data = json.loads(open("src/top-lvl-domains.json", "r").read())
 top_lvl_domains = []
 for top_lvl_domain in data['top-lvl-domains']:
     top_lvl_domains.append(top_lvl_domain['top-lvl-domain'])
     
 
 
-data = json.loads(open('names.json', "r").read())
+data = json.loads(open('src/names.json', "r").read())
 names = []
 for name in data['names']:
     names.append(name['name'])
