@@ -1,4 +1,4 @@
-from format import Format
+import Format
 import re
 
 

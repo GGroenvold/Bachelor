@@ -1,12 +1,6 @@
-from enum import Enum, auto
-
-class Format(Enum):
-    DEFAULT = auto()
-    DIGITS = auto()
-    CREDITCARD = auto()
-    LETTERS = auto()
-    STRING = auto()
-    EMAIL = auto()
-    DATE = auto()
-    NAME = auto()
-    CPR = auto()
+DIGITS = 0
+CREDITCARD = 1
+LETTERS = 2
+STRING = 3
+EMAIL = 4
+CPR = 5
