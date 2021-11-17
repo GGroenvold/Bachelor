@@ -1,19 +1,32 @@
 import csv
+import concurrent.futures
 import json
-import ff1
+import testing
 import time
 from Crypto.Random import get_random_bytes
 from format_translator import *
+
+T = bytes.fromhex('3737373770717273373737')
+key = bytes.fromhex('2B7E151628AED2A6ABF7158809CF4F3C')
+csvFilePath = 'testDataTable.csv'
+encryptedDataPath = 'encryptedData.csv'
+dataFormats = [Format.LETTERS, Format.STRING, Format.EMAIL, Format.DIGITS, Format.CPR, Format.CREDITCARD]
+
+
+
+def encrypt(columns,dataFormat):
+
+    ciphertexts = [columns[0]]
+
+    for msg in columns[1:]:
+        ciphertexts.append(testing.encrypt(msg, T, key, dataFormat))
+
+    return ciphertexts
+
 if __name__ == '__main__':
 
 
-    start_time = time.time()
-    
-    T = bytes.fromhex('3737373770717273373737')
-    key = bytes.fromhex('2B7E151628AED2A6ABF7158809CF4F3C')
-    csvFilePath = 'testDataTable.csv'
-    encryptedDataPath = 'encryptedData.csv'
-    dataFormats = [Format.LETTERS, Format.STRING, Format.EMAIL, Format.DIGITS, Format.CPR, Format.CREDITCARD]    
+    start_time = time.time() 
  
     data=[]
     with open(csvFilePath) as csvFile:
@@ -23,22 +36,29 @@ if __name__ == '__main__':
             if (rowCount != 0):
                 columnCount = 0
                 for column in row:
-                    print("%d %d" %(rowCount, columnCount))
-                    data[columnCount].append(ff1.encrypt(column, T, key, dataFormats[columnCount]))
+                    data[columnCount].append(column)
                     columnCount += 1
+
+                #print("%d %d" %(rowCount, columnCount))
             else:
                 for column in row:
                     data.append([column])
             
-            rowCount += 1
+                rowCount += 1
+
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        results = list(executor.map(encrypt,data,dataFormats))
+
+        data = results
+
 
     with open(encryptedDataPath, 'w',  newline='') as encryptedCSVFile:
         csvWriter = csv.writer(encryptedCSVFile, delimiter = ';')
         for i in range(len(data[0])):
             data2 = []
             for j in range(len(data)):
-                print(i)
-                print(data[j][i])
+                #print(i)
+                #print(data[j][i])
                 data2.append(data[j][i])
             csvWriter.writerow(data2)
 

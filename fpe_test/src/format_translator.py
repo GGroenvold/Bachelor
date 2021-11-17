@@ -42,45 +42,104 @@ mapping_name = get_mapping_from_domain(names)
 mapping_top_lvl_domains = get_mapping_from_domain(top_lvl_domains)
 
 
-def plaintext_to_numeral_string(plaintext, format):
-    if not validate_format(plaintext, format):
-        raise ValueError(f"The provided text is not correctly formatted as {format}")
+def text_to_numeral_list(text, dataFormat):
+    #if not validate_format(text, dataFormat):
+        #raise ValueError(f"The provided text is not correctly formatted as {dataFormat}")
 
-    if format == Format.DEFAULT:
-        return plaintext
+    if dataFormat == Format.DIGITS:
+        return [int(x) for x in text]
 
-    if format == Format.DIGITS:
-        return ''.join(plaintext)
+    if dataFormat == Format.CREDITCARD:
+        text = text.replace(' ', '')
 
-    if format == Format.LETTERS:
-        mapping = mapping_letters
-        return map_from_numeral_string(plaintext, mapping[0])
+        if (text[len(text) - 1] != validateCard(text[:len(text) - 1])):
+            raise ValueError(f"{text} is not a valid credit card number")
 
-    if format == Format.STRING:
-        mapping = mapping_all
-        return map_from_numeral_string(plaintext, mapping[0])
+        return [int(x) for x in text[:len(text)-1]]
+
+    if dataFormat == Format.LETTERS:
+
+        return map_from_numeral_string(text, mapping_letters[0])
+
+    if dataFormat == Format.STRING:
+        numerals = map_from_numeral_string(text, mapping_all[0])
+        
+        return numerals
+        
+    if dataFormat == Format.EMAIL:
+        first_break_index = text.find('@')
+        second_break_index = text.rfind('.')
+
+        text1 = text[:first_break_index]
+        text2 = text[first_break_index+1:second_break_index]
+        text3 = text[second_break_index+1:]
+
+        numerals1 =  map_from_numeral_string(text1,mapping_all[0])
+
+        numerals2 =  map_from_numeral_string(text2,mapping_email_tail[0])
+        numerals3 =  map_from_name(text3,mapping_top_lvl_domains[0])
+
+        return [numerals1, numerals2, numerals3] 
+
+    if dataFormat == Format.CPR:
+        if (text[len(text) - 1] != validateCPR(text[:len(text) - 1])):
+            raise ValueError(f"{text} is not a valid CPR number")
+
+        text1 = text[:4]
+
+        numerals1 = map_from_name(text1,mapping_dates[0])
+        numerals2 = [int(x) for x in text[4:9]]
+
+        return [numerals1, numerals2]
 
 
-def numeral_string_to_plaintext(numeral_string, format):
-    if format == Format.DEFAULT:
-        pass
+def numeral_list_to_text(numerals, dataFormat):
+    #if not validate_format(text, dataFormat):
+        #raise ValueError(f"The provided text is not correctly formatted as {dataFormat}")
 
-    if format == Format.DIGITS:
-        return ''.join(numeral_string)
+    if dataFormat == Format.DIGITS:
+        return ''.join([str(x) for x in numerals])
 
-    if format == Format.LETTERS:
-        mapping = mapping_letters
-        return map_from_numeral_string(numeral_string, mapping[1])
+    if dataFormat == Format.CREDITCARD:
+        text1 = ''.join([str(x) for x in numerals[:4]])
+        text2 = ''.join([str(x) for x in numerals[4:8]])
+        text3 = ''.join([str(x) for x in numerals[8:12]])
+        text4 = ''.join([str(x) for x in numerals[12:]])
 
-    if format == Format.STRING:
-        mapping = mapping_all
-        return map_from_numeral_string(numeral_string, mapping[1])
+        return text1 + ' ' + text2 + ' ' + text3 + ' ' + text4 + validateCard(text1+text2+text3+text4)
 
-    if format == Format.NAME:
-        pass
+    if dataFormat == Format.LETTERS:
+        return ''.join(map_from_numeral_string(numerals, mapping_letters[1]))
 
-    if format == Format.EMAIL:
-        pass
+    if dataFormat == Format.STRING:
+        return ''.join(map_from_numeral_string(numerals, mapping_all[1]))
+        
+    if dataFormat == Format.EMAIL:
+        text1 = ''.join(map_from_numeral_string(numerals[0],mapping_all[1]))
+        text2 = ''.join(map_from_numeral_string(numerals[1],mapping_email_tail[1]))
+        text3 = ''.join(map_from_name(numerals[2],mapping_top_lvl_domains[1]))
+
+        return text1 + '@' + text2 + '.' + text3
+        
+    if dataFormat == Format.CPR:
+        text1 = ''.join(map_from_name(numerals[1],mapping_dates[1]))
+        text2 = ''.join([str(x) for x in numerals[0]])
+
+        return text1 + text2 + validateCPR(text1 + text2)
+
+#    if format == Format.DATE:
+#        clean_text = sub(r"\D", "", text)
+#        ciphertext = ''.join(ff11.encrypt(clean_msg, T, key, radix,cipher))
+#        ciphertext = ciphertext[:2] + '.' + ciphertext[2:4] + '.' + ciphertext[4:]
+#        #we can use our msg to keep the format insted of just creating our own format.. maybe somehow
+#        
+#    if format == Format.NAME:
+#        mapping = mapping_name
+#        radix = len(mapping_name[0])
+#        plainNumerals = map_from_name(msg, mapping[0])
+#        cipherNumerals = ff11.encrypt(plainNumerals, T, key, radix,cipher)
+#        ciphertext = ''.join(map_from_name(cipherNumerals, mapping[1]))
+#        # insert ciphernumerals[0] above to make it runnable
 
 
 
@@ -91,8 +150,22 @@ def get_radix_by_format(format):
     if format == Format.DIGITS:
         return 10
 
+    if format == Format.CREDITCARD:
+        return 10
+
     if format == Format.LETTERS:
         return len(mapping_letters[0])
 
     if format == Format.STRING:
         return len(mapping_all[0])
+
+    if format == Format.EMAIL:        
+        radix1 = len(mapping_all[0])
+        radix2 = len(mapping_email_tail[0])
+        radix3 = len(mapping_top_lvl_domains[0])
+        return [radix1, radix2, radix3]
+
+    if format == Format.CPR:
+        radix1 = len(mapping_dates[0])
+        radix2 = 10
+        return [radix1, radix2]

@@ -18,7 +18,7 @@ cdef num_radix(radix, int* numbers, int length):
         x = x * radix + numbers[i]
     return x
 
-cdef int* str_radix(radix, length, number):
+cdef int* str_radix(radix, int length, number):
     if length < 1:
         raise ValueError(f"{length} is not a valid string length")
 
@@ -63,56 +63,61 @@ cdef bytes PRF(bytes X,cipher):
     cdef bytes Xj
     for j in range(m):
         Xj = X[j * 16:(j * 16) + 16]
+        #for _ in range(100000):
         Yj = cipher.encrypt(xor16ByteArray(Xj,Yj))
     return Yj
 
 
-cdef list encrypt_main(list msg, bytes T, bytes key, radix, cipher):
+cdef list encrypt_main(list msg, bytes T, radix, cipher):
     cdef int n = len(msg)
     cdef int t = len(T)
     cdef int u = n / 2
     cdef int v = n - u
+    cdef int m = v
+    cdef int b = math.ceil(math.ceil(v * math.log2(radix)) / 8.0)
+    cdef int d = 4 * math.ceil(b / 4.0) + 4
+    cdef int k = math.ceil(d/16.0)
     cdef int j
     cdef int l
     cdef int i
-    cdef int g 
-    cdef int m = v
 
     cdef int * plainNumerals = <int *> malloc(n*sizeof(int))
-
-    if not plainNumerals:
-        raise MemoryError()
-
-    for g in range(n):
-        plainNumerals[g] = msg[g]
-
-    cdef int *A = <int *> malloc(u*sizeof(int))
-    cdef int *B = <int *> malloc(v*sizeof(int))
-    cdef int *C = <int *> malloc(v*sizeof(int))
-
-    if not A or not B or not C:
-        raise MemoryError()
-
-    memcpy(A, plainNumerals, u*sizeof(int))
-    memcpy(B, plainNumerals+u, v*sizeof(int))
-
-    cdef int b = math.ceil(math.ceil(v * math.log2(radix)) / 8)
-    cdef int d = 4 * math.ceil(b / 4.0) + 4
-    cdef int k = math.ceil(d/16.0)
+    cdef int * A = <int *> malloc(u*sizeof(int))
+    cdef int * B = <int *> malloc(v*sizeof(int))
+    cdef int * C = <int *> malloc(v*sizeof(int))
+    cdef int * SUM = <int *> malloc(n*sizeof(int))
+    
+    cdef unsigned char* tweak = <unsigned char *> malloc(t*sizeof(char))
 
     cdef bytes P = b'\x01' + b'\x02' + b'\x01' + \
         radix.to_bytes(3, 'big') + b'\n' + \
         (u % 256).to_bytes(1, 'big') + \
         n.to_bytes(4, 'big') + t.to_bytes(4, 'big')
 
-    cdef bytes Q
-    cdef bytes R
+
+
+    if not A or not B or not C or not plainNumerals:
+        raise MemoryError()
+
+    for i in range(n):
+        plainNumerals[i] = msg[i]
+
+    i = 0
+
+    for i in range(t):
+        tweak[i] = T[i]
+
+    i = 0
+
+    memcpy(A, plainNumerals, u*sizeof(int))
+    memcpy(B, plainNumerals+u, v*sizeof(int))
 
     for i in range(10):
         Q = T + (0).to_bytes((-t - b - 1) % 16, 'big') + (i).to_bytes(1, 'big') + num_radix(radix, B, m).to_bytes(b, 'big')
         R = PRF(P + Q,cipher)
         S = R
         for j in range(1, k):
+            print('lul')
             S = S + cipher.encrypt(bytes(A ^ B for A, B in zip(R, (j).to_bytes(16, 'big'))))
         S = S[:d]
         y = int.from_bytes(S, 'big')
@@ -127,61 +132,60 @@ cdef list encrypt_main(list msg, bytes T, bytes key, radix, cipher):
         memcpy(A, B, l*sizeof(int))
         memcpy(B, C, m*sizeof(int))
 
-    cdef int *SUM = <int *> malloc(n*sizeof(int))
-
     if not SUM:
         raise MemoryError()
 
     memcpy(SUM, A, u*sizeof(int))
     memcpy(SUM+u, B, v*sizeof(int))
 
-
-    cipherNumerals = [value for value in SUM[:n]]
+    cipherNumerals = [x for x in SUM[:n]]
 
     return cipherNumerals
 
-cdef list decrypt_main(list msg, bytes T, bytes key, radix, cipher):
+cdef list decrypt_main(list msg, bytes T, radix, cipher):
     cdef int n = len(msg)
     cdef int t = len(T)
     cdef int u = n / 2
     cdef int v = n - u
-    cdef int j
     cdef int m = u
+    cdef int b = math.ceil(math.ceil(v * math.log2(radix)) / 8.0)
+    cdef int d = 4 * math.ceil(b / 4.0) + 4
+    cdef int k = math.ceil(d/16.0)
+    cdef int j
     cdef int l
     cdef int i
 
     cdef int * plainNumerals = <int *> malloc(n*sizeof(int))
-
-    if not plainNumerals:
-        raise MemoryError()
-
-    for g in range(n):
-        plainNumerals[g] = msg[g]
-
-    cdef int *A = <int *> malloc(u*sizeof(int))
-    cdef int *B = <int *> malloc(v*sizeof(int))
-    cdef int *C = <int *> malloc(v*sizeof(int))
-
-    if not A or not B or not C:
-        raise MemoryError()
-
-    memcpy(A, plainNumerals, u*sizeof(int))
-    memcpy(B, plainNumerals+u, v*sizeof(int))
-
-    cdef int b = math.ceil(math.ceil(v * math.log2(radix)) / 8)
-    cdef int d = 4 * math.ceil(b / 4.0) + 4
-    cdef int k = math.ceil(d/16.0)
+    cdef int * A = <int *> malloc(u*sizeof(int))
+    cdef int * B = <int *> malloc(v*sizeof(int))
+    cdef int * C = <int *> malloc(v*sizeof(int))
+    cdef int * SUM = <int *> malloc(n*sizeof(int))
+    cdef bytes Q, R, S
+    
+    cdef unsigned char* tweak = <unsigned char *> malloc(t*sizeof(char))
 
     cdef bytes P = b'\x01' + b'\x02' + b'\x01' + \
         radix.to_bytes(3, 'big') + b'\n' + \
         (u % 256).to_bytes(1, 'big') + \
         n.to_bytes(4, 'big') + t.to_bytes(4, 'big')
 
-    cdef bytes Q
-    cdef bytes R
+    if not A or not B or not C or not plainNumerals:
+        raise MemoryError()
 
+    for i in range(n):
+        plainNumerals[i] = msg[i]
 
-    for i in range(9, -1, -1):
+    i = 0
+
+    for i in range(t):
+        tweak[i] = T[i]
+
+    i = 0
+
+    memcpy(A, plainNumerals, u*sizeof(int))
+    memcpy(B, plainNumerals+u, v*sizeof(int))
+
+    for i in range(9, -1, -1):       
         Q = T + (0).to_bytes((-t - b - 1) % 16, 'big') + (i).to_bytes(1, 'big') + num_radix(radix, A, m).to_bytes(b, 'big')
         R = PRF(P + Q,cipher)
         S = R
@@ -200,8 +204,6 @@ cdef list decrypt_main(list msg, bytes T, bytes key, radix, cipher):
         memcpy(B, A, l*sizeof(int))
         memcpy(A, C, m*sizeof(int))
 
-    cdef int *SUM = <int *> malloc(n*sizeof(int))
-
     if not SUM:
         raise MemoryError()
 
@@ -212,14 +214,8 @@ cdef list decrypt_main(list msg, bytes T, bytes key, radix, cipher):
 
     return cipherNumerals
 
-cpdef list encrypt(list msg, bytes T, bytes key, radix, cipher):
+cpdef list encrypt(list msg, bytes T, radix, cipher):
+    return encrypt_main(msg, T, radix, cipher)
 
-    cipherNumerals = encrypt_main(msg, T, key, radix, cipher)
-
-    return cipherNumerals
-
-cpdef list decrypt(list msg, bytes T, bytes key, radix, cipher):
-
-    plainNumerals = decrypt_main(msg, T, key, radix, cipher)
-
-    return plainNumerals
+cpdef list decrypt(list msg, bytes T, radix, cipher):
+    return decrypt_main(msg, T, radix, cipher)

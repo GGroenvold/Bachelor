@@ -4,6 +4,8 @@ from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from utils import num_radix, str_radix, reverse
 from format_translator import *
+import time
+
 
 # Constants
 MIN_LEN = 2
@@ -67,12 +69,12 @@ class FF3:
         return A + B
 
     def encrypt(self, tweak, plaintext, format=FORMAT):
-        numeral_string = plaintext_to_numeral_string(plaintext, format)
+        numeral_string = text_to_numeral_list(plaintext, format)
         radix = get_radix_by_format(format)
 
         ciphertext = self.encrypt_numeral_string(tweak, radix, numeral_string)
 
-        return ''.join(numeral_string_to_plaintext(ciphertext, format))
+        return ''.join(numeral_list_to_text(ciphertext, format))
 
     def decrypt_numeral_string(self, tweak, radix, numeral_string):
         """
@@ -115,25 +117,25 @@ class FF3:
         return A + B
 
     def decrypt(self, tweak, ciphertext, format=FORMAT):
-        cipher_numeral_string = plaintext_to_numeral_string(ciphertext, format)
+        cipher_numeral_string = text_to_numeral_list(ciphertext, format)
         radix = get_radix_by_format(format)
         ciphertext = self.decrypt_numeral_string(tweak, radix, cipher_numeral_string)
 
-        return ''.join(numeral_string_to_plaintext(ciphertext, format))
+        return ''.join(numeral_list_to_text(ciphertext, format))
 
 
 if __name__ == '__main__':
+    start_time = time.time()
+
     tweak = BitArray(get_random_bytes(TWEAK_LEN // 8))
     key = get_random_bytes(16)
 
     ff3_cipher = FF3(key)
 
-    X = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    X = "hello"
 
-    print(X)
+    for _ in range(100000):
+        ciphertext = ff3_cipher.encrypt(tweak, X, Format.STRING)
+        plaintext = ff3_cipher.decrypt(tweak, ciphertext, Format.STRING)
 
-    ciphertext = ff3_cipher.encrypt(tweak, X, Format.STRING)
-    plaintext = ff3_cipher.decrypt(tweak, ciphertext, Format.STRING)
-
-    print(ciphertext)
-    print(plaintext)
+    print("--- %s seconds ---" % (time.time() - start_time))

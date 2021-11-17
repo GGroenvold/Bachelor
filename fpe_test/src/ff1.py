@@ -12,7 +12,7 @@ from format_translator import *
 start_time = time.time()
 
 
-T = bytes.fromhex('3737373770717273373737')
+T = bytes.fromhex('37373737707172')
 key = bytes.fromhex('2B7E151628AED2A6ABF7158809CF4F3C')
 cipher = AES.new(key, AES.MODE_ECB)
 
@@ -240,9 +240,12 @@ def decrypt(msg, T, key, format):
         radix2 = len(mapping2[0])
         radix3 = len(mapping3[0])
 
+        print(msg1)
+
         cipherNumerals1 =  map_from_numeral_string(msg1,mapping1[0])
         cipherNumerals2 =  map_from_numeral_string(msg2,mapping2[0])
         cipherNumerals3 =  map_from_name(msg3,mapping3[0])
+
         plainNumerals1 = decrypt_main(cipherNumerals1,T,key,radix1,cipher)
         plainNumerals2 = decrypt_main(cipherNumerals2,T,key,radix2,cipher)
         plainNumerals3 = (cipherNumerals3 -
@@ -284,7 +287,8 @@ def decrypt(msg, T, key, format):
         plaintext = plaintext + validateCPR(plaintext)
         
     return plaintext
-for _ in range(100000):
+for _ in range(1):
     ciphertext = encrypt('example@email.com', T, key, Format.EMAIL)
-    decrypt(ciphertext,T,key,Format.EMAIL)
+    print(ciphertext)
+    print(decrypt(ciphertext,T,key,Format.EMAIL))
 print("--- %s seconds ---" % (time.time() - start_time))

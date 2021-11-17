@@ -2,16 +2,16 @@ from format import Format
 import re
 
 
-def validate_format(plaintext, format):
-    if format == Format.LETTERS:
+def validate_format(plaintext, dataFormat):
+    if dataFormat == Format.LETTERS:
         p = re.compile('[a-zA-Z]+')
         return p.match(plaintext)
 
-    if format == Format.DIGITS:
+    if dataFormat == Format.DIGITS:
         p = re.compile('\d+')
         return p.match(plaintext)
 
-    if format == Format.STRING:
+    if dataFormat == Format.STRING:
         p = re.compile('.+')
         return p.match(plaintext)
 
