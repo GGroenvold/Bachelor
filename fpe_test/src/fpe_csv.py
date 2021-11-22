@@ -145,9 +145,9 @@ def decrypt_csv(csvFilePath,decryptedFilePath,formats,fpe):
 def generate_test_data(csvFilePath,rows,formats,names, mode):
     start = timer()
     print('Generating...')
-    data = [[x] for x in names]
-
     modes = [mode]*len(formats)
+
+    data = [[x] for x in names]
 
     for i in range(len(names)):
         for _ in range(rows):

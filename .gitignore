@@ -1,5 +1,5 @@
 .idea
 /.vs
-
+/fpe_test/src/*.pyd
 /pics
 /fpe_test/src/__pycache__

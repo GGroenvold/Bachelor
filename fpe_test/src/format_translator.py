@@ -1,27 +1,19 @@
 from utils import *
 import Format
-from format_validator import validate_format
 import json
 
 RADIX_DEFAULT = 10
 
-data = json.loads(open("src/dates.json", "r").read())
+data = json.loads(open("src/Lars_er_sej/dates.json", "r").read())
 dates = []
 for i in data['dates']:
     dates.append(i['date'])
     
-data = json.loads(open("src/top-lvl-domains.json", "r").read())
+data = json.loads(open("src/Lars_er_sej/top-lvl-domains.json", "r").read())
 top_lvl_domains = []
 for top_lvl_domain in data['top-lvl-domains']:
     top_lvl_domains.append(top_lvl_domain['top-lvl-domain'])
     
-
-
-data = json.loads(open('src/names.json', "r").read())
-names = []
-for name in data['names']:
-    names.append(name['name'])
-
 DOMAIN = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','æ','ø','å',
           'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Æ','Ø','Å',
           '0','1','2','3','4','5','6','7','8','9',
@@ -38,14 +30,10 @@ mapping_email_tail = get_mapping_from_domain(DOMAIN[:INTEGER_END+2])
 mapping_letters_integer = get_mapping_from_domain(DOMAIN[:INTEGER_END])
 mapping_all = get_mapping_from_domain(DOMAIN)
 mapping_dates = get_mapping_from_domain(dates)
-mapping_name = get_mapping_from_domain(names)
 mapping_top_lvl_domains = get_mapping_from_domain(top_lvl_domains)
 
 
 def text_to_numeral_list(text, dataFormat):
-    #if not validate_format(text, dataFormat):
-        #raise ValueError(f"The provided text is not correctly formatted as {dataFormat}")
-
     if dataFormat == Format.DIGITS:
         return [int(x) for x in text]
 
@@ -93,9 +81,6 @@ def text_to_numeral_list(text, dataFormat):
 
 
 def numeral_list_to_text(numerals, dataFormat):
-    #if not validate_format(text, dataFormat):
-        #raise ValueError(f"The provided text is not correctly formatted as {dataFormat}")
-
     if dataFormat == Format.DIGITS:
         return ''.join([str(x) for x in numerals])
 

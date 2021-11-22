@@ -36,7 +36,6 @@ class New:
     def encrypt(self,text,dataFormat):
         if dataFormat == FORMAT_EMAIL:
             plainNumerals =  text_to_numeral_list(text, FORMAT_EMAIL)
-
             radixes = get_radix_by_format(FORMAT_EMAIL)
 
             cipherNumerals = []
@@ -57,8 +56,8 @@ class New:
             return numeral_list_to_text(cipherNumerals, FORMAT_EMAIL)
             
         elif dataFormat == Format.CPR:
-            radixes = get_radix_by_format(Format.CPR)
             plainNumerals = text_to_numeral_list(text, Format.CPR)
+            radixes = get_radix_by_format(Format.CPR)
 
             cipherNumerals = []
 
@@ -75,8 +74,9 @@ class New:
             return numeral_list_to_text(cipherNumerals, Format.CPR)
 
         else:
-            radix = get_radix_by_format(dataFormat)
             plainNumerals = text_to_numeral_list(text, dataFormat)
+            radix = get_radix_by_format(dataFormat)
+
             if self.mode == MODE_FF1:
                 cipherNumerals = ff1.encrypt(plainNumerals,self.tweak,radix,self.cipher)
             elif self.mode == MODE_FF3:
@@ -86,7 +86,6 @@ class New:
     def decrypt(self,text,dataFormat):
         if dataFormat == FORMAT_EMAIL:
             cipherNumerals = text_to_numeral_list(text, FORMAT_EMAIL)
-
             radixes = get_radix_by_format(FORMAT_EMAIL)
 
             plainNumerals = []
@@ -107,8 +106,8 @@ class New:
             return numeral_list_to_text(plainNumerals, FORMAT_EMAIL)
             
         elif dataFormat == Format.CPR:
-            radixes = get_radix_by_format(Format.CPR)
             cipherNumerals = text_to_numeral_list(text, Format.CPR)
+            radixes = get_radix_by_format(Format.CPR)
 
             plainNumerals = []
 
@@ -126,6 +125,7 @@ class New:
         else:
             radix = get_radix_by_format(dataFormat)
             plainNumerals = text_to_numeral_list(text, dataFormat)
+
             if self.mode == MODE_FF1:
                 cipherNumerals = ff1.decrypt(plainNumerals,self.tweak,radix,self.cipher)
             elif self.mode == MODE_FF3: 

@@ -1,12 +1,8 @@
-# Ceil function
-import math
-#from utils import *
+from math import ceil, log
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
-from enum import Enum, auto
 from libc.stdlib cimport malloc, free
 from libc.string cimport memcpy
-from libc.string cimport strcpy, strlen
 import cython
 
 #from format_translator import *
@@ -74,9 +70,9 @@ cdef list encrypt_main(list msg, bytes T, radix, cipher):
     cdef int u = n / 2
     cdef int v = n - u
     cdef int m = v
-    cdef int b = math.ceil(math.ceil(v * math.log2(radix)) / 8.0)
-    cdef int d = 4 * math.ceil(b / 4.0) + 4
-    cdef int k = math.ceil(d/16.0)
+    cdef int b = ceil(ceil(v * log2(radix)) / 8.0)
+    cdef int d = 4 * ceil(b / 4.0) + 4
+    cdef int k = ceil(d/16.0)
     cdef int j
     cdef int l
     cdef int i
@@ -148,9 +144,9 @@ cdef list decrypt_main(list msg, bytes T, radix, cipher):
     cdef int u = n / 2
     cdef int v = n - u
     cdef int m = u
-    cdef int b = math.ceil(math.ceil(v * math.log2(radix)) / 8.0)
-    cdef int d = 4 * math.ceil(b / 4.0) + 4
-    cdef int k = math.ceil(d/16.0)
+    cdef int b = ceil(ceil(v * log2(radix)) / 8.0)
+    cdef int d = 4 * ceil(b / 4.0) + 4
+    cdef int k = ceil(d/16.0)
     cdef int j
     cdef int l
     cdef int i

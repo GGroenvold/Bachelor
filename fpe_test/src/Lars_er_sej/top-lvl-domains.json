@@ -1,0 +1,4489 @@
+{
+    "top-lvl-domains": [
+        {
+            "top-lvl-domain": "aaa"
+        },
+        {
+            "top-lvl-domain": "aarp"
+        },
+        {
+            "top-lvl-domain": "abarth"
+        },
+        {
+            "top-lvl-domain": "abb"
+        },
+        {
+            "top-lvl-domain": "abbott"
+        },
+        {
+            "top-lvl-domain": "abbvie"
+        },
+        {
+            "top-lvl-domain": "abc"
+        },
+        {
+            "top-lvl-domain": "able"
+        },
+        {
+            "top-lvl-domain": "abogado"
+        },
+        {
+            "top-lvl-domain": "abudhabi"
+        },
+        {
+            "top-lvl-domain": "ac"
+        },
+        {
+            "top-lvl-domain": "academy"
+        },
+        {
+            "top-lvl-domain": "accenture"
+        },
+        {
+            "top-lvl-domain": "accountant"
+        },
+        {
+            "top-lvl-domain": "accountants"
+        },
+        {
+            "top-lvl-domain": "aco"
+        },
+        {
+            "top-lvl-domain": "actor"
+        },
+        {
+            "top-lvl-domain": "ad"
+        },
+        {
+            "top-lvl-domain": "adac"
+        },
+        {
+            "top-lvl-domain": "ads"
+        },
+        {
+            "top-lvl-domain": "adult"
+        },
+        {
+            "top-lvl-domain": "ae"
+        },
+        {
+            "top-lvl-domain": "aeg"
+        },
+        {
+            "top-lvl-domain": "aero"
+        },
+        {
+            "top-lvl-domain": "aetna"
+        },
+        {
+            "top-lvl-domain": "af"
+        },
+        {
+            "top-lvl-domain": "afamilycompany"
+        },
+        {
+            "top-lvl-domain": "afl"
+        },
+        {
+            "top-lvl-domain": "africa"
+        },
+        {
+            "top-lvl-domain": "ag"
+        },
+        {
+            "top-lvl-domain": "agakhan"
+        },
+        {
+            "top-lvl-domain": "agency"
+        },
+        {
+            "top-lvl-domain": "ai"
+        },
+        {
+            "top-lvl-domain": "aig"
+        },
+        {
+            "top-lvl-domain": "airbus"
+        },
+        {
+            "top-lvl-domain": "airforce"
+        },
+        {
+            "top-lvl-domain": "airtel"
+        },
+        {
+            "top-lvl-domain": "akdn"
+        },
+        {
+            "top-lvl-domain": "al"
+        },
+        {
+            "top-lvl-domain": "alfaromeo"
+        },
+        {
+            "top-lvl-domain": "alibaba"
+        },
+        {
+            "top-lvl-domain": "alipay"
+        },
+        {
+            "top-lvl-domain": "allfinanz"
+        },
+        {
+            "top-lvl-domain": "allstate"
+        },
+        {
+            "top-lvl-domain": "ally"
+        },
+        {
+            "top-lvl-domain": "alsace"
+        },
+        {
+            "top-lvl-domain": "alstom"
+        },
+        {
+            "top-lvl-domain": "am"
+        },
+        {
+            "top-lvl-domain": "amazon"
+        },
+        {
+            "top-lvl-domain": "americanexpress"
+        },
+        {
+            "top-lvl-domain": "americanfamily"
+        },
+        {
+            "top-lvl-domain": "amex"
+        },
+        {
+            "top-lvl-domain": "amfam"
+        },
+        {
+            "top-lvl-domain": "amica"
+        },
+        {
+            "top-lvl-domain": "amsterdam"
+        },
+        {
+            "top-lvl-domain": "analytics"
+        },
+        {
+            "top-lvl-domain": "android"
+        },
+        {
+            "top-lvl-domain": "anquan"
+        },
+        {
+            "top-lvl-domain": "anz"
+        },
+        {
+            "top-lvl-domain": "ao"
+        },
+        {
+            "top-lvl-domain": "aol"
+        },
+        {
+            "top-lvl-domain": "apartments"
+        },
+        {
+            "top-lvl-domain": "app"
+        },
+        {
+            "top-lvl-domain": "apple"
+        },
+        {
+            "top-lvl-domain": "aq"
+        },
+        {
+            "top-lvl-domain": "aquarelle"
+        },
+        {
+            "top-lvl-domain": "ar"
+        },
+        {
+            "top-lvl-domain": "arab"
+        },
+        {
+            "top-lvl-domain": "aramco"
+        },
+        {
+            "top-lvl-domain": "archi"
+        },
+        {
+            "top-lvl-domain": "army"
+        },
+        {
+            "top-lvl-domain": "arpa"
+        },
+        {
+            "top-lvl-domain": "art"
+        },
+        {
+            "top-lvl-domain": "arte"
+        },
+        {
+            "top-lvl-domain": "as"
+        },
+        {
+            "top-lvl-domain": "asda"
+        },
+        {
+            "top-lvl-domain": "asia"
+        },
+        {
+            "top-lvl-domain": "associates"
+        },
+        {
+            "top-lvl-domain": "at"
+        },
+        {
+            "top-lvl-domain": "athleta"
+        },
+        {
+            "top-lvl-domain": "attorney"
+        },
+        {
+            "top-lvl-domain": "au"
+        },
+        {
+            "top-lvl-domain": "auction"
+        },
+        {
+            "top-lvl-domain": "audi"
+        },
+        {
+            "top-lvl-domain": "audible"
+        },
+        {
+            "top-lvl-domain": "audio"
+        },
+        {
+            "top-lvl-domain": "auspost"
+        },
+        {
+            "top-lvl-domain": "author"
+        },
+        {
+            "top-lvl-domain": "auto"
+        },
+        {
+            "top-lvl-domain": "autos"
+        },
+        {
+            "top-lvl-domain": "avianca"
+        },
+        {
+            "top-lvl-domain": "aw"
+        },
+        {
+            "top-lvl-domain": "aws"
+        },
+        {
+            "top-lvl-domain": "ax"
+        },
+        {
+            "top-lvl-domain": "axa"
+        },
+        {
+            "top-lvl-domain": "az"
+        },
+        {
+            "top-lvl-domain": "azure"
+        },
+        {
+            "top-lvl-domain": "ba"
+        },
+        {
+            "top-lvl-domain": "baby"
+        },
+        {
+            "top-lvl-domain": "baidu"
+        },
+        {
+            "top-lvl-domain": "banamex"
+        },
+        {
+            "top-lvl-domain": "bananarepublic"
+        },
+        {
+            "top-lvl-domain": "band"
+        },
+        {
+            "top-lvl-domain": "bank"
+        },
+        {
+            "top-lvl-domain": "bar"
+        },
+        {
+            "top-lvl-domain": "barcelona"
+        },
+        {
+            "top-lvl-domain": "barclaycard"
+        },
+        {
+            "top-lvl-domain": "barclays"
+        },
+        {
+            "top-lvl-domain": "barefoot"
+        },
+        {
+            "top-lvl-domain": "bargains"
+        },
+        {
+            "top-lvl-domain": "baseball"
+        },
+        {
+            "top-lvl-domain": "basketball"
+        },
+        {
+            "top-lvl-domain": "bauhaus"
+        },
+        {
+            "top-lvl-domain": "bayern"
+        },
+        {
+            "top-lvl-domain": "bb"
+        },
+        {
+            "top-lvl-domain": "bbc"
+        },
+        {
+            "top-lvl-domain": "bbt"
+        },
+        {
+            "top-lvl-domain": "bbva"
+        },
+        {
+            "top-lvl-domain": "bcg"
+        },
+        {
+            "top-lvl-domain": "bcn"
+        },
+        {
+            "top-lvl-domain": "bd"
+        },
+        {
+            "top-lvl-domain": "be"
+        },
+        {
+            "top-lvl-domain": "beats"
+        },
+        {
+            "top-lvl-domain": "beauty"
+        },
+        {
+            "top-lvl-domain": "beer"
+        },
+        {
+            "top-lvl-domain": "bentley"
+        },
+        {
+            "top-lvl-domain": "berlin"
+        },
+        {
+            "top-lvl-domain": "best"
+        },
+        {
+            "top-lvl-domain": "bestbuy"
+        },
+        {
+            "top-lvl-domain": "bet"
+        },
+        {
+            "top-lvl-domain": "bf"
+        },
+        {
+            "top-lvl-domain": "bg"
+        },
+        {
+            "top-lvl-domain": "bh"
+        },
+        {
+            "top-lvl-domain": "bharti"
+        },
+        {
+            "top-lvl-domain": "bi"
+        },
+        {
+            "top-lvl-domain": "bible"
+        },
+        {
+            "top-lvl-domain": "bid"
+        },
+        {
+            "top-lvl-domain": "bike"
+        },
+        {
+            "top-lvl-domain": "bing"
+        },
+        {
+            "top-lvl-domain": "bingo"
+        },
+        {
+            "top-lvl-domain": "bio"
+        },
+        {
+            "top-lvl-domain": "biz"
+        },
+        {
+            "top-lvl-domain": "bj"
+        },
+        {
+            "top-lvl-domain": "black"
+        },
+        {
+            "top-lvl-domain": "blackfriday"
+        },
+        {
+            "top-lvl-domain": "blockbuster"
+        },
+        {
+            "top-lvl-domain": "blog"
+        },
+        {
+            "top-lvl-domain": "bloomberg"
+        },
+        {
+            "top-lvl-domain": "blue"
+        },
+        {
+            "top-lvl-domain": "bm"
+        },
+        {
+            "top-lvl-domain": "bms"
+        },
+        {
+            "top-lvl-domain": "bmw"
+        },
+        {
+            "top-lvl-domain": "bn"
+        },
+        {
+            "top-lvl-domain": "bnpparibas"
+        },
+        {
+            "top-lvl-domain": "bo"
+        },
+        {
+            "top-lvl-domain": "boats"
+        },
+        {
+            "top-lvl-domain": "boehringer"
+        },
+        {
+            "top-lvl-domain": "bofa"
+        },
+        {
+            "top-lvl-domain": "bom"
+        },
+        {
+            "top-lvl-domain": "bond"
+        },
+        {
+            "top-lvl-domain": "boo"
+        },
+        {
+            "top-lvl-domain": "book"
+        },
+        {
+            "top-lvl-domain": "booking"
+        },
+        {
+            "top-lvl-domain": "bosch"
+        },
+        {
+            "top-lvl-domain": "bostik"
+        },
+        {
+            "top-lvl-domain": "boston"
+        },
+        {
+            "top-lvl-domain": "bot"
+        },
+        {
+            "top-lvl-domain": "boutique"
+        },
+        {
+            "top-lvl-domain": "box"
+        },
+        {
+            "top-lvl-domain": "br"
+        },
+        {
+            "top-lvl-domain": "bradesco"
+        },
+        {
+            "top-lvl-domain": "bridgestone"
+        },
+        {
+            "top-lvl-domain": "broadway"
+        },
+        {
+            "top-lvl-domain": "broker"
+        },
+        {
+            "top-lvl-domain": "brother"
+        },
+        {
+            "top-lvl-domain": "brussels"
+        },
+        {
+            "top-lvl-domain": "bs"
+        },
+        {
+            "top-lvl-domain": "bt"
+        },
+        {
+            "top-lvl-domain": "budapest"
+        },
+        {
+            "top-lvl-domain": "bugatti"
+        },
+        {
+            "top-lvl-domain": "build"
+        },
+        {
+            "top-lvl-domain": "builders"
+        },
+        {
+            "top-lvl-domain": "business"
+        },
+        {
+            "top-lvl-domain": "buy"
+        },
+        {
+            "top-lvl-domain": "buzz"
+        },
+        {
+            "top-lvl-domain": "bv"
+        },
+        {
+            "top-lvl-domain": "bw"
+        },
+        {
+            "top-lvl-domain": "by"
+        },
+        {
+            "top-lvl-domain": "bz"
+        },
+        {
+            "top-lvl-domain": "bzh"
+        },
+        {
+            "top-lvl-domain": "ca"
+        },
+        {
+            "top-lvl-domain": "cab"
+        },
+        {
+            "top-lvl-domain": "cafe"
+        },
+        {
+            "top-lvl-domain": "cal"
+        },
+        {
+            "top-lvl-domain": "call"
+        },
+        {
+            "top-lvl-domain": "calvinklein"
+        },
+        {
+            "top-lvl-domain": "cam"
+        },
+        {
+            "top-lvl-domain": "camera"
+        },
+        {
+            "top-lvl-domain": "camp"
+        },
+        {
+            "top-lvl-domain": "cancerresearch"
+        },
+        {
+            "top-lvl-domain": "canon"
+        },
+        {
+            "top-lvl-domain": "capetown"
+        },
+        {
+            "top-lvl-domain": "capital"
+        },
+        {
+            "top-lvl-domain": "capitalone"
+        },
+        {
+            "top-lvl-domain": "car"
+        },
+        {
+            "top-lvl-domain": "caravan"
+        },
+        {
+            "top-lvl-domain": "cards"
+        },
+        {
+            "top-lvl-domain": "care"
+        },
+        {
+            "top-lvl-domain": "career"
+        },
+        {
+            "top-lvl-domain": "careers"
+        },
+        {
+            "top-lvl-domain": "cars"
+        },
+        {
+            "top-lvl-domain": "casa"
+        },
+        {
+            "top-lvl-domain": "case"
+        },
+        {
+            "top-lvl-domain": "cash"
+        },
+        {
+            "top-lvl-domain": "casino"
+        },
+        {
+            "top-lvl-domain": "cat"
+        },
+        {
+            "top-lvl-domain": "catering"
+        },
+        {
+            "top-lvl-domain": "catholic"
+        },
+        {
+            "top-lvl-domain": "cba"
+        },
+        {
+            "top-lvl-domain": "cbn"
+        },
+        {
+            "top-lvl-domain": "cbre"
+        },
+        {
+            "top-lvl-domain": "cbs"
+        },
+        {
+            "top-lvl-domain": "cc"
+        },
+        {
+            "top-lvl-domain": "cd"
+        },
+        {
+            "top-lvl-domain": "center"
+        },
+        {
+            "top-lvl-domain": "ceo"
+        },
+        {
+            "top-lvl-domain": "cern"
+        },
+        {
+            "top-lvl-domain": "cf"
+        },
+        {
+            "top-lvl-domain": "cfa"
+        },
+        {
+            "top-lvl-domain": "cfd"
+        },
+        {
+            "top-lvl-domain": "cg"
+        },
+        {
+            "top-lvl-domain": "ch"
+        },
+        {
+            "top-lvl-domain": "chanel"
+        },
+        {
+            "top-lvl-domain": "channel"
+        },
+        {
+            "top-lvl-domain": "charity"
+        },
+        {
+            "top-lvl-domain": "chase"
+        },
+        {
+            "top-lvl-domain": "chat"
+        },
+        {
+            "top-lvl-domain": "cheap"
+        },
+        {
+            "top-lvl-domain": "chintai"
+        },
+        {
+            "top-lvl-domain": "christmas"
+        },
+        {
+            "top-lvl-domain": "chrome"
+        },
+        {
+            "top-lvl-domain": "church"
+        },
+        {
+            "top-lvl-domain": "ci"
+        },
+        {
+            "top-lvl-domain": "cipriani"
+        },
+        {
+            "top-lvl-domain": "circle"
+        },
+        {
+            "top-lvl-domain": "cisco"
+        },
+        {
+            "top-lvl-domain": "citadel"
+        },
+        {
+            "top-lvl-domain": "citi"
+        },
+        {
+            "top-lvl-domain": "citic"
+        },
+        {
+            "top-lvl-domain": "city"
+        },
+        {
+            "top-lvl-domain": "cityeats"
+        },
+        {
+            "top-lvl-domain": "ck"
+        },
+        {
+            "top-lvl-domain": "cl"
+        },
+        {
+            "top-lvl-domain": "claims"
+        },
+        {
+            "top-lvl-domain": "cleaning"
+        },
+        {
+            "top-lvl-domain": "click"
+        },
+        {
+            "top-lvl-domain": "clinic"
+        },
+        {
+            "top-lvl-domain": "clinique"
+        },
+        {
+            "top-lvl-domain": "clothing"
+        },
+        {
+            "top-lvl-domain": "cloud"
+        },
+        {
+            "top-lvl-domain": "club"
+        },
+        {
+            "top-lvl-domain": "clubmed"
+        },
+        {
+            "top-lvl-domain": "cm"
+        },
+        {
+            "top-lvl-domain": "cn"
+        },
+        {
+            "top-lvl-domain": "co"
+        },
+        {
+            "top-lvl-domain": "coach"
+        },
+        {
+            "top-lvl-domain": "codes"
+        },
+        {
+            "top-lvl-domain": "coffee"
+        },
+        {
+            "top-lvl-domain": "college"
+        },
+        {
+            "top-lvl-domain": "cologne"
+        },
+        {
+            "top-lvl-domain": "com"
+        },
+        {
+            "top-lvl-domain": "comcast"
+        },
+        {
+            "top-lvl-domain": "commbank"
+        },
+        {
+            "top-lvl-domain": "community"
+        },
+        {
+            "top-lvl-domain": "company"
+        },
+        {
+            "top-lvl-domain": "compare"
+        },
+        {
+            "top-lvl-domain": "computer"
+        },
+        {
+            "top-lvl-domain": "comsec"
+        },
+        {
+            "top-lvl-domain": "condos"
+        },
+        {
+            "top-lvl-domain": "construction"
+        },
+        {
+            "top-lvl-domain": "consulting"
+        },
+        {
+            "top-lvl-domain": "contact"
+        },
+        {
+            "top-lvl-domain": "contractors"
+        },
+        {
+            "top-lvl-domain": "cooking"
+        },
+        {
+            "top-lvl-domain": "cookingchannel"
+        },
+        {
+            "top-lvl-domain": "cool"
+        },
+        {
+            "top-lvl-domain": "coop"
+        },
+        {
+            "top-lvl-domain": "corsica"
+        },
+        {
+            "top-lvl-domain": "country"
+        },
+        {
+            "top-lvl-domain": "coupon"
+        },
+        {
+            "top-lvl-domain": "coupons"
+        },
+        {
+            "top-lvl-domain": "courses"
+        },
+        {
+            "top-lvl-domain": "cpa"
+        },
+        {
+            "top-lvl-domain": "cr"
+        },
+        {
+            "top-lvl-domain": "credit"
+        },
+        {
+            "top-lvl-domain": "creditcard"
+        },
+        {
+            "top-lvl-domain": "creditunion"
+        },
+        {
+            "top-lvl-domain": "cricket"
+        },
+        {
+            "top-lvl-domain": "crown"
+        },
+        {
+            "top-lvl-domain": "crs"
+        },
+        {
+            "top-lvl-domain": "cruise"
+        },
+        {
+            "top-lvl-domain": "cruises"
+        },
+        {
+            "top-lvl-domain": "csc"
+        },
+        {
+            "top-lvl-domain": "cu"
+        },
+        {
+            "top-lvl-domain": "cuisinella"
+        },
+        {
+            "top-lvl-domain": "cv"
+        },
+        {
+            "top-lvl-domain": "cw"
+        },
+        {
+            "top-lvl-domain": "cx"
+        },
+        {
+            "top-lvl-domain": "cy"
+        },
+        {
+            "top-lvl-domain": "cymru"
+        },
+        {
+            "top-lvl-domain": "cyou"
+        },
+        {
+            "top-lvl-domain": "cz"
+        },
+        {
+            "top-lvl-domain": "dabur"
+        },
+        {
+            "top-lvl-domain": "dad"
+        },
+        {
+            "top-lvl-domain": "dance"
+        },
+        {
+            "top-lvl-domain": "data"
+        },
+        {
+            "top-lvl-domain": "date"
+        },
+        {
+            "top-lvl-domain": "dating"
+        },
+        {
+            "top-lvl-domain": "datsun"
+        },
+        {
+            "top-lvl-domain": "day"
+        },
+        {
+            "top-lvl-domain": "dclk"
+        },
+        {
+            "top-lvl-domain": "dds"
+        },
+        {
+            "top-lvl-domain": "de"
+        },
+        {
+            "top-lvl-domain": "deal"
+        },
+        {
+            "top-lvl-domain": "dealer"
+        },
+        {
+            "top-lvl-domain": "deals"
+        },
+        {
+            "top-lvl-domain": "degree"
+        },
+        {
+            "top-lvl-domain": "delivery"
+        },
+        {
+            "top-lvl-domain": "dell"
+        },
+        {
+            "top-lvl-domain": "deloitte"
+        },
+        {
+            "top-lvl-domain": "delta"
+        },
+        {
+            "top-lvl-domain": "democrat"
+        },
+        {
+            "top-lvl-domain": "dental"
+        },
+        {
+            "top-lvl-domain": "dentist"
+        },
+        {
+            "top-lvl-domain": "desi"
+        },
+        {
+            "top-lvl-domain": "design"
+        },
+        {
+            "top-lvl-domain": "dev"
+        },
+        {
+            "top-lvl-domain": "dhl"
+        },
+        {
+            "top-lvl-domain": "diamonds"
+        },
+        {
+            "top-lvl-domain": "diet"
+        },
+        {
+            "top-lvl-domain": "digital"
+        },
+        {
+            "top-lvl-domain": "direct"
+        },
+        {
+            "top-lvl-domain": "directory"
+        },
+        {
+            "top-lvl-domain": "discount"
+        },
+        {
+            "top-lvl-domain": "discover"
+        },
+        {
+            "top-lvl-domain": "dish"
+        },
+        {
+            "top-lvl-domain": "diy"
+        },
+        {
+            "top-lvl-domain": "dj"
+        },
+        {
+            "top-lvl-domain": "dk"
+        },
+        {
+            "top-lvl-domain": "dm"
+        },
+        {
+            "top-lvl-domain": "dnp"
+        },
+        {
+            "top-lvl-domain": "do"
+        },
+        {
+            "top-lvl-domain": "docs"
+        },
+        {
+            "top-lvl-domain": "doctor"
+        },
+        {
+            "top-lvl-domain": "dog"
+        },
+        {
+            "top-lvl-domain": "domains"
+        },
+        {
+            "top-lvl-domain": "dot"
+        },
+        {
+            "top-lvl-domain": "download"
+        },
+        {
+            "top-lvl-domain": "drive"
+        },
+        {
+            "top-lvl-domain": "dtv"
+        },
+        {
+            "top-lvl-domain": "dubai"
+        },
+        {
+            "top-lvl-domain": "duck"
+        },
+        {
+            "top-lvl-domain": "dunlop"
+        },
+        {
+            "top-lvl-domain": "dupont"
+        },
+        {
+            "top-lvl-domain": "durban"
+        },
+        {
+            "top-lvl-domain": "dvag"
+        },
+        {
+            "top-lvl-domain": "dvr"
+        },
+        {
+            "top-lvl-domain": "dz"
+        },
+        {
+            "top-lvl-domain": "earth"
+        },
+        {
+            "top-lvl-domain": "eat"
+        },
+        {
+            "top-lvl-domain": "ec"
+        },
+        {
+            "top-lvl-domain": "eco"
+        },
+        {
+            "top-lvl-domain": "edeka"
+        },
+        {
+            "top-lvl-domain": "edu"
+        },
+        {
+            "top-lvl-domain": "education"
+        },
+        {
+            "top-lvl-domain": "ee"
+        },
+        {
+            "top-lvl-domain": "eg"
+        },
+        {
+            "top-lvl-domain": "email"
+        },
+        {
+            "top-lvl-domain": "emerck"
+        },
+        {
+            "top-lvl-domain": "energy"
+        },
+        {
+            "top-lvl-domain": "engineer"
+        },
+        {
+            "top-lvl-domain": "engineering"
+        },
+        {
+            "top-lvl-domain": "enterprises"
+        },
+        {
+            "top-lvl-domain": "epson"
+        },
+        {
+            "top-lvl-domain": "equipment"
+        },
+        {
+            "top-lvl-domain": "er"
+        },
+        {
+            "top-lvl-domain": "ericsson"
+        },
+        {
+            "top-lvl-domain": "erni"
+        },
+        {
+            "top-lvl-domain": "es"
+        },
+        {
+            "top-lvl-domain": "esq"
+        },
+        {
+            "top-lvl-domain": "estate"
+        },
+        {
+            "top-lvl-domain": "et"
+        },
+        {
+            "top-lvl-domain": "etisalat"
+        },
+        {
+            "top-lvl-domain": "eu"
+        },
+        {
+            "top-lvl-domain": "eurovision"
+        },
+        {
+            "top-lvl-domain": "eus"
+        },
+        {
+            "top-lvl-domain": "events"
+        },
+        {
+            "top-lvl-domain": "exchange"
+        },
+        {
+            "top-lvl-domain": "expert"
+        },
+        {
+            "top-lvl-domain": "exposed"
+        },
+        {
+            "top-lvl-domain": "express"
+        },
+        {
+            "top-lvl-domain": "extraspace"
+        },
+        {
+            "top-lvl-domain": "fage"
+        },
+        {
+            "top-lvl-domain": "fail"
+        },
+        {
+            "top-lvl-domain": "fairwinds"
+        },
+        {
+            "top-lvl-domain": "faith"
+        },
+        {
+            "top-lvl-domain": "family"
+        },
+        {
+            "top-lvl-domain": "fan"
+        },
+        {
+            "top-lvl-domain": "fans"
+        },
+        {
+            "top-lvl-domain": "farm"
+        },
+        {
+            "top-lvl-domain": "farmers"
+        },
+        {
+            "top-lvl-domain": "fashion"
+        },
+        {
+            "top-lvl-domain": "fast"
+        },
+        {
+            "top-lvl-domain": "fedex"
+        },
+        {
+            "top-lvl-domain": "feedback"
+        },
+        {
+            "top-lvl-domain": "ferrari"
+        },
+        {
+            "top-lvl-domain": "ferrero"
+        },
+        {
+            "top-lvl-domain": "fi"
+        },
+        {
+            "top-lvl-domain": "fiat"
+        },
+        {
+            "top-lvl-domain": "fidelity"
+        },
+        {
+            "top-lvl-domain": "fido"
+        },
+        {
+            "top-lvl-domain": "film"
+        },
+        {
+            "top-lvl-domain": "final"
+        },
+        {
+            "top-lvl-domain": "finance"
+        },
+        {
+            "top-lvl-domain": "financial"
+        },
+        {
+            "top-lvl-domain": "fire"
+        },
+        {
+            "top-lvl-domain": "firestone"
+        },
+        {
+            "top-lvl-domain": "firmdale"
+        },
+        {
+            "top-lvl-domain": "fish"
+        },
+        {
+            "top-lvl-domain": "fishing"
+        },
+        {
+            "top-lvl-domain": "fit"
+        },
+        {
+            "top-lvl-domain": "fitness"
+        },
+        {
+            "top-lvl-domain": "fj"
+        },
+        {
+            "top-lvl-domain": "fk"
+        },
+        {
+            "top-lvl-domain": "flickr"
+        },
+        {
+            "top-lvl-domain": "flights"
+        },
+        {
+            "top-lvl-domain": "flir"
+        },
+        {
+            "top-lvl-domain": "florist"
+        },
+        {
+            "top-lvl-domain": "flowers"
+        },
+        {
+            "top-lvl-domain": "fly"
+        },
+        {
+            "top-lvl-domain": "fm"
+        },
+        {
+            "top-lvl-domain": "fo"
+        },
+        {
+            "top-lvl-domain": "foo"
+        },
+        {
+            "top-lvl-domain": "food"
+        },
+        {
+            "top-lvl-domain": "foodnetwork"
+        },
+        {
+            "top-lvl-domain": "football"
+        },
+        {
+            "top-lvl-domain": "ford"
+        },
+        {
+            "top-lvl-domain": "forex"
+        },
+        {
+            "top-lvl-domain": "forsale"
+        },
+        {
+            "top-lvl-domain": "forum"
+        },
+        {
+            "top-lvl-domain": "foundation"
+        },
+        {
+            "top-lvl-domain": "fox"
+        },
+        {
+            "top-lvl-domain": "fr"
+        },
+        {
+            "top-lvl-domain": "free"
+        },
+        {
+            "top-lvl-domain": "fresenius"
+        },
+        {
+            "top-lvl-domain": "frl"
+        },
+        {
+            "top-lvl-domain": "frogans"
+        },
+        {
+            "top-lvl-domain": "frontdoor"
+        },
+        {
+            "top-lvl-domain": "frontier"
+        },
+        {
+            "top-lvl-domain": "ftr"
+        },
+        {
+            "top-lvl-domain": "fujitsu"
+        },
+        {
+            "top-lvl-domain": "fun"
+        },
+        {
+            "top-lvl-domain": "fund"
+        },
+        {
+            "top-lvl-domain": "furniture"
+        },
+        {
+            "top-lvl-domain": "futbol"
+        },
+        {
+            "top-lvl-domain": "fyi"
+        },
+        {
+            "top-lvl-domain": "ga"
+        },
+        {
+            "top-lvl-domain": "gal"
+        },
+        {
+            "top-lvl-domain": "gallery"
+        },
+        {
+            "top-lvl-domain": "gallo"
+        },
+        {
+            "top-lvl-domain": "gallup"
+        },
+        {
+            "top-lvl-domain": "game"
+        },
+        {
+            "top-lvl-domain": "games"
+        },
+        {
+            "top-lvl-domain": "gap"
+        },
+        {
+            "top-lvl-domain": "garden"
+        },
+        {
+            "top-lvl-domain": "gay"
+        },
+        {
+            "top-lvl-domain": "gb"
+        },
+        {
+            "top-lvl-domain": "gbiz"
+        },
+        {
+            "top-lvl-domain": "gd"
+        },
+        {
+            "top-lvl-domain": "gdn"
+        },
+        {
+            "top-lvl-domain": "ge"
+        },
+        {
+            "top-lvl-domain": "gea"
+        },
+        {
+            "top-lvl-domain": "gent"
+        },
+        {
+            "top-lvl-domain": "genting"
+        },
+        {
+            "top-lvl-domain": "george"
+        },
+        {
+            "top-lvl-domain": "gf"
+        },
+        {
+            "top-lvl-domain": "gg"
+        },
+        {
+            "top-lvl-domain": "ggee"
+        },
+        {
+            "top-lvl-domain": "gh"
+        },
+        {
+            "top-lvl-domain": "gi"
+        },
+        {
+            "top-lvl-domain": "gift"
+        },
+        {
+            "top-lvl-domain": "gifts"
+        },
+        {
+            "top-lvl-domain": "gives"
+        },
+        {
+            "top-lvl-domain": "giving"
+        },
+        {
+            "top-lvl-domain": "gl"
+        },
+        {
+            "top-lvl-domain": "glade"
+        },
+        {
+            "top-lvl-domain": "glass"
+        },
+        {
+            "top-lvl-domain": "gle"
+        },
+        {
+            "top-lvl-domain": "global"
+        },
+        {
+            "top-lvl-domain": "globo"
+        },
+        {
+            "top-lvl-domain": "gm"
+        },
+        {
+            "top-lvl-domain": "gmail"
+        },
+        {
+            "top-lvl-domain": "gmbh"
+        },
+        {
+            "top-lvl-domain": "gmo"
+        },
+        {
+            "top-lvl-domain": "gmx"
+        },
+        {
+            "top-lvl-domain": "gn"
+        },
+        {
+            "top-lvl-domain": "godaddy"
+        },
+        {
+            "top-lvl-domain": "gold"
+        },
+        {
+            "top-lvl-domain": "goldpoint"
+        },
+        {
+            "top-lvl-domain": "golf"
+        },
+        {
+            "top-lvl-domain": "goo"
+        },
+        {
+            "top-lvl-domain": "goodyear"
+        },
+        {
+            "top-lvl-domain": "goog"
+        },
+        {
+            "top-lvl-domain": "google"
+        },
+        {
+            "top-lvl-domain": "gop"
+        },
+        {
+            "top-lvl-domain": "got"
+        },
+        {
+            "top-lvl-domain": "gov"
+        },
+        {
+            "top-lvl-domain": "gp"
+        },
+        {
+            "top-lvl-domain": "gq"
+        },
+        {
+            "top-lvl-domain": "gr"
+        },
+        {
+            "top-lvl-domain": "grainger"
+        },
+        {
+            "top-lvl-domain": "graphics"
+        },
+        {
+            "top-lvl-domain": "gratis"
+        },
+        {
+            "top-lvl-domain": "green"
+        },
+        {
+            "top-lvl-domain": "gripe"
+        },
+        {
+            "top-lvl-domain": "grocery"
+        },
+        {
+            "top-lvl-domain": "group"
+        },
+        {
+            "top-lvl-domain": "gs"
+        },
+        {
+            "top-lvl-domain": "gt"
+        },
+        {
+            "top-lvl-domain": "gu"
+        },
+        {
+            "top-lvl-domain": "guardian"
+        },
+        {
+            "top-lvl-domain": "gucci"
+        },
+        {
+            "top-lvl-domain": "guge"
+        },
+        {
+            "top-lvl-domain": "guide"
+        },
+        {
+            "top-lvl-domain": "guitars"
+        },
+        {
+            "top-lvl-domain": "guru"
+        },
+        {
+            "top-lvl-domain": "gw"
+        },
+        {
+            "top-lvl-domain": "gy"
+        },
+        {
+            "top-lvl-domain": "hair"
+        },
+        {
+            "top-lvl-domain": "hamburg"
+        },
+        {
+            "top-lvl-domain": "hangout"
+        },
+        {
+            "top-lvl-domain": "haus"
+        },
+        {
+            "top-lvl-domain": "hbo"
+        },
+        {
+            "top-lvl-domain": "hdfc"
+        },
+        {
+            "top-lvl-domain": "hdfcbank"
+        },
+        {
+            "top-lvl-domain": "health"
+        },
+        {
+            "top-lvl-domain": "healthcare"
+        },
+        {
+            "top-lvl-domain": "help"
+        },
+        {
+            "top-lvl-domain": "helsinki"
+        },
+        {
+            "top-lvl-domain": "here"
+        },
+        {
+            "top-lvl-domain": "hermes"
+        },
+        {
+            "top-lvl-domain": "hgtv"
+        },
+        {
+            "top-lvl-domain": "hiphop"
+        },
+        {
+            "top-lvl-domain": "hisamitsu"
+        },
+        {
+            "top-lvl-domain": "hitachi"
+        },
+        {
+            "top-lvl-domain": "hiv"
+        },
+        {
+            "top-lvl-domain": "hk"
+        },
+        {
+            "top-lvl-domain": "hkt"
+        },
+        {
+            "top-lvl-domain": "hm"
+        },
+        {
+            "top-lvl-domain": "hn"
+        },
+        {
+            "top-lvl-domain": "hockey"
+        },
+        {
+            "top-lvl-domain": "holdings"
+        },
+        {
+            "top-lvl-domain": "holiday"
+        },
+        {
+            "top-lvl-domain": "homedepot"
+        },
+        {
+            "top-lvl-domain": "homegoods"
+        },
+        {
+            "top-lvl-domain": "homes"
+        },
+        {
+            "top-lvl-domain": "homesense"
+        },
+        {
+            "top-lvl-domain": "honda"
+        },
+        {
+            "top-lvl-domain": "horse"
+        },
+        {
+            "top-lvl-domain": "hospital"
+        },
+        {
+            "top-lvl-domain": "host"
+        },
+        {
+            "top-lvl-domain": "hosting"
+        },
+        {
+            "top-lvl-domain": "hot"
+        },
+        {
+            "top-lvl-domain": "hoteles"
+        },
+        {
+            "top-lvl-domain": "hotels"
+        },
+        {
+            "top-lvl-domain": "hotmail"
+        },
+        {
+            "top-lvl-domain": "house"
+        },
+        {
+            "top-lvl-domain": "how"
+        },
+        {
+            "top-lvl-domain": "hr"
+        },
+        {
+            "top-lvl-domain": "hsbc"
+        },
+        {
+            "top-lvl-domain": "ht"
+        },
+        {
+            "top-lvl-domain": "hu"
+        },
+        {
+            "top-lvl-domain": "hughes"
+        },
+        {
+            "top-lvl-domain": "hyatt"
+        },
+        {
+            "top-lvl-domain": "hyundai"
+        },
+        {
+            "top-lvl-domain": "ibm"
+        },
+        {
+            "top-lvl-domain": "icbc"
+        },
+        {
+            "top-lvl-domain": "ice"
+        },
+        {
+            "top-lvl-domain": "icu"
+        },
+        {
+            "top-lvl-domain": "id"
+        },
+        {
+            "top-lvl-domain": "ie"
+        },
+        {
+            "top-lvl-domain": "ieee"
+        },
+        {
+            "top-lvl-domain": "ifm"
+        },
+        {
+            "top-lvl-domain": "ikano"
+        },
+        {
+            "top-lvl-domain": "il"
+        },
+        {
+            "top-lvl-domain": "im"
+        },
+        {
+            "top-lvl-domain": "imamat"
+        },
+        {
+            "top-lvl-domain": "imdb"
+        },
+        {
+            "top-lvl-domain": "immo"
+        },
+        {
+            "top-lvl-domain": "immobilien"
+        },
+        {
+            "top-lvl-domain": "in"
+        },
+        {
+            "top-lvl-domain": "inc"
+        },
+        {
+            "top-lvl-domain": "industries"
+        },
+        {
+            "top-lvl-domain": "infiniti"
+        },
+        {
+            "top-lvl-domain": "info"
+        },
+        {
+            "top-lvl-domain": "ing"
+        },
+        {
+            "top-lvl-domain": "ink"
+        },
+        {
+            "top-lvl-domain": "institute"
+        },
+        {
+            "top-lvl-domain": "insurance"
+        },
+        {
+            "top-lvl-domain": "insure"
+        },
+        {
+            "top-lvl-domain": "int"
+        },
+        {
+            "top-lvl-domain": "international"
+        },
+        {
+            "top-lvl-domain": "intuit"
+        },
+        {
+            "top-lvl-domain": "investments"
+        },
+        {
+            "top-lvl-domain": "io"
+        },
+        {
+            "top-lvl-domain": "ipiranga"
+        },
+        {
+            "top-lvl-domain": "iq"
+        },
+        {
+            "top-lvl-domain": "ir"
+        },
+        {
+            "top-lvl-domain": "irish"
+        },
+        {
+            "top-lvl-domain": "is"
+        },
+        {
+            "top-lvl-domain": "ismaili"
+        },
+        {
+            "top-lvl-domain": "ist"
+        },
+        {
+            "top-lvl-domain": "istanbul"
+        },
+        {
+            "top-lvl-domain": "it"
+        },
+        {
+            "top-lvl-domain": "itau"
+        },
+        {
+            "top-lvl-domain": "itv"
+        },
+        {
+            "top-lvl-domain": "jaguar"
+        },
+        {
+            "top-lvl-domain": "java"
+        },
+        {
+            "top-lvl-domain": "jcb"
+        },
+        {
+            "top-lvl-domain": "je"
+        },
+        {
+            "top-lvl-domain": "jeep"
+        },
+        {
+            "top-lvl-domain": "jetzt"
+        },
+        {
+            "top-lvl-domain": "jewelry"
+        },
+        {
+            "top-lvl-domain": "jio"
+        },
+        {
+            "top-lvl-domain": "jll"
+        },
+        {
+            "top-lvl-domain": "jm"
+        },
+        {
+            "top-lvl-domain": "jmp"
+        },
+        {
+            "top-lvl-domain": "jnj"
+        },
+        {
+            "top-lvl-domain": "jo"
+        },
+        {
+            "top-lvl-domain": "jobs"
+        },
+        {
+            "top-lvl-domain": "joburg"
+        },
+        {
+            "top-lvl-domain": "jot"
+        },
+        {
+            "top-lvl-domain": "joy"
+        },
+        {
+            "top-lvl-domain": "jp"
+        },
+        {
+            "top-lvl-domain": "jpmorgan"
+        },
+        {
+            "top-lvl-domain": "jprs"
+        },
+        {
+            "top-lvl-domain": "juegos"
+        },
+        {
+            "top-lvl-domain": "juniper"
+        },
+        {
+            "top-lvl-domain": "kaufen"
+        },
+        {
+            "top-lvl-domain": "kddi"
+        },
+        {
+            "top-lvl-domain": "ke"
+        },
+        {
+            "top-lvl-domain": "kerryhotels"
+        },
+        {
+            "top-lvl-domain": "kerrylogistics"
+        },
+        {
+            "top-lvl-domain": "kerryproperties"
+        },
+        {
+            "top-lvl-domain": "kfh"
+        },
+        {
+            "top-lvl-domain": "kg"
+        },
+        {
+            "top-lvl-domain": "kh"
+        },
+        {
+            "top-lvl-domain": "ki"
+        },
+        {
+            "top-lvl-domain": "kia"
+        },
+        {
+            "top-lvl-domain": "kim"
+        },
+        {
+            "top-lvl-domain": "kinder"
+        },
+        {
+            "top-lvl-domain": "kindle"
+        },
+        {
+            "top-lvl-domain": "kitchen"
+        },
+        {
+            "top-lvl-domain": "kiwi"
+        },
+        {
+            "top-lvl-domain": "km"
+        },
+        {
+            "top-lvl-domain": "kn"
+        },
+        {
+            "top-lvl-domain": "koeln"
+        },
+        {
+            "top-lvl-domain": "komatsu"
+        },
+        {
+            "top-lvl-domain": "kosher"
+        },
+        {
+            "top-lvl-domain": "kp"
+        },
+        {
+            "top-lvl-domain": "kpmg"
+        },
+        {
+            "top-lvl-domain": "kpn"
+        },
+        {
+            "top-lvl-domain": "kr"
+        },
+        {
+            "top-lvl-domain": "krd"
+        },
+        {
+            "top-lvl-domain": "kred"
+        },
+        {
+            "top-lvl-domain": "kuokgroup"
+        },
+        {
+            "top-lvl-domain": "kw"
+        },
+        {
+            "top-lvl-domain": "ky"
+        },
+        {
+            "top-lvl-domain": "kyoto"
+        },
+        {
+            "top-lvl-domain": "kz"
+        },
+        {
+            "top-lvl-domain": "la"
+        },
+        {
+            "top-lvl-domain": "lacaixa"
+        },
+        {
+            "top-lvl-domain": "lamborghini"
+        },
+        {
+            "top-lvl-domain": "lamer"
+        },
+        {
+            "top-lvl-domain": "lancaster"
+        },
+        {
+            "top-lvl-domain": "lancia"
+        },
+        {
+            "top-lvl-domain": "land"
+        },
+        {
+            "top-lvl-domain": "landrover"
+        },
+        {
+            "top-lvl-domain": "lanxess"
+        },
+        {
+            "top-lvl-domain": "lasalle"
+        },
+        {
+            "top-lvl-domain": "lat"
+        },
+        {
+            "top-lvl-domain": "latino"
+        },
+        {
+            "top-lvl-domain": "latrobe"
+        },
+        {
+            "top-lvl-domain": "law"
+        },
+        {
+            "top-lvl-domain": "lawyer"
+        },
+        {
+            "top-lvl-domain": "lb"
+        },
+        {
+            "top-lvl-domain": "lc"
+        },
+        {
+            "top-lvl-domain": "lds"
+        },
+        {
+            "top-lvl-domain": "lease"
+        },
+        {
+            "top-lvl-domain": "leclerc"
+        },
+        {
+            "top-lvl-domain": "lefrak"
+        },
+        {
+            "top-lvl-domain": "legal"
+        },
+        {
+            "top-lvl-domain": "lego"
+        },
+        {
+            "top-lvl-domain": "lexus"
+        },
+        {
+            "top-lvl-domain": "lgbt"
+        },
+        {
+            "top-lvl-domain": "li"
+        },
+        {
+            "top-lvl-domain": "lidl"
+        },
+        {
+            "top-lvl-domain": "life"
+        },
+        {
+            "top-lvl-domain": "lifeinsurance"
+        },
+        {
+            "top-lvl-domain": "lifestyle"
+        },
+        {
+            "top-lvl-domain": "lighting"
+        },
+        {
+            "top-lvl-domain": "like"
+        },
+        {
+            "top-lvl-domain": "lilly"
+        },
+        {
+            "top-lvl-domain": "limited"
+        },
+        {
+            "top-lvl-domain": "limo"
+        },
+        {
+            "top-lvl-domain": "lincoln"
+        },
+        {
+            "top-lvl-domain": "linde"
+        },
+        {
+            "top-lvl-domain": "link"
+        },
+        {
+            "top-lvl-domain": "lipsy"
+        },
+        {
+            "top-lvl-domain": "live"
+        },
+        {
+            "top-lvl-domain": "living"
+        },
+        {
+            "top-lvl-domain": "lixil"
+        },
+        {
+            "top-lvl-domain": "lk"
+        },
+        {
+            "top-lvl-domain": "llc"
+        },
+        {
+            "top-lvl-domain": "llp"
+        },
+        {
+            "top-lvl-domain": "loan"
+        },
+        {
+            "top-lvl-domain": "loans"
+        },
+        {
+            "top-lvl-domain": "locker"
+        },
+        {
+            "top-lvl-domain": "locus"
+        },
+        {
+            "top-lvl-domain": "loft"
+        },
+        {
+            "top-lvl-domain": "lol"
+        },
+        {
+            "top-lvl-domain": "london"
+        },
+        {
+            "top-lvl-domain": "lotte"
+        },
+        {
+            "top-lvl-domain": "lotto"
+        },
+        {
+            "top-lvl-domain": "love"
+        },
+        {
+            "top-lvl-domain": "lpl"
+        },
+        {
+            "top-lvl-domain": "lplfinancial"
+        },
+        {
+            "top-lvl-domain": "lr"
+        },
+        {
+            "top-lvl-domain": "ls"
+        },
+        {
+            "top-lvl-domain": "lt"
+        },
+        {
+            "top-lvl-domain": "ltd"
+        },
+        {
+            "top-lvl-domain": "ltda"
+        },
+        {
+            "top-lvl-domain": "lu"
+        },
+        {
+            "top-lvl-domain": "lundbeck"
+        },
+        {
+            "top-lvl-domain": "luxe"
+        },
+        {
+            "top-lvl-domain": "luxury"
+        },
+        {
+            "top-lvl-domain": "lv"
+        },
+        {
+            "top-lvl-domain": "ly"
+        },
+        {
+            "top-lvl-domain": "ma"
+        },
+        {
+            "top-lvl-domain": "macys"
+        },
+        {
+            "top-lvl-domain": "madrid"
+        },
+        {
+            "top-lvl-domain": "maif"
+        },
+        {
+            "top-lvl-domain": "maison"
+        },
+        {
+            "top-lvl-domain": "makeup"
+        },
+        {
+            "top-lvl-domain": "man"
+        },
+        {
+            "top-lvl-domain": "management"
+        },
+        {
+            "top-lvl-domain": "mango"
+        },
+        {
+            "top-lvl-domain": "map"
+        },
+        {
+            "top-lvl-domain": "market"
+        },
+        {
+            "top-lvl-domain": "marketing"
+        },
+        {
+            "top-lvl-domain": "markets"
+        },
+        {
+            "top-lvl-domain": "marriott"
+        },
+        {
+            "top-lvl-domain": "marshalls"
+        },
+        {
+            "top-lvl-domain": "maserati"
+        },
+        {
+            "top-lvl-domain": "mattel"
+        },
+        {
+            "top-lvl-domain": "mba"
+        },
+        {
+            "top-lvl-domain": "mc"
+        },
+        {
+            "top-lvl-domain": "mckinsey"
+        },
+        {
+            "top-lvl-domain": "md"
+        },
+        {
+            "top-lvl-domain": "me"
+        },
+        {
+            "top-lvl-domain": "med"
+        },
+        {
+            "top-lvl-domain": "media"
+        },
+        {
+            "top-lvl-domain": "meet"
+        },
+        {
+            "top-lvl-domain": "melbourne"
+        },
+        {
+            "top-lvl-domain": "meme"
+        },
+        {
+            "top-lvl-domain": "memorial"
+        },
+        {
+            "top-lvl-domain": "men"
+        },
+        {
+            "top-lvl-domain": "menu"
+        },
+        {
+            "top-lvl-domain": "merckmsd"
+        },
+        {
+            "top-lvl-domain": "mg"
+        },
+        {
+            "top-lvl-domain": "mh"
+        },
+        {
+            "top-lvl-domain": "miami"
+        },
+        {
+            "top-lvl-domain": "microsoft"
+        },
+        {
+            "top-lvl-domain": "mil"
+        },
+        {
+            "top-lvl-domain": "mini"
+        },
+        {
+            "top-lvl-domain": "mint"
+        },
+        {
+            "top-lvl-domain": "mit"
+        },
+        {
+            "top-lvl-domain": "mitsubishi"
+        },
+        {
+            "top-lvl-domain": "mk"
+        },
+        {
+            "top-lvl-domain": "ml"
+        },
+        {
+            "top-lvl-domain": "mlb"
+        },
+        {
+            "top-lvl-domain": "mls"
+        },
+        {
+            "top-lvl-domain": "mm"
+        },
+        {
+            "top-lvl-domain": "mma"
+        },
+        {
+            "top-lvl-domain": "mn"
+        },
+        {
+            "top-lvl-domain": "mo"
+        },
+        {
+            "top-lvl-domain": "mobi"
+        },
+        {
+            "top-lvl-domain": "mobile"
+        },
+        {
+            "top-lvl-domain": "moda"
+        },
+        {
+            "top-lvl-domain": "moe"
+        },
+        {
+            "top-lvl-domain": "moi"
+        },
+        {
+            "top-lvl-domain": "mom"
+        },
+        {
+            "top-lvl-domain": "monash"
+        },
+        {
+            "top-lvl-domain": "money"
+        },
+        {
+            "top-lvl-domain": "monster"
+        },
+        {
+            "top-lvl-domain": "mormon"
+        },
+        {
+            "top-lvl-domain": "mortgage"
+        },
+        {
+            "top-lvl-domain": "moscow"
+        },
+        {
+            "top-lvl-domain": "moto"
+        },
+        {
+            "top-lvl-domain": "motorcycles"
+        },
+        {
+            "top-lvl-domain": "mov"
+        },
+        {
+            "top-lvl-domain": "movie"
+        },
+        {
+            "top-lvl-domain": "mp"
+        },
+        {
+            "top-lvl-domain": "mq"
+        },
+        {
+            "top-lvl-domain": "mr"
+        },
+        {
+            "top-lvl-domain": "ms"
+        },
+        {
+            "top-lvl-domain": "msd"
+        },
+        {
+            "top-lvl-domain": "mt"
+        },
+        {
+            "top-lvl-domain": "mtn"
+        },
+        {
+            "top-lvl-domain": "mtr"
+        },
+        {
+            "top-lvl-domain": "mu"
+        },
+        {
+            "top-lvl-domain": "museum"
+        },
+        {
+            "top-lvl-domain": "mutual"
+        },
+        {
+            "top-lvl-domain": "mv"
+        },
+        {
+            "top-lvl-domain": "mw"
+        },
+        {
+            "top-lvl-domain": "mx"
+        },
+        {
+            "top-lvl-domain": "my"
+        },
+        {
+            "top-lvl-domain": "mz"
+        },
+        {
+            "top-lvl-domain": "na"
+        },
+        {
+            "top-lvl-domain": "nab"
+        },
+        {
+            "top-lvl-domain": "nagoya"
+        },
+        {
+            "top-lvl-domain": "name"
+        },
+        {
+            "top-lvl-domain": "natura"
+        },
+        {
+            "top-lvl-domain": "navy"
+        },
+        {
+            "top-lvl-domain": "nba"
+        },
+        {
+            "top-lvl-domain": "nc"
+        },
+        {
+            "top-lvl-domain": "ne"
+        },
+        {
+            "top-lvl-domain": "nec"
+        },
+        {
+            "top-lvl-domain": "net"
+        },
+        {
+            "top-lvl-domain": "netbank"
+        },
+        {
+            "top-lvl-domain": "netflix"
+        },
+        {
+            "top-lvl-domain": "network"
+        },
+        {
+            "top-lvl-domain": "neustar"
+        },
+        {
+            "top-lvl-domain": "new"
+        },
+        {
+            "top-lvl-domain": "news"
+        },
+        {
+            "top-lvl-domain": "next"
+        },
+        {
+            "top-lvl-domain": "nextdirect"
+        },
+        {
+            "top-lvl-domain": "nexus"
+        },
+        {
+            "top-lvl-domain": "nf"
+        },
+        {
+            "top-lvl-domain": "nfl"
+        },
+        {
+            "top-lvl-domain": "ng"
+        },
+        {
+            "top-lvl-domain": "ngo"
+        },
+        {
+            "top-lvl-domain": "nhk"
+        },
+        {
+            "top-lvl-domain": "ni"
+        },
+        {
+            "top-lvl-domain": "nico"
+        },
+        {
+            "top-lvl-domain": "nike"
+        },
+        {
+            "top-lvl-domain": "nikon"
+        },
+        {
+            "top-lvl-domain": "ninja"
+        },
+        {
+            "top-lvl-domain": "nissan"
+        },
+        {
+            "top-lvl-domain": "nissay"
+        },
+        {
+            "top-lvl-domain": "nl"
+        },
+        {
+            "top-lvl-domain": "no"
+        },
+        {
+            "top-lvl-domain": "nokia"
+        },
+        {
+            "top-lvl-domain": "northwesternmutual"
+        },
+        {
+            "top-lvl-domain": "norton"
+        },
+        {
+            "top-lvl-domain": "now"
+        },
+        {
+            "top-lvl-domain": "nowruz"
+        },
+        {
+            "top-lvl-domain": "nowtv"
+        },
+        {
+            "top-lvl-domain": "np"
+        },
+        {
+            "top-lvl-domain": "nr"
+        },
+        {
+            "top-lvl-domain": "nra"
+        },
+        {
+            "top-lvl-domain": "nrw"
+        },
+        {
+            "top-lvl-domain": "ntt"
+        },
+        {
+            "top-lvl-domain": "nu"
+        },
+        {
+            "top-lvl-domain": "nyc"
+        },
+        {
+            "top-lvl-domain": "nz"
+        },
+        {
+            "top-lvl-domain": "obi"
+        },
+        {
+            "top-lvl-domain": "observer"
+        },
+        {
+            "top-lvl-domain": "off"
+        },
+        {
+            "top-lvl-domain": "office"
+        },
+        {
+            "top-lvl-domain": "okinawa"
+        },
+        {
+            "top-lvl-domain": "olayan"
+        },
+        {
+            "top-lvl-domain": "olayangroup"
+        },
+        {
+            "top-lvl-domain": "oldnavy"
+        },
+        {
+            "top-lvl-domain": "ollo"
+        },
+        {
+            "top-lvl-domain": "om"
+        },
+        {
+            "top-lvl-domain": "omega"
+        },
+        {
+            "top-lvl-domain": "one"
+        },
+        {
+            "top-lvl-domain": "ong"
+        },
+        {
+            "top-lvl-domain": "onl"
+        },
+        {
+            "top-lvl-domain": "online"
+        },
+        {
+            "top-lvl-domain": "ooo"
+        },
+        {
+            "top-lvl-domain": "open"
+        },
+        {
+            "top-lvl-domain": "oracle"
+        },
+        {
+            "top-lvl-domain": "orange"
+        },
+        {
+            "top-lvl-domain": "org"
+        },
+        {
+            "top-lvl-domain": "organic"
+        },
+        {
+            "top-lvl-domain": "origins"
+        },
+        {
+            "top-lvl-domain": "osaka"
+        },
+        {
+            "top-lvl-domain": "otsuka"
+        },
+        {
+            "top-lvl-domain": "ott"
+        },
+        {
+            "top-lvl-domain": "ovh"
+        },
+        {
+            "top-lvl-domain": "pa"
+        },
+        {
+            "top-lvl-domain": "page"
+        },
+        {
+            "top-lvl-domain": "panasonic"
+        },
+        {
+            "top-lvl-domain": "paris"
+        },
+        {
+            "top-lvl-domain": "pars"
+        },
+        {
+            "top-lvl-domain": "partners"
+        },
+        {
+            "top-lvl-domain": "parts"
+        },
+        {
+            "top-lvl-domain": "party"
+        },
+        {
+            "top-lvl-domain": "passagens"
+        },
+        {
+            "top-lvl-domain": "pay"
+        },
+        {
+            "top-lvl-domain": "pccw"
+        },
+        {
+            "top-lvl-domain": "pe"
+        },
+        {
+            "top-lvl-domain": "pet"
+        },
+        {
+            "top-lvl-domain": "pf"
+        },
+        {
+            "top-lvl-domain": "pfizer"
+        },
+        {
+            "top-lvl-domain": "pg"
+        },
+        {
+            "top-lvl-domain": "ph"
+        },
+        {
+            "top-lvl-domain": "pharmacy"
+        },
+        {
+            "top-lvl-domain": "phd"
+        },
+        {
+            "top-lvl-domain": "philips"
+        },
+        {
+            "top-lvl-domain": "phone"
+        },
+        {
+            "top-lvl-domain": "photo"
+        },
+        {
+            "top-lvl-domain": "photography"
+        },
+        {
+            "top-lvl-domain": "photos"
+        },
+        {
+            "top-lvl-domain": "physio"
+        },
+        {
+            "top-lvl-domain": "pics"
+        },
+        {
+            "top-lvl-domain": "pictet"
+        },
+        {
+            "top-lvl-domain": "pictures"
+        },
+        {
+            "top-lvl-domain": "pid"
+        },
+        {
+            "top-lvl-domain": "pin"
+        },
+        {
+            "top-lvl-domain": "ping"
+        },
+        {
+            "top-lvl-domain": "pink"
+        },
+        {
+            "top-lvl-domain": "pioneer"
+        },
+        {
+            "top-lvl-domain": "pizza"
+        },
+        {
+            "top-lvl-domain": "pk"
+        },
+        {
+            "top-lvl-domain": "pl"
+        },
+        {
+            "top-lvl-domain": "place"
+        },
+        {
+            "top-lvl-domain": "play"
+        },
+        {
+            "top-lvl-domain": "playstation"
+        },
+        {
+            "top-lvl-domain": "plumbing"
+        },
+        {
+            "top-lvl-domain": "plus"
+        },
+        {
+            "top-lvl-domain": "pm"
+        },
+        {
+            "top-lvl-domain": "pn"
+        },
+        {
+            "top-lvl-domain": "pnc"
+        },
+        {
+            "top-lvl-domain": "pohl"
+        },
+        {
+            "top-lvl-domain": "poker"
+        },
+        {
+            "top-lvl-domain": "politie"
+        },
+        {
+            "top-lvl-domain": "porn"
+        },
+        {
+            "top-lvl-domain": "post"
+        },
+        {
+            "top-lvl-domain": "pr"
+        },
+        {
+            "top-lvl-domain": "pramerica"
+        },
+        {
+            "top-lvl-domain": "praxi"
+        },
+        {
+            "top-lvl-domain": "press"
+        },
+        {
+            "top-lvl-domain": "prime"
+        },
+        {
+            "top-lvl-domain": "pro"
+        },
+        {
+            "top-lvl-domain": "prod"
+        },
+        {
+            "top-lvl-domain": "productions"
+        },
+        {
+            "top-lvl-domain": "prof"
+        },
+        {
+            "top-lvl-domain": "progressive"
+        },
+        {
+            "top-lvl-domain": "promo"
+        },
+        {
+            "top-lvl-domain": "properties"
+        },
+        {
+            "top-lvl-domain": "property"
+        },
+        {
+            "top-lvl-domain": "protection"
+        },
+        {
+            "top-lvl-domain": "pru"
+        },
+        {
+            "top-lvl-domain": "prudential"
+        },
+        {
+            "top-lvl-domain": "ps"
+        },
+        {
+            "top-lvl-domain": "pt"
+        },
+        {
+            "top-lvl-domain": "pub"
+        },
+        {
+            "top-lvl-domain": "pw"
+        },
+        {
+            "top-lvl-domain": "pwc"
+        },
+        {
+            "top-lvl-domain": "py"
+        },
+        {
+            "top-lvl-domain": "qa"
+        },
+        {
+            "top-lvl-domain": "qpon"
+        },
+        {
+            "top-lvl-domain": "quebec"
+        },
+        {
+            "top-lvl-domain": "quest"
+        },
+        {
+            "top-lvl-domain": "racing"
+        },
+        {
+            "top-lvl-domain": "radio"
+        },
+        {
+            "top-lvl-domain": "raid"
+        },
+        {
+            "top-lvl-domain": "re"
+        },
+        {
+            "top-lvl-domain": "read"
+        },
+        {
+            "top-lvl-domain": "realestate"
+        },
+        {
+            "top-lvl-domain": "realtor"
+        },
+        {
+            "top-lvl-domain": "realty"
+        },
+        {
+            "top-lvl-domain": "recipes"
+        },
+        {
+            "top-lvl-domain": "red"
+        },
+        {
+            "top-lvl-domain": "redstone"
+        },
+        {
+            "top-lvl-domain": "redumbrella"
+        },
+        {
+            "top-lvl-domain": "rehab"
+        },
+        {
+            "top-lvl-domain": "reise"
+        },
+        {
+            "top-lvl-domain": "reisen"
+        },
+        {
+            "top-lvl-domain": "reit"
+        },
+        {
+            "top-lvl-domain": "reliance"
+        },
+        {
+            "top-lvl-domain": "ren"
+        },
+        {
+            "top-lvl-domain": "rent"
+        },
+        {
+            "top-lvl-domain": "rentals"
+        },
+        {
+            "top-lvl-domain": "repair"
+        },
+        {
+            "top-lvl-domain": "report"
+        },
+        {
+            "top-lvl-domain": "republican"
+        },
+        {
+            "top-lvl-domain": "rest"
+        },
+        {
+            "top-lvl-domain": "restaurant"
+        },
+        {
+            "top-lvl-domain": "review"
+        },
+        {
+            "top-lvl-domain": "reviews"
+        },
+        {
+            "top-lvl-domain": "rexroth"
+        },
+        {
+            "top-lvl-domain": "rich"
+        },
+        {
+            "top-lvl-domain": "richardli"
+        },
+        {
+            "top-lvl-domain": "ricoh"
+        },
+        {
+            "top-lvl-domain": "ril"
+        },
+        {
+            "top-lvl-domain": "rio"
+        },
+        {
+            "top-lvl-domain": "rip"
+        },
+        {
+            "top-lvl-domain": "ro"
+        },
+        {
+            "top-lvl-domain": "rocher"
+        },
+        {
+            "top-lvl-domain": "rocks"
+        },
+        {
+            "top-lvl-domain": "rodeo"
+        },
+        {
+            "top-lvl-domain": "rogers"
+        },
+        {
+            "top-lvl-domain": "room"
+        },
+        {
+            "top-lvl-domain": "rs"
+        },
+        {
+            "top-lvl-domain": "rsvp"
+        },
+        {
+            "top-lvl-domain": "ru"
+        },
+        {
+            "top-lvl-domain": "rugby"
+        },
+        {
+            "top-lvl-domain": "ruhr"
+        },
+        {
+            "top-lvl-domain": "run"
+        },
+        {
+            "top-lvl-domain": "rw"
+        },
+        {
+            "top-lvl-domain": "rwe"
+        },
+        {
+            "top-lvl-domain": "ryukyu"
+        },
+        {
+            "top-lvl-domain": "sa"
+        },
+        {
+            "top-lvl-domain": "saarland"
+        },
+        {
+            "top-lvl-domain": "safe"
+        },
+        {
+            "top-lvl-domain": "safety"
+        },
+        {
+            "top-lvl-domain": "sakura"
+        },
+        {
+            "top-lvl-domain": "sale"
+        },
+        {
+            "top-lvl-domain": "salon"
+        },
+        {
+            "top-lvl-domain": "samsclub"
+        },
+        {
+            "top-lvl-domain": "samsung"
+        },
+        {
+            "top-lvl-domain": "sandvik"
+        },
+        {
+            "top-lvl-domain": "sandvikcoromant"
+        },
+        {
+            "top-lvl-domain": "sanofi"
+        },
+        {
+            "top-lvl-domain": "sap"
+        },
+        {
+            "top-lvl-domain": "sarl"
+        },
+        {
+            "top-lvl-domain": "sas"
+        },
+        {
+            "top-lvl-domain": "save"
+        },
+        {
+            "top-lvl-domain": "saxo"
+        },
+        {
+            "top-lvl-domain": "sb"
+        },
+        {
+            "top-lvl-domain": "sbi"
+        },
+        {
+            "top-lvl-domain": "sbs"
+        },
+        {
+            "top-lvl-domain": "sc"
+        },
+        {
+            "top-lvl-domain": "sca"
+        },
+        {
+            "top-lvl-domain": "scb"
+        },
+        {
+            "top-lvl-domain": "schaeffler"
+        },
+        {
+            "top-lvl-domain": "schmidt"
+        },
+        {
+            "top-lvl-domain": "scholarships"
+        },
+        {
+            "top-lvl-domain": "school"
+        },
+        {
+            "top-lvl-domain": "schule"
+        },
+        {
+            "top-lvl-domain": "schwarz"
+        },
+        {
+            "top-lvl-domain": "science"
+        },
+        {
+            "top-lvl-domain": "scjohnson"
+        },
+        {
+            "top-lvl-domain": "scot"
+        },
+        {
+            "top-lvl-domain": "sd"
+        },
+        {
+            "top-lvl-domain": "se"
+        },
+        {
+            "top-lvl-domain": "search"
+        },
+        {
+            "top-lvl-domain": "seat"
+        },
+        {
+            "top-lvl-domain": "secure"
+        },
+        {
+            "top-lvl-domain": "security"
+        },
+        {
+            "top-lvl-domain": "seek"
+        },
+        {
+            "top-lvl-domain": "select"
+        },
+        {
+            "top-lvl-domain": "sener"
+        },
+        {
+            "top-lvl-domain": "services"
+        },
+        {
+            "top-lvl-domain": "ses"
+        },
+        {
+            "top-lvl-domain": "seven"
+        },
+        {
+            "top-lvl-domain": "sew"
+        },
+        {
+            "top-lvl-domain": "sex"
+        },
+        {
+            "top-lvl-domain": "sexy"
+        },
+        {
+            "top-lvl-domain": "sfr"
+        },
+        {
+            "top-lvl-domain": "sg"
+        },
+        {
+            "top-lvl-domain": "sh"
+        },
+        {
+            "top-lvl-domain": "shangrila"
+        },
+        {
+            "top-lvl-domain": "sharp"
+        },
+        {
+            "top-lvl-domain": "shaw"
+        },
+        {
+            "top-lvl-domain": "shell"
+        },
+        {
+            "top-lvl-domain": "shia"
+        },
+        {
+            "top-lvl-domain": "shiksha"
+        },
+        {
+            "top-lvl-domain": "shoes"
+        },
+        {
+            "top-lvl-domain": "shop"
+        },
+        {
+            "top-lvl-domain": "shopping"
+        },
+        {
+            "top-lvl-domain": "shouji"
+        },
+        {
+            "top-lvl-domain": "show"
+        },
+        {
+            "top-lvl-domain": "showtime"
+        },
+        {
+            "top-lvl-domain": "si"
+        },
+        {
+            "top-lvl-domain": "silk"
+        },
+        {
+            "top-lvl-domain": "sina"
+        },
+        {
+            "top-lvl-domain": "singles"
+        },
+        {
+            "top-lvl-domain": "site"
+        },
+        {
+            "top-lvl-domain": "sj"
+        },
+        {
+            "top-lvl-domain": "sk"
+        },
+        {
+            "top-lvl-domain": "ski"
+        },
+        {
+            "top-lvl-domain": "skin"
+        },
+        {
+            "top-lvl-domain": "sky"
+        },
+        {
+            "top-lvl-domain": "skype"
+        },
+        {
+            "top-lvl-domain": "sl"
+        },
+        {
+            "top-lvl-domain": "sling"
+        },
+        {
+            "top-lvl-domain": "sm"
+        },
+        {
+            "top-lvl-domain": "smart"
+        },
+        {
+            "top-lvl-domain": "smile"
+        },
+        {
+            "top-lvl-domain": "sn"
+        },
+        {
+            "top-lvl-domain": "sncf"
+        },
+        {
+            "top-lvl-domain": "so"
+        },
+        {
+            "top-lvl-domain": "soccer"
+        },
+        {
+            "top-lvl-domain": "social"
+        },
+        {
+            "top-lvl-domain": "softbank"
+        },
+        {
+            "top-lvl-domain": "software"
+        },
+        {
+            "top-lvl-domain": "sohu"
+        },
+        {
+            "top-lvl-domain": "solar"
+        },
+        {
+            "top-lvl-domain": "solutions"
+        },
+        {
+            "top-lvl-domain": "song"
+        },
+        {
+            "top-lvl-domain": "sony"
+        },
+        {
+            "top-lvl-domain": "soy"
+        },
+        {
+            "top-lvl-domain": "spa"
+        },
+        {
+            "top-lvl-domain": "space"
+        },
+        {
+            "top-lvl-domain": "sport"
+        },
+        {
+            "top-lvl-domain": "spot"
+        },
+        {
+            "top-lvl-domain": "sr"
+        },
+        {
+            "top-lvl-domain": "srl"
+        },
+        {
+            "top-lvl-domain": "ss"
+        },
+        {
+            "top-lvl-domain": "st"
+        },
+        {
+            "top-lvl-domain": "stada"
+        },
+        {
+            "top-lvl-domain": "staples"
+        },
+        {
+            "top-lvl-domain": "star"
+        },
+        {
+            "top-lvl-domain": "statebank"
+        },
+        {
+            "top-lvl-domain": "statefarm"
+        },
+        {
+            "top-lvl-domain": "stc"
+        },
+        {
+            "top-lvl-domain": "stcgroup"
+        },
+        {
+            "top-lvl-domain": "stockholm"
+        },
+        {
+            "top-lvl-domain": "storage"
+        },
+        {
+            "top-lvl-domain": "store"
+        },
+        {
+            "top-lvl-domain": "stream"
+        },
+        {
+            "top-lvl-domain": "studio"
+        },
+        {
+            "top-lvl-domain": "study"
+        },
+        {
+            "top-lvl-domain": "style"
+        },
+        {
+            "top-lvl-domain": "su"
+        },
+        {
+            "top-lvl-domain": "sucks"
+        },
+        {
+            "top-lvl-domain": "supplies"
+        },
+        {
+            "top-lvl-domain": "supply"
+        },
+        {
+            "top-lvl-domain": "support"
+        },
+        {
+            "top-lvl-domain": "surf"
+        },
+        {
+            "top-lvl-domain": "surgery"
+        },
+        {
+            "top-lvl-domain": "suzuki"
+        },
+        {
+            "top-lvl-domain": "sv"
+        },
+        {
+            "top-lvl-domain": "swatch"
+        },
+        {
+            "top-lvl-domain": "swiss"
+        },
+        {
+            "top-lvl-domain": "sx"
+        },
+        {
+            "top-lvl-domain": "sy"
+        },
+        {
+            "top-lvl-domain": "sydney"
+        },
+        {
+            "top-lvl-domain": "systems"
+        },
+        {
+            "top-lvl-domain": "sz"
+        },
+        {
+            "top-lvl-domain": "tab"
+        },
+        {
+            "top-lvl-domain": "taipei"
+        },
+        {
+            "top-lvl-domain": "talk"
+        },
+        {
+            "top-lvl-domain": "taobao"
+        },
+        {
+            "top-lvl-domain": "target"
+        },
+        {
+            "top-lvl-domain": "tatamotors"
+        },
+        {
+            "top-lvl-domain": "tatar"
+        },
+        {
+            "top-lvl-domain": "tattoo"
+        },
+        {
+            "top-lvl-domain": "tax"
+        },
+        {
+            "top-lvl-domain": "taxi"
+        },
+        {
+            "top-lvl-domain": "tc"
+        },
+        {
+            "top-lvl-domain": "tci"
+        },
+        {
+            "top-lvl-domain": "td"
+        },
+        {
+            "top-lvl-domain": "tdk"
+        },
+        {
+            "top-lvl-domain": "team"
+        },
+        {
+            "top-lvl-domain": "tech"
+        },
+        {
+            "top-lvl-domain": "technology"
+        },
+        {
+            "top-lvl-domain": "tel"
+        },
+        {
+            "top-lvl-domain": "temasek"
+        },
+        {
+            "top-lvl-domain": "tennis"
+        },
+        {
+            "top-lvl-domain": "teva"
+        },
+        {
+            "top-lvl-domain": "tf"
+        },
+        {
+            "top-lvl-domain": "tg"
+        },
+        {
+            "top-lvl-domain": "th"
+        },
+        {
+            "top-lvl-domain": "thd"
+        },
+        {
+            "top-lvl-domain": "theater"
+        },
+        {
+            "top-lvl-domain": "theatre"
+        },
+        {
+            "top-lvl-domain": "tiaa"
+        },
+        {
+            "top-lvl-domain": "tickets"
+        },
+        {
+            "top-lvl-domain": "tienda"
+        },
+        {
+            "top-lvl-domain": "tiffany"
+        },
+        {
+            "top-lvl-domain": "tips"
+        },
+        {
+            "top-lvl-domain": "tires"
+        },
+        {
+            "top-lvl-domain": "tirol"
+        },
+        {
+            "top-lvl-domain": "tj"
+        },
+        {
+            "top-lvl-domain": "tjmaxx"
+        },
+        {
+            "top-lvl-domain": "tjx"
+        },
+        {
+            "top-lvl-domain": "tk"
+        },
+        {
+            "top-lvl-domain": "tkmaxx"
+        },
+        {
+            "top-lvl-domain": "tl"
+        },
+        {
+            "top-lvl-domain": "tm"
+        },
+        {
+            "top-lvl-domain": "tmall"
+        },
+        {
+            "top-lvl-domain": "tn"
+        },
+        {
+            "top-lvl-domain": "to"
+        },
+        {
+            "top-lvl-domain": "today"
+        },
+        {
+            "top-lvl-domain": "tokyo"
+        },
+        {
+            "top-lvl-domain": "tools"
+        },
+        {
+            "top-lvl-domain": "top"
+        },
+        {
+            "top-lvl-domain": "toray"
+        },
+        {
+            "top-lvl-domain": "toshiba"
+        },
+        {
+            "top-lvl-domain": "total"
+        },
+        {
+            "top-lvl-domain": "tours"
+        },
+        {
+            "top-lvl-domain": "town"
+        },
+        {
+            "top-lvl-domain": "toyota"
+        },
+        {
+            "top-lvl-domain": "toys"
+        },
+        {
+            "top-lvl-domain": "tr"
+        },
+        {
+            "top-lvl-domain": "trade"
+        },
+        {
+            "top-lvl-domain": "trading"
+        },
+        {
+            "top-lvl-domain": "training"
+        },
+        {
+            "top-lvl-domain": "travel"
+        },
+        {
+            "top-lvl-domain": "travelchannel"
+        },
+        {
+            "top-lvl-domain": "travelers"
+        },
+        {
+            "top-lvl-domain": "travelersinsurance"
+        },
+        {
+            "top-lvl-domain": "trust"
+        },
+        {
+            "top-lvl-domain": "trv"
+        },
+        {
+            "top-lvl-domain": "tt"
+        },
+        {
+            "top-lvl-domain": "tube"
+        },
+        {
+            "top-lvl-domain": "tui"
+        },
+        {
+            "top-lvl-domain": "tunes"
+        },
+        {
+            "top-lvl-domain": "tushu"
+        },
+        {
+            "top-lvl-domain": "tv"
+        },
+        {
+            "top-lvl-domain": "tvs"
+        },
+        {
+            "top-lvl-domain": "tw"
+        },
+        {
+            "top-lvl-domain": "tz"
+        },
+        {
+            "top-lvl-domain": "ua"
+        },
+        {
+            "top-lvl-domain": "ubank"
+        },
+        {
+            "top-lvl-domain": "ubs"
+        },
+        {
+            "top-lvl-domain": "ug"
+        },
+        {
+            "top-lvl-domain": "uk"
+        },
+        {
+            "top-lvl-domain": "unicom"
+        },
+        {
+            "top-lvl-domain": "university"
+        },
+        {
+            "top-lvl-domain": "uno"
+        },
+        {
+            "top-lvl-domain": "uol"
+        },
+        {
+            "top-lvl-domain": "ups"
+        },
+        {
+            "top-lvl-domain": "us"
+        },
+        {
+            "top-lvl-domain": "uy"
+        },
+        {
+            "top-lvl-domain": "uz"
+        },
+        {
+            "top-lvl-domain": "va"
+        },
+        {
+            "top-lvl-domain": "vacations"
+        },
+        {
+            "top-lvl-domain": "vana"
+        },
+        {
+            "top-lvl-domain": "vanguard"
+        },
+        {
+            "top-lvl-domain": "vc"
+        },
+        {
+            "top-lvl-domain": "ve"
+        },
+        {
+            "top-lvl-domain": "vegas"
+        },
+        {
+            "top-lvl-domain": "ventures"
+        },
+        {
+            "top-lvl-domain": "verisign"
+        },
+        {
+            "top-lvl-domain": "versicherung"
+        },
+        {
+            "top-lvl-domain": "vet"
+        },
+        {
+            "top-lvl-domain": "vg"
+        },
+        {
+            "top-lvl-domain": "vi"
+        },
+        {
+            "top-lvl-domain": "viajes"
+        },
+        {
+            "top-lvl-domain": "video"
+        },
+        {
+            "top-lvl-domain": "vig"
+        },
+        {
+            "top-lvl-domain": "viking"
+        },
+        {
+            "top-lvl-domain": "villas"
+        },
+        {
+            "top-lvl-domain": "vin"
+        },
+        {
+            "top-lvl-domain": "vip"
+        },
+        {
+            "top-lvl-domain": "virgin"
+        },
+        {
+            "top-lvl-domain": "visa"
+        },
+        {
+            "top-lvl-domain": "vision"
+        },
+        {
+            "top-lvl-domain": "viva"
+        },
+        {
+            "top-lvl-domain": "vivo"
+        },
+        {
+            "top-lvl-domain": "vlaanderen"
+        },
+        {
+            "top-lvl-domain": "vn"
+        },
+        {
+            "top-lvl-domain": "vodka"
+        },
+        {
+            "top-lvl-domain": "volkswagen"
+        },
+        {
+            "top-lvl-domain": "volvo"
+        },
+        {
+            "top-lvl-domain": "vote"
+        },
+        {
+            "top-lvl-domain": "voting"
+        },
+        {
+            "top-lvl-domain": "voto"
+        },
+        {
+            "top-lvl-domain": "voyage"
+        },
+        {
+            "top-lvl-domain": "vu"
+        },
+        {
+            "top-lvl-domain": "vuelos"
+        },
+        {
+            "top-lvl-domain": "wales"
+        },
+        {
+            "top-lvl-domain": "walmart"
+        },
+        {
+            "top-lvl-domain": "walter"
+        },
+        {
+            "top-lvl-domain": "wang"
+        },
+        {
+            "top-lvl-domain": "wanggou"
+        },
+        {
+            "top-lvl-domain": "watch"
+        },
+        {
+            "top-lvl-domain": "watches"
+        },
+        {
+            "top-lvl-domain": "weather"
+        },
+        {
+            "top-lvl-domain": "weatherchannel"
+        },
+        {
+            "top-lvl-domain": "webcam"
+        },
+        {
+            "top-lvl-domain": "weber"
+        },
+        {
+            "top-lvl-domain": "website"
+        },
+        {
+            "top-lvl-domain": "wed"
+        },
+        {
+            "top-lvl-domain": "wedding"
+        },
+        {
+            "top-lvl-domain": "weibo"
+        },
+        {
+            "top-lvl-domain": "weir"
+        },
+        {
+            "top-lvl-domain": "wf"
+        },
+        {
+            "top-lvl-domain": "whoswho"
+        },
+        {
+            "top-lvl-domain": "wien"
+        },
+        {
+            "top-lvl-domain": "wiki"
+        },
+        {
+            "top-lvl-domain": "williamhill"
+        },
+        {
+            "top-lvl-domain": "win"
+        },
+        {
+            "top-lvl-domain": "windows"
+        },
+        {
+            "top-lvl-domain": "wine"
+        },
+        {
+            "top-lvl-domain": "winners"
+        },
+        {
+            "top-lvl-domain": "wme"
+        },
+        {
+            "top-lvl-domain": "wolterskluwer"
+        },
+        {
+            "top-lvl-domain": "woodside"
+        },
+        {
+            "top-lvl-domain": "work"
+        },
+        {
+            "top-lvl-domain": "works"
+        },
+        {
+            "top-lvl-domain": "world"
+        },
+        {
+            "top-lvl-domain": "wow"
+        },
+        {
+            "top-lvl-domain": "ws"
+        },
+        {
+            "top-lvl-domain": "wtc"
+        },
+        {
+            "top-lvl-domain": "wtf"
+        },
+        {
+            "top-lvl-domain": "xbox"
+        },
+        {
+            "top-lvl-domain": "xerox"
+        },
+        {
+            "top-lvl-domain": "xfinity"
+        },
+        {
+            "top-lvl-domain": "xihuan"
+        },
+        {
+            "top-lvl-domain": "xin"
+        },
+        {
+            "top-lvl-domain": "xn--11b4c3d"
+        },
+        {
+            "top-lvl-domain": "xn--1ck2e1b"
+        },
+        {
+            "top-lvl-domain": "xn--1qqw23a"
+        },
+        {
+            "top-lvl-domain": "xn--2scrj9c"
+        },
+        {
+            "top-lvl-domain": "xn--30rr7y"
+        },
+        {
+            "top-lvl-domain": "xn--3bst00m"
+        },
+        {
+            "top-lvl-domain": "xn--3ds443g"
+        },
+        {
+            "top-lvl-domain": "xn--3e0b707e"
+        },
+        {
+            "top-lvl-domain": "xn--3hcrj9c"
+        },
+        {
+            "top-lvl-domain": "xn--3oq18vl8pn36a"
+        },
+        {
+            "top-lvl-domain": "xn--3pxu8k"
+        },
+        {
+            "top-lvl-domain": "xn--42c2d9a"
+        },
+        {
+            "top-lvl-domain": "xn--45br5cyl"
+        },
+        {
+            "top-lvl-domain": "xn--45brj9c"
+        },
+        {
+            "top-lvl-domain": "xn--45q11c"
+        },
+        {
+            "top-lvl-domain": "xn--4dbrk0ce"
+        },
+        {
+            "top-lvl-domain": "xn--4gbrim"
+        },
+        {
+            "top-lvl-domain": "xn--54b7fta0cc"
+        },
+        {
+            "top-lvl-domain": "xn--55qw42g"
+        },
+        {
+            "top-lvl-domain": "xn--55qx5d"
+        },
+        {
+            "top-lvl-domain": "xn--5su34j936bgsg"
+        },
+        {
+            "top-lvl-domain": "xn--5tzm5g"
+        },
+        {
+            "top-lvl-domain": "xn--6frz82g"
+        },
+        {
+            "top-lvl-domain": "xn--6qq986b3xl"
+        },
+        {
+            "top-lvl-domain": "xn--80adxhks"
+        },
+        {
+            "top-lvl-domain": "xn--80ao21a"
+        },
+        {
+            "top-lvl-domain": "xn--80aqecdr1a"
+        },
+        {
+            "top-lvl-domain": "xn--80asehdb"
+        },
+        {
+            "top-lvl-domain": "xn--80aswg"
+        },
+        {
+            "top-lvl-domain": "xn--8y0a063a"
+        },
+        {
+            "top-lvl-domain": "xn--90a3ac"
+        },
+        {
+            "top-lvl-domain": "xn--90ae"
+        },
+        {
+            "top-lvl-domain": "xn--90ais"
+        },
+        {
+            "top-lvl-domain": "xn--9dbq2a"
+        },
+        {
+            "top-lvl-domain": "xn--9et52u"
+        },
+        {
+            "top-lvl-domain": "xn--9krt00a"
+        },
+        {
+            "top-lvl-domain": "xn--b4w605ferd"
+        },
+        {
+            "top-lvl-domain": "xn--bck1b9a5dre4c"
+        },
+        {
+            "top-lvl-domain": "xn--c1avg"
+        },
+        {
+            "top-lvl-domain": "xn--c2br7g"
+        },
+        {
+            "top-lvl-domain": "xn--cck2b3b"
+        },
+        {
+            "top-lvl-domain": "xn--cckwcxetd"
+        },
+        {
+            "top-lvl-domain": "xn--cg4bki"
+        },
+        {
+            "top-lvl-domain": "xn--clchc0ea0b2g2a9gcd"
+        },
+        {
+            "top-lvl-domain": "xn--czr694b"
+        },
+        {
+            "top-lvl-domain": "xn--czrs0t"
+        },
+        {
+            "top-lvl-domain": "xn--czru2d"
+        },
+        {
+            "top-lvl-domain": "xn--d1acj3b"
+        },
+        {
+            "top-lvl-domain": "xn--d1alf"
+        },
+        {
+            "top-lvl-domain": "xn--e1a4c"
+        },
+        {
+            "top-lvl-domain": "xn--eckvdtc9d"
+        },
+        {
+            "top-lvl-domain": "xn--efvy88h"
+        },
+        {
+            "top-lvl-domain": "xn--fct429k"
+        },
+        {
+            "top-lvl-domain": "xn--fhbei"
+        },
+        {
+            "top-lvl-domain": "xn--fiq228c5hs"
+        },
+        {
+            "top-lvl-domain": "xn--fiq64b"
+        },
+        {
+            "top-lvl-domain": "xn--fiqs8s"
+        },
+        {
+            "top-lvl-domain": "xn--fiqz9s"
+        },
+        {
+            "top-lvl-domain": "xn--fjq720a"
+        },
+        {
+            "top-lvl-domain": "xn--flw351e"
+        },
+        {
+            "top-lvl-domain": "xn--fpcrj9c3d"
+        },
+        {
+            "top-lvl-domain": "xn--fzc2c9e2c"
+        },
+        {
+            "top-lvl-domain": "xn--fzys8d69uvgm"
+        },
+        {
+            "top-lvl-domain": "xn--g2xx48c"
+        },
+        {
+            "top-lvl-domain": "xn--gckr3f0f"
+        },
+        {
+            "top-lvl-domain": "xn--gecrj9c"
+        },
+        {
+            "top-lvl-domain": "xn--gk3at1e"
+        },
+        {
+            "top-lvl-domain": "xn--h2breg3eve"
+        },
+        {
+            "top-lvl-domain": "xn--h2brj9c"
+        },
+        {
+            "top-lvl-domain": "xn--h2brj9c8c"
+        },
+        {
+            "top-lvl-domain": "xn--hxt814e"
+        },
+        {
+            "top-lvl-domain": "xn--i1b6b1a6a2e"
+        },
+        {
+            "top-lvl-domain": "xn--imr513n"
+        },
+        {
+            "top-lvl-domain": "xn--io0a7i"
+        },
+        {
+            "top-lvl-domain": "xn--j1aef"
+        },
+        {
+            "top-lvl-domain": "xn--j1amh"
+        },
+        {
+            "top-lvl-domain": "xn--j6w193g"
+        },
+        {
+            "top-lvl-domain": "xn--jlq480n2rg"
+        },
+        {
+            "top-lvl-domain": "xn--jlq61u9w7b"
+        },
+        {
+            "top-lvl-domain": "xn--jvr189m"
+        },
+        {
+            "top-lvl-domain": "xn--kcrx77d1x4a"
+        },
+        {
+            "top-lvl-domain": "xn--kprw13d"
+        },
+        {
+            "top-lvl-domain": "xn--kpry57d"
+        },
+        {
+            "top-lvl-domain": "xn--kput3i"
+        },
+        {
+            "top-lvl-domain": "xn--l1acc"
+        },
+        {
+            "top-lvl-domain": "xn--lgbbat1ad8j"
+        },
+        {
+            "top-lvl-domain": "xn--mgb9awbf"
+        },
+        {
+            "top-lvl-domain": "xn--mgba3a3ejt"
+        },
+        {
+            "top-lvl-domain": "xn--mgba3a4f16a"
+        },
+        {
+            "top-lvl-domain": "xn--mgba7c0bbn0a"
+        },
+        {
+            "top-lvl-domain": "xn--mgbaakc7dvf"
+        },
+        {
+            "top-lvl-domain": "xn--mgbaam7a8h"
+        },
+        {
+            "top-lvl-domain": "xn--mgbab2bd"
+        },
+        {
+            "top-lvl-domain": "xn--mgbah1a3hjkrd"
+        },
+        {
+            "top-lvl-domain": "xn--mgbai9azgqp6j"
+        },
+        {
+            "top-lvl-domain": "xn--mgbayh7gpa"
+        },
+        {
+            "top-lvl-domain": "xn--mgbbh1a"
+        },
+        {
+            "top-lvl-domain": "xn--mgbbh1a71e"
+        },
+        {
+            "top-lvl-domain": "xn--mgbc0a9azcg"
+        },
+        {
+            "top-lvl-domain": "xn--mgbca7dzdo"
+        },
+        {
+            "top-lvl-domain": "xn--mgbcpq6gpa1a"
+        },
+        {
+            "top-lvl-domain": "xn--mgberp4a5d4ar"
+        },
+        {
+            "top-lvl-domain": "xn--mgbgu82a"
+        },
+        {
+            "top-lvl-domain": "xn--mgbi4ecexp"
+        },
+        {
+            "top-lvl-domain": "xn--mgbpl2fh"
+        },
+        {
+            "top-lvl-domain": "xn--mgbt3dhd"
+        },
+        {
+            "top-lvl-domain": "xn--mgbtx2b"
+        },
+        {
+            "top-lvl-domain": "xn--mgbx4cd0ab"
+        },
+        {
+            "top-lvl-domain": "xn--mix891f"
+        },
+        {
+            "top-lvl-domain": "xn--mk1bu44c"
+        },
+        {
+            "top-lvl-domain": "xn--mxtq1m"
+        },
+        {
+            "top-lvl-domain": "xn--ngbc5azd"
+        },
+        {
+            "top-lvl-domain": "xn--ngbe9e0a"
+        },
+        {
+            "top-lvl-domain": "xn--ngbrx"
+        },
+        {
+            "top-lvl-domain": "xn--node"
+        },
+        {
+            "top-lvl-domain": "xn--nqv7f"
+        },
+        {
+            "top-lvl-domain": "xn--nqv7fs00ema"
+        },
+        {
+            "top-lvl-domain": "xn--nyqy26a"
+        },
+        {
+            "top-lvl-domain": "xn--o3cw4h"
+        },
+        {
+            "top-lvl-domain": "xn--ogbpf8fl"
+        },
+        {
+            "top-lvl-domain": "xn--otu796d"
+        },
+        {
+            "top-lvl-domain": "xn--p1acf"
+        },
+        {
+            "top-lvl-domain": "xn--p1ai"
+        },
+        {
+            "top-lvl-domain": "xn--pgbs0dh"
+        },
+        {
+            "top-lvl-domain": "xn--pssy2u"
+        },
+        {
+            "top-lvl-domain": "xn--q7ce6a"
+        },
+        {
+            "top-lvl-domain": "xn--q9jyb4c"
+        },
+        {
+            "top-lvl-domain": "xn--qcka1pmc"
+        },
+        {
+            "top-lvl-domain": "xn--qxa6a"
+        },
+        {
+            "top-lvl-domain": "xn--qxam"
+        },
+        {
+            "top-lvl-domain": "xn--rhqv96g"
+        },
+        {
+            "top-lvl-domain": "xn--rovu88b"
+        },
+        {
+            "top-lvl-domain": "xn--rvc1e0am3e"
+        },
+        {
+            "top-lvl-domain": "xn--s9brj9c"
+        },
+        {
+            "top-lvl-domain": "xn--ses554g"
+        },
+        {
+            "top-lvl-domain": "xn--t60b56a"
+        },
+        {
+            "top-lvl-domain": "xn--tckwe"
+        },
+        {
+            "top-lvl-domain": "xn--tiq49xqyj"
+        },
+        {
+            "top-lvl-domain": "xn--unup4y"
+        },
+        {
+            "top-lvl-domain": "xn--vermgensberater-ctb"
+        },
+        {
+            "top-lvl-domain": "xn--vermgensberatung-pwb"
+        },
+        {
+            "top-lvl-domain": "xn--vhquv"
+        },
+        {
+            "top-lvl-domain": "xn--vuq861b"
+        },
+        {
+            "top-lvl-domain": "xn--w4r85el8fhu5dnra"
+        },
+        {
+            "top-lvl-domain": "xn--w4rs40l"
+        },
+        {
+            "top-lvl-domain": "xn--wgbh1c"
+        },
+        {
+            "top-lvl-domain": "xn--wgbl6a"
+        },
+        {
+            "top-lvl-domain": "xn--xhq521b"
+        },
+        {
+            "top-lvl-domain": "xn--xkc2al3hye2a"
+        },
+        {
+            "top-lvl-domain": "xn--xkc2dl3a5ee0h"
+        },
+        {
+            "top-lvl-domain": "xn--y9a3aq"
+        },
+        {
+            "top-lvl-domain": "xn--yfro4i67o"
+        },
+        {
+            "top-lvl-domain": "xn--ygbi2ammx"
+        },
+        {
+            "top-lvl-domain": "xn--zfr164b"
+        },
+        {
+            "top-lvl-domain": "xxx"
+        },
+        {
+            "top-lvl-domain": "xyz"
+        },
+        {
+            "top-lvl-domain": "yachts"
+        },
+        {
+            "top-lvl-domain": "yahoo"
+        },
+        {
+            "top-lvl-domain": "yamaxun"
+        },
+        {
+            "top-lvl-domain": "yandex"
+        },
+        {
+            "top-lvl-domain": "ye"
+        },
+        {
+            "top-lvl-domain": "yodobashi"
+        },
+        {
+            "top-lvl-domain": "yoga"
+        },
+        {
+            "top-lvl-domain": "yokohama"
+        },
+        {
+            "top-lvl-domain": "you"
+        },
+        {
+            "top-lvl-domain": "youtube"
+        },
+        {
+            "top-lvl-domain": "yt"
+        },
+        {
+            "top-lvl-domain": "yun"
+        },
+        {
+            "top-lvl-domain": "za"
+        },
+        {
+            "top-lvl-domain": "zappos"
+        },
+        {
+            "top-lvl-domain": "zara"
+        },
+        {
+            "top-lvl-domain": "zero"
+        },
+        {
+            "top-lvl-domain": "zip"
+        },
+        {
+            "top-lvl-domain": "zm"
+        },
+        {
+            "top-lvl-domain": "zone"
+        },
+        {
+            "top-lvl-domain": "zuerich"
+        },
+        {
+            "top-lvl-domain": "zw"
+        }
+    ]
+}
