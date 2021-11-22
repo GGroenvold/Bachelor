@@ -159,6 +159,25 @@ def encrypt(msg, T, key, format):
         ciphertext3 = ''.join(map_from_name(cipherNumerals3,mapping3[1]))
         ciphertext = ciphertext1 + '@' + ciphertext2 + '.' + ciphertext3
         
+#    if format == Format.DATE:
+#        # do we wanna check if input is valid?
+#        # do we wanna check if output is valid?
+#        # should we split it up into day-month | year ?
+#        # what format do we wanna output? {dd/mm/yyyy, dd-mm-yyyy, dd/mm-yyyy, dd mm yyyy, dd.mm.yyyy, other?}
+#        clean_msg = sub(r"\D", "", msg)
+#        radix = 10
+#        ciphertext = ''.join(encrypt_main(clean_msg, T, key, radix,cipher))
+#        ciphertext = ciphertext[:2] + '.' + ciphertext[2:4] + '.' + ciphertext[4:]
+#        #we can use our msg to keep the format insted of just creating our own format.. maybe somehow
+#        
+#    if format == Format.NAME:
+#        mapping = mapping_name
+#        radix = len(mapping_name[0])
+#        plainNumerals = map_from_name(msg, mapping[0])
+#        cipherNumerals = encrypt_main(plainNumerals, T, key, radix,cipher)
+#        ciphertext = ''.join(map_from_name(cipherNumerals, mapping[1]))
+#        # insert ciphernumerals[0] above to make it runnable
+        
     if format == Format.CPR:
         if (msg[len(msg) - 1] != validateCPR(msg[:len(msg) - 1])):
             raise ValueError(f"{msg} is not a valid CPR number")
@@ -238,6 +257,20 @@ def decrypt(msg, T, key, format):
         plaintext3 = ''.join(map_from_name(plainNumerals3,mapping3[1]))
         plaintext = plaintext1 + '@' + plaintext2 + '.' + plaintext3
         
+#    if format == Format.DATE:
+#        clean_msg = sub(r"\D", "", msg)
+#        radix = 10
+#        plaintext = ''.join(decrypt_main(clean_msg, T, key, radix,cipher))
+#        plaintext = plaintext[:2] + '.' + plaintext[2:4] + '.' + plaintext[4:]
+#        
+#    if format == Format.NAME:
+#        mapping = mapping_name
+#        radix = len(mapping_name[0])
+#        cipherNumerals = map_from_name(msg, mapping[0])
+#        plainNumerals = decrypt_main(cipherNumerals, T, key, radix,cipher)
+#        plaintext = ''.join(map_from_name(plainNumerals, mapping[1]))
+#        # insert plainnumerals[0] above to make it runnable
+        
     if format == Format.CPR:
         if (msg[len(msg) - 1] != validateCPR(msg[:len(msg) - 1])):
             raise ValueError(f"{msg} is not a valid CPR number")
@@ -254,8 +287,7 @@ def decrypt(msg, T, key, format):
         plaintext = plaintext + validateCPR(plaintext)
         
     return plaintext
-for _ in range(1):
+for _ in range(100000):
     ciphertext = encrypt('12345', T, key, Format.DIGITS)
-    print(ciphertext)
-    print(decrypt(ciphertext,T,key,Format.DIGITS))
+    decrypt(ciphertext,T,key,Format.DIGITS)
 print("--- %s seconds ---" % (time.time() - start_time))
