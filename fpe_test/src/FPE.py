@@ -3,13 +3,12 @@ import Mode
 import formatter
 import fpe_csv
 from utils import reverse
-from Crypto.Random import get_random_bytes
 
 def generate_tweak(length):
-    return get_random_bytes(length)
+    return formatter.mode_selector.ff1.get_random_bytes(length)
 
 def generate_key():
-    return get_random_bytes(16) 
+    return formatter.mode_selector.ff1.get_random_bytes(16) 
 
 class New:
     def __init__(self, key, tweak, mode):
@@ -39,6 +38,6 @@ class New:
         return fpe_csv.decrypt_csv(csvFilePath,decryptedFilePath,self.key,self.tweak,formats,self.mode)
 
     def generateData(self,csvFilePath,rows,formats,names):
-        return fpe_csv.generate_test_data(csvFilePath,rows,formats,names,self.mode)  
+        return fpe_csv.generate_test_data(csvFilePath,rows,formats,names,self.tweak,self.mode)  
 
 

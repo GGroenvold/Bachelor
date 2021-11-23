@@ -1,10 +1,8 @@
 import csv
 import concurrent.futures
-import json
 import formatter
 import time
-from Crypto.Random import get_random_bytes
-from format_translator import *
+import Format
 from timeit import default_timer as timer
 
 dataExample = ['12345678','1112223334445559','CoolUsername','SecurePassword123','Cool@Email.com','1212121211']
@@ -12,14 +10,12 @@ dataFormats = [Format.DIGITS,Format.CREDITCARD,Format.LETTERS,Format.STRING,Form
 
 mapping_formats = dict(zip(dataFormats, dataExample))
 
-def generate_data(columns,dataFormat,mode):
-
-    tweak = get_random_bytes(7)
+def generate_data(columns,dataFormat,tweak,mode):
 
     ciphertexts = [columns[0]]
 
     for text in columns[1:]:
-        key = get_random_bytes(16)
+        key = formatter.mode_selector.ff1.get_random_bytes(16)
         ciphertexts.append(formatter.encrypt(text,key,tweak,dataFormat,mode))
     return ciphertexts
 
@@ -136,9 +132,11 @@ def decrypt_csv(csvFilePath,decryptedFilePath,key,tweak,formats,mode):
     end = timer()
     print('Done in %5.2f seconds' % (end-start))
 
-def generate_test_data(csvFilePath,rows,formats,names,mode):
+def generate_test_data(csvFilePath,rows,formats,names,tweak,mode):
     start = timer()
     print('Generating...')
+
+    tweaks = [tweak]*len(formats)
     modes = [mode]*len(formats)
 
     data = [[x] for x in names]
@@ -148,7 +146,7 @@ def generate_test_data(csvFilePath,rows,formats,names,mode):
             data[i].append(mapping_formats[formats[i]])
 
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        results = list(executor.map(generate_data,data,formats,modes))
+        results = list(executor.map(generate_data,data,formats,tweaks,modes))
 
         data = results
 
