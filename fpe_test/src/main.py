@@ -38,9 +38,9 @@ if __name__ == '__main__':
 	
 	T = FPE.generate_tweak(7)
 	key = FPE.generate_key()
-	ff1 = FPE.New(key,T,FPE.Mode.FF1)
+	ff1 = FPE.New(key,T,FPE.Mode.FF3)
 	
-	#ff1.generateData('src/testData.csv',100000,formats,names)
+	ff1.generateData('src/testData.csv',10000,formats,names)
 	
 	ff1.encryptCSV('src/testData.csv','src/encryptedData.csv',formats)
 	ff1.decryptCSV('src/encryptedData.csv','src/decryptedData.csv',formats)

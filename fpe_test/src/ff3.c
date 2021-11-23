@@ -1271,7 +1271,9 @@ static const char __pyx_k__3[] = "]";
 static const char __pyx_k_AES[] = "AES";
 static const char __pyx_k_and[] = " and ";
 static const char __pyx_k_big[] = "big";
+static const char __pyx_k_key[] = "key";
 static const char __pyx_k_log[] = "log";
+static const char __pyx_k_new[] = "new";
 static const char __pyx_k_bits[] = " bits";
 static const char __pyx_k_ceil[] = "ceil";
 static const char __pyx_k_main[] = "__main__";
@@ -1280,7 +1282,6 @@ static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_radix[] = "radix";
 static const char __pyx_k_range[] = "range";
-static const char __pyx_k_cipher[] = "cipher";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_string[] = "string";
 static const char __pyx_k_MIN_LEN[] = "MIN_LEN";
@@ -1288,6 +1289,7 @@ static const char __pyx_k_encrypt[] = "encrypt";
 static const char __pyx_k_max_len[] = "max_len";
 static const char __pyx_k_reverse[] = "reverse";
 static const char __pyx_k_src_ff3[] = "src.ff3";
+static const char __pyx_k_MODE_ECB[] = "MODE_ECB";
 static const char __pyx_k_numerals[] = "numerals";
 static const char __pyx_k_to_bytes[] = "to_bytes";
 static const char __pyx_k_TWEAK_LEN[] = "TWEAK_LEN";
@@ -1307,6 +1309,7 @@ static PyObject *__pyx_n_s_AES;
 static PyObject *__pyx_n_s_Crypto_Cipher;
 static PyObject *__pyx_n_s_Crypto_Random;
 static PyObject *__pyx_n_s_MIN_LEN;
+static PyObject *__pyx_n_s_MODE_ECB;
 static PyObject *__pyx_n_s_MemoryError;
 static PyObject *__pyx_kp_u_Plaintext_must_have_length_betwe;
 static PyObject *__pyx_n_s_T;
@@ -1319,7 +1322,6 @@ static PyObject *__pyx_kp_u_and;
 static PyObject *__pyx_n_s_big;
 static PyObject *__pyx_kp_u_bits;
 static PyObject *__pyx_n_s_ceil;
-static PyObject *__pyx_n_s_cipher;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_encrypt;
 static PyObject *__pyx_n_s_from_bytes;
@@ -1327,11 +1329,13 @@ static PyObject *__pyx_n_s_get_random_bytes;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_kp_u_is_not_a_valid_string_length;
 static PyObject *__pyx_kp_u_is_not_in_range_0;
+static PyObject *__pyx_n_s_key;
 static PyObject *__pyx_n_s_log;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_math;
 static PyObject *__pyx_n_s_max_len;
 static PyObject *__pyx_n_s_name;
+static PyObject *__pyx_n_s_new;
 static PyObject *__pyx_n_s_numerals;
 static PyObject *__pyx_n_s_radix;
 static PyObject *__pyx_n_s_range;
@@ -1343,8 +1347,8 @@ static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_to_bytes;
 static PyObject *__pyx_pf_3src_3ff3_reverse(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_string); /* proto */
 static PyObject *__pyx_pf_3src_3ff3_2max_len(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_radix); /* proto */
-static PyObject *__pyx_pf_3src_3ff3_4encrypt(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_numerals, PyObject *__pyx_v_T, PyObject *__pyx_v_radix, PyObject *__pyx_v_cipher); /* proto */
-static PyObject *__pyx_pf_3src_3ff3_6decrypt(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_numerals, PyObject *__pyx_v_T, PyObject *__pyx_v_radix, PyObject *__pyx_v_cipher); /* proto */
+static PyObject *__pyx_pf_3src_3ff3_4encrypt(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_numerals, PyObject *__pyx_v_key, PyObject *__pyx_v_T, PyObject *__pyx_v_radix); /* proto */
+static PyObject *__pyx_pf_3src_3ff3_6decrypt(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_numerals, PyObject *__pyx_v_key, PyObject *__pyx_v_T, PyObject *__pyx_v_radix); /* proto */
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
@@ -4051,7 +4055,7 @@ static PyObject *__pyx_f_3src_3ff3_decrypt_numeral_string(PyObject *__pyx_v_ciph
  *     plainNumerals = [value for value in SUM[:n]]
  *     return plainNumerals             # <<<<<<<<<<<<<<
  * 
- * cpdef list encrypt(list numerals, bytes T, radix, cipher):
+ * cpdef list encrypt(list numerals,bytes key,bytes T, radix):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_plainNumerals);
@@ -4091,16 +4095,22 @@ static PyObject *__pyx_f_3src_3ff3_decrypt_numeral_string(PyObject *__pyx_v_ciph
 /* "src/ff3.pyx":246
  *     return plainNumerals
  * 
- * cpdef list encrypt(list numerals, bytes T, radix, cipher):             # <<<<<<<<<<<<<<
+ * cpdef list encrypt(list numerals,bytes key,bytes T, radix):             # <<<<<<<<<<<<<<
+ *     cipher = AES.new(key, AES.MODE_ECB)
  *     return encrypt_numeral_string(numerals, T, radix, cipher)
- * 
  */
 
 static PyObject *__pyx_pw_3src_3ff3_5encrypt(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_3src_3ff3_encrypt(PyObject *__pyx_v_numerals, PyObject *__pyx_v_T, PyObject *__pyx_v_radix, PyObject *__pyx_v_cipher, CYTHON_UNUSED int __pyx_skip_dispatch) {
+static PyObject *__pyx_f_3src_3ff3_encrypt(PyObject *__pyx_v_numerals, PyObject *__pyx_v_key, PyObject *__pyx_v_T, PyObject *__pyx_v_radix, CYTHON_UNUSED int __pyx_skip_dispatch) {
+  PyObject *__pyx_v_cipher = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4108,13 +4118,80 @@ static PyObject *__pyx_f_3src_3ff3_encrypt(PyObject *__pyx_v_numerals, PyObject 
 
   /* "src/ff3.pyx":247
  * 
- * cpdef list encrypt(list numerals, bytes T, radix, cipher):
+ * cpdef list encrypt(list numerals,bytes key,bytes T, radix):
+ *     cipher = AES.new(key, AES.MODE_ECB)             # <<<<<<<<<<<<<<
+ *     return encrypt_numeral_string(numerals, T, radix, cipher)
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_AES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 247, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 247, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_AES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 247, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MODE_ECB); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 247, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  __pyx_t_5 = 0;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __pyx_t_5 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (PyFunction_Check(__pyx_t_3)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_key, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_key, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  } else
+  #endif
+  {
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 247, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    if (__pyx_t_2) {
+      __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2); __pyx_t_2 = NULL;
+    }
+    __Pyx_INCREF(__pyx_v_key);
+    __Pyx_GIVEREF(__pyx_v_key);
+    PyTuple_SET_ITEM(__pyx_t_6, 0+__pyx_t_5, __pyx_v_key);
+    __Pyx_GIVEREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_4);
+    __pyx_t_4 = 0;
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_cipher = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "src/ff3.pyx":248
+ * cpdef list encrypt(list numerals,bytes key,bytes T, radix):
+ *     cipher = AES.new(key, AES.MODE_ECB)
  *     return encrypt_numeral_string(numerals, T, radix, cipher)             # <<<<<<<<<<<<<<
  * 
- * cpdef list decrypt(list numerals, bytes T, radix, cipher):
+ * cpdef list decrypt(list numerals,bytes key,bytes T, radix):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_3src_3ff3_encrypt_numeral_string(__pyx_v_numerals, __pyx_v_T, __pyx_v_radix, __pyx_v_cipher); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 247, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_3src_3ff3_encrypt_numeral_string(__pyx_v_numerals, __pyx_v_T, __pyx_v_radix, __pyx_v_cipher); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
@@ -4123,17 +4200,22 @@ static PyObject *__pyx_f_3src_3ff3_encrypt(PyObject *__pyx_v_numerals, PyObject 
   /* "src/ff3.pyx":246
  *     return plainNumerals
  * 
- * cpdef list encrypt(list numerals, bytes T, radix, cipher):             # <<<<<<<<<<<<<<
+ * cpdef list encrypt(list numerals,bytes key,bytes T, radix):             # <<<<<<<<<<<<<<
+ *     cipher = AES.new(key, AES.MODE_ECB)
  *     return encrypt_numeral_string(numerals, T, radix, cipher)
- * 
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("src.ff3.encrypt", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_cipher);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -4143,9 +4225,9 @@ static PyObject *__pyx_f_3src_3ff3_encrypt(PyObject *__pyx_v_numerals, PyObject 
 static PyObject *__pyx_pw_3src_3ff3_5encrypt(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyObject *__pyx_pw_3src_3ff3_5encrypt(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_numerals = 0;
+  PyObject *__pyx_v_key = 0;
   PyObject *__pyx_v_T = 0;
   PyObject *__pyx_v_radix = 0;
-  PyObject *__pyx_v_cipher = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4153,7 +4235,7 @@ static PyObject *__pyx_pw_3src_3ff3_5encrypt(PyObject *__pyx_self, PyObject *__p
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("encrypt (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_numerals,&__pyx_n_s_T,&__pyx_n_s_radix,&__pyx_n_s_cipher,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_numerals,&__pyx_n_s_key,&__pyx_n_s_T,&__pyx_n_s_radix,0};
     PyObject* values[4] = {0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
@@ -4177,19 +4259,19 @@ static PyObject *__pyx_pw_3src_3ff3_5encrypt(PyObject *__pyx_self, PyObject *__p
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_T)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_key)) != 0)) kw_args--;
         else {
           __Pyx_RaiseArgtupleInvalid("encrypt", 1, 4, 4, 1); __PYX_ERR(0, 246, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_radix)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_T)) != 0)) kw_args--;
         else {
           __Pyx_RaiseArgtupleInvalid("encrypt", 1, 4, 4, 2); __PYX_ERR(0, 246, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_cipher)) != 0)) kw_args--;
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_radix)) != 0)) kw_args--;
         else {
           __Pyx_RaiseArgtupleInvalid("encrypt", 1, 4, 4, 3); __PYX_ERR(0, 246, __pyx_L3_error)
         }
@@ -4206,9 +4288,9 @@ static PyObject *__pyx_pw_3src_3ff3_5encrypt(PyObject *__pyx_self, PyObject *__p
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
     __pyx_v_numerals = ((PyObject*)values[0]);
-    __pyx_v_T = ((PyObject*)values[1]);
-    __pyx_v_radix = values[2];
-    __pyx_v_cipher = values[3];
+    __pyx_v_key = ((PyObject*)values[1]);
+    __pyx_v_T = ((PyObject*)values[2]);
+    __pyx_v_radix = values[3];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
@@ -4219,8 +4301,9 @@ static PyObject *__pyx_pw_3src_3ff3_5encrypt(PyObject *__pyx_self, PyObject *__p
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_numerals), (&PyList_Type), 1, "numerals", 1))) __PYX_ERR(0, 246, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyBytes_Type), 1, "key", 1))) __PYX_ERR(0, 246, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_T), (&PyBytes_Type), 1, "T", 1))) __PYX_ERR(0, 246, __pyx_L1_error)
-  __pyx_r = __pyx_pf_3src_3ff3_4encrypt(__pyx_self, __pyx_v_numerals, __pyx_v_T, __pyx_v_radix, __pyx_v_cipher);
+  __pyx_r = __pyx_pf_3src_3ff3_4encrypt(__pyx_self, __pyx_v_numerals, __pyx_v_key, __pyx_v_T, __pyx_v_radix);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4231,7 +4314,7 @@ static PyObject *__pyx_pw_3src_3ff3_5encrypt(PyObject *__pyx_self, PyObject *__p
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_3ff3_4encrypt(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_numerals, PyObject *__pyx_v_T, PyObject *__pyx_v_radix, PyObject *__pyx_v_cipher) {
+static PyObject *__pyx_pf_3src_3ff3_4encrypt(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_numerals, PyObject *__pyx_v_key, PyObject *__pyx_v_T, PyObject *__pyx_v_radix) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4240,7 +4323,7 @@ static PyObject *__pyx_pf_3src_3ff3_4encrypt(CYTHON_UNUSED PyObject *__pyx_self,
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("encrypt", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_3src_3ff3_encrypt(__pyx_v_numerals, __pyx_v_T, __pyx_v_radix, __pyx_v_cipher, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_3src_3ff3_encrypt(__pyx_v_numerals, __pyx_v_key, __pyx_v_T, __pyx_v_radix, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4257,48 +4340,127 @@ static PyObject *__pyx_pf_3src_3ff3_4encrypt(CYTHON_UNUSED PyObject *__pyx_self,
   return __pyx_r;
 }
 
-/* "src/ff3.pyx":249
+/* "src/ff3.pyx":250
  *     return encrypt_numeral_string(numerals, T, radix, cipher)
  * 
- * cpdef list decrypt(list numerals, bytes T, radix, cipher):             # <<<<<<<<<<<<<<
+ * cpdef list decrypt(list numerals,bytes key,bytes T, radix):             # <<<<<<<<<<<<<<
+ *     cipher = AES.new(key, AES.MODE_ECB)
  *     return decrypt_numeral_string(numerals, T, radix, cipher)
  */
 
 static PyObject *__pyx_pw_3src_3ff3_7decrypt(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_3src_3ff3_decrypt(PyObject *__pyx_v_numerals, PyObject *__pyx_v_T, PyObject *__pyx_v_radix, PyObject *__pyx_v_cipher, CYTHON_UNUSED int __pyx_skip_dispatch) {
+static PyObject *__pyx_f_3src_3ff3_decrypt(PyObject *__pyx_v_numerals, PyObject *__pyx_v_key, PyObject *__pyx_v_T, PyObject *__pyx_v_radix, CYTHON_UNUSED int __pyx_skip_dispatch) {
+  PyObject *__pyx_v_cipher = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("decrypt", 0);
 
-  /* "src/ff3.pyx":250
+  /* "src/ff3.pyx":251
  * 
- * cpdef list decrypt(list numerals, bytes T, radix, cipher):
+ * cpdef list decrypt(list numerals,bytes key,bytes T, radix):
+ *     cipher = AES.new(key, AES.MODE_ECB)             # <<<<<<<<<<<<<<
+ *     return decrypt_numeral_string(numerals, T, radix, cipher)
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_AES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_AES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_MODE_ECB); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  __pyx_t_5 = 0;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __pyx_t_5 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (PyFunction_Check(__pyx_t_3)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_key, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_v_key, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  } else
+  #endif
+  {
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 251, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    if (__pyx_t_2) {
+      __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2); __pyx_t_2 = NULL;
+    }
+    __Pyx_INCREF(__pyx_v_key);
+    __Pyx_GIVEREF(__pyx_v_key);
+    PyTuple_SET_ITEM(__pyx_t_6, 0+__pyx_t_5, __pyx_v_key);
+    __Pyx_GIVEREF(__pyx_t_4);
+    PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_4);
+    __pyx_t_4 = 0;
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_cipher = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "src/ff3.pyx":252
+ * cpdef list decrypt(list numerals,bytes key,bytes T, radix):
+ *     cipher = AES.new(key, AES.MODE_ECB)
  *     return decrypt_numeral_string(numerals, T, radix, cipher)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_3src_3ff3_decrypt_numeral_string(__pyx_v_numerals, __pyx_v_T, __pyx_v_radix, __pyx_v_cipher); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_3src_3ff3_decrypt_numeral_string(__pyx_v_numerals, __pyx_v_T, __pyx_v_radix, __pyx_v_cipher); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "src/ff3.pyx":249
+  /* "src/ff3.pyx":250
  *     return encrypt_numeral_string(numerals, T, radix, cipher)
  * 
- * cpdef list decrypt(list numerals, bytes T, radix, cipher):             # <<<<<<<<<<<<<<
+ * cpdef list decrypt(list numerals,bytes key,bytes T, radix):             # <<<<<<<<<<<<<<
+ *     cipher = AES.new(key, AES.MODE_ECB)
  *     return decrypt_numeral_string(numerals, T, radix, cipher)
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("src.ff3.decrypt", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_cipher);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -4308,9 +4470,9 @@ static PyObject *__pyx_f_3src_3ff3_decrypt(PyObject *__pyx_v_numerals, PyObject 
 static PyObject *__pyx_pw_3src_3ff3_7decrypt(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyObject *__pyx_pw_3src_3ff3_7decrypt(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_numerals = 0;
+  PyObject *__pyx_v_key = 0;
   PyObject *__pyx_v_T = 0;
   PyObject *__pyx_v_radix = 0;
-  PyObject *__pyx_v_cipher = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -4318,7 +4480,7 @@ static PyObject *__pyx_pw_3src_3ff3_7decrypt(PyObject *__pyx_self, PyObject *__p
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("decrypt (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_numerals,&__pyx_n_s_T,&__pyx_n_s_radix,&__pyx_n_s_cipher,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_numerals,&__pyx_n_s_key,&__pyx_n_s_T,&__pyx_n_s_radix,0};
     PyObject* values[4] = {0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
@@ -4342,25 +4504,25 @@ static PyObject *__pyx_pw_3src_3ff3_7decrypt(PyObject *__pyx_self, PyObject *__p
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_T)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_key)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("decrypt", 1, 4, 4, 1); __PYX_ERR(0, 249, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("decrypt", 1, 4, 4, 1); __PYX_ERR(0, 250, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_radix)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_T)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("decrypt", 1, 4, 4, 2); __PYX_ERR(0, 249, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("decrypt", 1, 4, 4, 2); __PYX_ERR(0, 250, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_cipher)) != 0)) kw_args--;
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_radix)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("decrypt", 1, 4, 4, 3); __PYX_ERR(0, 249, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("decrypt", 1, 4, 4, 3); __PYX_ERR(0, 250, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "decrypt") < 0)) __PYX_ERR(0, 249, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "decrypt") < 0)) __PYX_ERR(0, 250, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
@@ -4371,21 +4533,22 @@ static PyObject *__pyx_pw_3src_3ff3_7decrypt(PyObject *__pyx_self, PyObject *__p
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
     __pyx_v_numerals = ((PyObject*)values[0]);
-    __pyx_v_T = ((PyObject*)values[1]);
-    __pyx_v_radix = values[2];
-    __pyx_v_cipher = values[3];
+    __pyx_v_key = ((PyObject*)values[1]);
+    __pyx_v_T = ((PyObject*)values[2]);
+    __pyx_v_radix = values[3];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("decrypt", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 249, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("decrypt", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 250, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("src.ff3.decrypt", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_numerals), (&PyList_Type), 1, "numerals", 1))) __PYX_ERR(0, 249, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_T), (&PyBytes_Type), 1, "T", 1))) __PYX_ERR(0, 249, __pyx_L1_error)
-  __pyx_r = __pyx_pf_3src_3ff3_6decrypt(__pyx_self, __pyx_v_numerals, __pyx_v_T, __pyx_v_radix, __pyx_v_cipher);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_numerals), (&PyList_Type), 1, "numerals", 1))) __PYX_ERR(0, 250, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_key), (&PyBytes_Type), 1, "key", 1))) __PYX_ERR(0, 250, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_T), (&PyBytes_Type), 1, "T", 1))) __PYX_ERR(0, 250, __pyx_L1_error)
+  __pyx_r = __pyx_pf_3src_3ff3_6decrypt(__pyx_self, __pyx_v_numerals, __pyx_v_key, __pyx_v_T, __pyx_v_radix);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4396,7 +4559,7 @@ static PyObject *__pyx_pw_3src_3ff3_7decrypt(PyObject *__pyx_self, PyObject *__p
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_3ff3_6decrypt(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_numerals, PyObject *__pyx_v_T, PyObject *__pyx_v_radix, PyObject *__pyx_v_cipher) {
+static PyObject *__pyx_pf_3src_3ff3_6decrypt(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_numerals, PyObject *__pyx_v_key, PyObject *__pyx_v_T, PyObject *__pyx_v_radix) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4405,7 +4568,7 @@ static PyObject *__pyx_pf_3src_3ff3_6decrypt(CYTHON_UNUSED PyObject *__pyx_self,
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("decrypt", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_3src_3ff3_decrypt(__pyx_v_numerals, __pyx_v_T, __pyx_v_radix, __pyx_v_cipher, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_3src_3ff3_decrypt(__pyx_v_numerals, __pyx_v_key, __pyx_v_T, __pyx_v_radix, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4474,6 +4637,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_Crypto_Cipher, __pyx_k_Crypto_Cipher, sizeof(__pyx_k_Crypto_Cipher), 0, 0, 1, 1},
   {&__pyx_n_s_Crypto_Random, __pyx_k_Crypto_Random, sizeof(__pyx_k_Crypto_Random), 0, 0, 1, 1},
   {&__pyx_n_s_MIN_LEN, __pyx_k_MIN_LEN, sizeof(__pyx_k_MIN_LEN), 0, 0, 1, 1},
+  {&__pyx_n_s_MODE_ECB, __pyx_k_MODE_ECB, sizeof(__pyx_k_MODE_ECB), 0, 0, 1, 1},
   {&__pyx_n_s_MemoryError, __pyx_k_MemoryError, sizeof(__pyx_k_MemoryError), 0, 0, 1, 1},
   {&__pyx_kp_u_Plaintext_must_have_length_betwe, __pyx_k_Plaintext_must_have_length_betwe, sizeof(__pyx_k_Plaintext_must_have_length_betwe), 0, 1, 0, 0},
   {&__pyx_n_s_T, __pyx_k_T, sizeof(__pyx_k_T), 0, 0, 1, 1},
@@ -4486,7 +4650,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_big, __pyx_k_big, sizeof(__pyx_k_big), 0, 0, 1, 1},
   {&__pyx_kp_u_bits, __pyx_k_bits, sizeof(__pyx_k_bits), 0, 1, 0, 0},
   {&__pyx_n_s_ceil, __pyx_k_ceil, sizeof(__pyx_k_ceil), 0, 0, 1, 1},
-  {&__pyx_n_s_cipher, __pyx_k_cipher, sizeof(__pyx_k_cipher), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_encrypt, __pyx_k_encrypt, sizeof(__pyx_k_encrypt), 0, 0, 1, 1},
   {&__pyx_n_s_from_bytes, __pyx_k_from_bytes, sizeof(__pyx_k_from_bytes), 0, 0, 1, 1},
@@ -4494,11 +4657,13 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_kp_u_is_not_a_valid_string_length, __pyx_k_is_not_a_valid_string_length, sizeof(__pyx_k_is_not_a_valid_string_length), 0, 1, 0, 0},
   {&__pyx_kp_u_is_not_in_range_0, __pyx_k_is_not_in_range_0, sizeof(__pyx_k_is_not_in_range_0), 0, 1, 0, 0},
+  {&__pyx_n_s_key, __pyx_k_key, sizeof(__pyx_k_key), 0, 0, 1, 1},
   {&__pyx_n_s_log, __pyx_k_log, sizeof(__pyx_k_log), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_math, __pyx_k_math, sizeof(__pyx_k_math), 0, 0, 1, 1},
   {&__pyx_n_s_max_len, __pyx_k_max_len, sizeof(__pyx_k_max_len), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
+  {&__pyx_n_s_new, __pyx_k_new, sizeof(__pyx_k_new), 0, 0, 1, 1},
   {&__pyx_n_s_numerals, __pyx_k_numerals, sizeof(__pyx_k_numerals), 0, 0, 1, 1},
   {&__pyx_n_s_radix, __pyx_k_radix, sizeof(__pyx_k_radix), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},

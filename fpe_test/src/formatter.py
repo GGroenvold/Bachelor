@@ -1,6 +1,5 @@
-import ff1
+import mode_selector
 import ff3
-import Mode
 import Format
 from format_translator import *
         
@@ -11,13 +10,9 @@ def encrypt(text,key,tweak,dataFormat,mode):
 
         cipherNumerals = []
 
-        if mode == Mode.FF1:
-            cipherNumerals.append(ff1.encrypt(plainNumerals[0],key,tweak,radixes[0]))
-            cipherNumerals.append(ff1.encrypt(plainNumerals[1],key,tweak,radixes[1]))
-        elif mode == Mode.FF3:
-            cipherNumerals.append(ff3.encrypt(plainNumerals[0],key,tweak,radixes[0]))
-            cipherNumerals.append(ff3.encrypt(plainNumerals[1],key,tweak,radixes[1]))
-
+        cipherNumerals.append(mode_selector.encrypt(plainNumerals[0],key,tweak,radixes[0],mode))
+        cipherNumerals.append(mode_selector.encrypt(plainNumerals[1],key,tweak,radixes[1],mode))
+                        
         cipherNumerals.append(
                 (plainNumerals[2] + 
                 int(''.join([str(x) for x in plainNumerals[0]]) + 
@@ -32,10 +27,8 @@ def encrypt(text,key,tweak,dataFormat,mode):
 
         cipherNumerals = []
 
-        if mode == Mode.FF1:
-            cipherNumerals.append(ff1.encrypt(plainNumerals[1],key,tweak,radixes[1]))
-        elif mode == Mode.FF3:
-            cipherNumerals.append(ff3.encrypt(plainNumerals[1],key,tweak,radixes[1]))
+        
+        cipherNumerals.append(mode_selector.encrypt(plainNumerals[1],key,tweak,radixes[1],mode))
         
         cipherNumerals.append(
                 (plainNumerals[0] + 
@@ -48,10 +41,9 @@ def encrypt(text,key,tweak,dataFormat,mode):
         plainNumerals = text_to_numeral_list(text, dataFormat)
         radix = get_radix_by_format(dataFormat)
 
-        if mode == Mode.FF1:
-            cipherNumerals = ff1.encrypt(plainNumerals,key,tweak,radix)
-        elif mode == Mode.FF3:
-            cipherNumerals = ff3.encrypt(plainNumerals,key,tweak,radix)
+        
+        cipherNumerals = mode_selector.encrypt(plainNumerals,key,tweak,radix,mode)
+        
         return numeral_list_to_text(cipherNumerals, dataFormat)
 
 def decrypt(text,key,tweak,dataFormat,mode):
@@ -61,12 +53,8 @@ def decrypt(text,key,tweak,dataFormat,mode):
 
         plainNumerals = []
 
-        if mode == Mode.FF1:
-            plainNumerals.append(ff1.decrypt(cipherNumerals[0],key,tweak,radixes[0]))
-            plainNumerals.append(ff1.decrypt(cipherNumerals[1],key,tweak,radixes[1]))
-        elif mode == Mode.FF3:
-            plainNumerals.append(ff3.decrypt(cipherNumerals[0],key,tweak,radixes[0]))
-            plainNumerals.append(ff3.decrypt(cipherNumerals[1],key,tweak,radixes[1]))
+        plainNumerals.append(mode_selector.decrypt(cipherNumerals[0],key,tweak,radixes[0],mode))
+        plainNumerals.append(mode_selector.decrypt(cipherNumerals[1],key,tweak,radixes[1],mode))
         
         plainNumerals.append(
                 (cipherNumerals[2] - 
@@ -82,10 +70,7 @@ def decrypt(text,key,tweak,dataFormat,mode):
 
         plainNumerals = []
 
-        if mode == Mode.FF1:
-            plainNumerals.append(ff1.decrypt(cipherNumerals[1],key,tweak,radixes[1]))
-        elif mode == Mode.FF3:
-            plainNumerals.append(ff3.decrypt(cipherNumerals[1],key,tweak,radixes[1]))
+        plainNumerals.append(mode_selector.decrypt(cipherNumerals[1],key,tweak,radixes[1],mode))
 
         plainNumerals.append(
                 (cipherNumerals[0] - 
@@ -97,9 +82,7 @@ def decrypt(text,key,tweak,dataFormat,mode):
         radix = get_radix_by_format(dataFormat)
         plainNumerals = text_to_numeral_list(text, dataFormat)
 
-        if mode == Mode.FF1:
-            cipherNumerals = ff1.decrypt(plainNumerals,key,tweak,radix)
-        elif mode == Mode.FF3: 
-            cipherNumerals = ff3.decrypt(plainNumerals,key,tweak,radix)
+
+        cipherNumerals = mode_selector.decrypt(plainNumerals,key,tweak,radix,mode)
 
         return numeral_list_to_text(cipherNumerals, dataFormat)
