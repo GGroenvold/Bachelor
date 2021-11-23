@@ -3,7 +3,6 @@ from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from libc.stdlib cimport malloc, free
 from libc.string cimport memcpy
-import cython
 
 # Constants
 MIN_LEN = 2

@@ -1,5 +1,4 @@
 import mode_selector
-import ff3
 import Format
 from format_translator import *
         
