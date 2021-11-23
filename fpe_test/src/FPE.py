@@ -1,8 +1,7 @@
 import Format
 import Mode
 import formatter
-import fpe_csv
-from utils import reverse
+import fpe_csv 
 
 def generate_tweak(length):
     return formatter.mode_selector.ff1.get_random_bytes(length)
@@ -14,16 +13,10 @@ class New:
     def __init__(self, key, tweak, mode):
         self.tweak = tweak
         self.mode = mode
-        if mode == Mode.FF3:
-            self.key = reverse(key)
-        else:
-            self.key = key
+        self.key = key
 
     def set_key(self,key):
-        if mode == Mode.FF3:
-            self.key = reverse(key)
-        else:
-            self.key = key
+        self.key = key
 
     def encrypt(self,text,dataFormat):
         return formatter.encrypt(text,self.key,self.tweak,dataFormat,self.mode)

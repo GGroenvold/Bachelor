@@ -243,9 +243,11 @@ cdef list decrypt_numeral_string(cipherNumerals, T, radix, cipher):
     return plainNumerals
 
 cpdef list encrypt(list numerals,bytes key,bytes T, radix):
+    key = reverse(key)
     cipher = AES.new(key, AES.MODE_ECB)
     return encrypt_numeral_string(numerals, T, radix, cipher)
 
 cpdef list decrypt(list numerals,bytes key,bytes T, radix):
+    key = reverse(key)
     cipher = AES.new(key, AES.MODE_ECB)
     return decrypt_numeral_string(numerals, T, radix, cipher)

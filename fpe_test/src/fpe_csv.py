@@ -1,7 +1,6 @@
 import csv
 import concurrent.futures
 import formatter
-import time
 import Format
 from timeit import default_timer as timer
 
