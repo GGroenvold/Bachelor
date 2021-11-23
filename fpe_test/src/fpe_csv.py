@@ -1,7 +1,7 @@
 import csv
 import concurrent.futures
 import json
-import FPE
+import formatter
 import time
 from Crypto.Random import get_random_bytes
 from format_translator import *
@@ -13,51 +13,45 @@ dataFormats = [Format.DIGITS,Format.CREDITCARD,Format.LETTERS,Format.STRING,Form
 mapping_formats = dict(zip(dataFormats, dataExample))
 
 def generate_data(columns,dataFormat,mode):
-    T = FPE.generate_tweak(7)
-    key = FPE.generate_key()
-    fpe = FPE.New(key,T,mode)
 
+    tweak = get_random_bytes(7)
 
     ciphertexts = [columns[0]]
 
-    for msg in columns[1:]:
-        fpe.set_key(FPE.generate_key())
-        ciphertexts.append(fpe.encrypt(msg,dataFormat))
+    for text in columns[1:]:
+        key = get_random_bytes(16)
+        ciphertexts.append(formatter.encrypt(text,key,tweak,dataFormat,mode))
     return ciphertexts
 
-def encrypt(columns,dataFormat,key,tweak,mode):
-
-    fpe = FPE.New(key,tweak,mode)
+def encrypt(columns,key,tweak,dataFormat,mode):
 
     ciphertexts = [columns[0]]
 
-    for msg in columns[1:]:
-        ciphertexts.append(fpe.encrypt(msg,dataFormat))
+    for text in columns[1:]:
+        ciphertexts.append(formatter.encrypt(text,key,tweak,dataFormat,mode))
 
 
     return ciphertexts
 
-def decrypt(columns,dataFormat,key,tweak,mode):
+def decrypt(columns,key,tweak,dataFormat,mode):
 
-    fpe = FPE.New(key,tweak,mode)
+    plaintexts = [columns[0]]
 
-    ciphertexts = [columns[0]]
+    for text in columns[1:]:
+        plaintexts.append(formatter.decrypt(text,key,tweak,dataFormat,mode))
 
-    for msg in columns[1:]:
-        ciphertexts.append(fpe.decrypt(msg,dataFormat))
+    return plaintexts
 
-    return ciphertexts
-
-def encrypt_csv(csvFilePath,encryptedFilePath,formats,fpe):
+def encrypt_csv(csvFilePath,encryptedFilePath,key,tweak,formats,mode):
     start = timer()
     print('Encrypting...')
     n = len(formats)
 
     data=[]
 
-    keys = [fpe.key]*n
-    tweaks = [fpe.tweak]*n
-    modes = [fpe.mode]*n
+    keys = [key]*n
+    tweaks = [tweak]*n
+    modes = [mode]*n
 
     with open(csvFilePath) as csvFile:
         csvReader = csv.reader(csvFile, delimiter = ';')
@@ -77,7 +71,7 @@ def encrypt_csv(csvFilePath,encryptedFilePath,formats,fpe):
                 rowCount += 1
 
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        results = list(executor.map(encrypt,data,formats,keys,tweaks,modes))
+        results = list(executor.map(encrypt,data,keys,tweaks,formats,modes))
 
         data = results
 
@@ -95,16 +89,16 @@ def encrypt_csv(csvFilePath,encryptedFilePath,formats,fpe):
     end = timer()
     print('Done in %5.2f seconds' % (end-start))
 
-def decrypt_csv(csvFilePath,decryptedFilePath,formats,fpe):
+def decrypt_csv(csvFilePath,decryptedFilePath,key,tweak,formats,mode):
     start = timer()
     print('Decrypting...')
     n = len(formats)
 
     data=[]
 
-    keys = [fpe.key]*n
-    tweaks = [fpe.tweak]*n
-    modes = [fpe.mode]*n
+    keys = [key]*n
+    tweaks = [tweak]*n
+    modes = [mode]*n
 
     with open(csvFilePath) as csvFile:
         csvReader = csv.reader(csvFile, delimiter = ';')
@@ -124,7 +118,7 @@ def decrypt_csv(csvFilePath,decryptedFilePath,formats,fpe):
                 rowCount += 1
 
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        results = list(executor.map(decrypt,data,formats,keys,tweaks,modes))
+        results = list(executor.map(decrypt,data,keys,tweaks,formats,modes))
 
         data = results
 
@@ -142,7 +136,7 @@ def decrypt_csv(csvFilePath,decryptedFilePath,formats,fpe):
     end = timer()
     print('Done in %5.2f seconds' % (end-start))
 
-def generate_test_data(csvFilePath,rows,formats,names, mode):
+def generate_test_data(csvFilePath,rows,formats,names,mode):
     start = timer()
     print('Generating...')
     modes = [mode]*len(formats)

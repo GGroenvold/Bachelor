@@ -12,7 +12,7 @@ from format_translator import *
 start_time = time.time()
 
 
-T = bytes.fromhex('37373737707172')
+T = bytes.fromhex('373737377071722B')
 key = bytes.fromhex('2B7E151628AED2A6ABF7158809CF4F3C')
 cipher = AES.new(key, AES.MODE_ECB)
 

@@ -11,7 +11,7 @@ import time
 MIN_LEN = 2
 TWEAK_LEN = 56
 MAPPING = Format.DIGITS
-FORMAT = Format.DEFAULT
+FORMAT = Format.DIGITS
 
 
 def max_len(radix):
@@ -132,10 +132,10 @@ if __name__ == '__main__':
 
     ff3_cipher = FF3(key)
 
-    X = "hello"
+    X = "12345"
 
     for _ in range(100000):
-        ciphertext = ff3_cipher.encrypt(tweak, X, Format.STRING)
-        plaintext = ff3_cipher.decrypt(tweak, ciphertext, Format.STRING)
+        ciphertext = ff3_cipher.encrypt(tweak, X, Format.DIGITS)
+        plaintext = ff3_cipher.decrypt(tweak, ciphertext, Format.DIGITS)
 
     print("--- %s seconds ---" % (time.time() - start_time))

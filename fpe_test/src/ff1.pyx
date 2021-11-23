@@ -1,4 +1,4 @@
-from math import ceil, log
+from math import ceil, log2
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from libc.stdlib cimport malloc, free
@@ -59,7 +59,6 @@ cdef bytes PRF(bytes X,cipher):
     cdef bytes Xj
     for j in range(m):
         Xj = X[j * 16:(j * 16) + 16]
-        #for _ in range(100000):
         Yj = cipher.encrypt(xor16ByteArray(Xj,Yj))
     return Yj
 
@@ -113,7 +112,6 @@ cdef list encrypt_main(list msg, bytes T, radix, cipher):
         R = PRF(P + Q,cipher)
         S = R
         for j in range(1, k):
-            print('lul')
             S = S + cipher.encrypt(bytes(A ^ B for A, B in zip(R, (j).to_bytes(16, 'big'))))
         S = S[:d]
         y = int.from_bytes(S, 'big')
@@ -210,8 +208,10 @@ cdef list decrypt_main(list msg, bytes T, radix, cipher):
 
     return cipherNumerals
 
-cpdef list encrypt(list msg, bytes T, radix, cipher):
+cpdef list encrypt(list msg,bytes key,bytes T,radix):
+    cipher = AES.new(key,AES.MODE_ECB)
     return encrypt_main(msg, T, radix, cipher)
 
-cpdef list decrypt(list msg, bytes T, radix, cipher):
+cpdef list decrypt(list msg,bytes key,bytes T, radix):
+    cipher = AES.new(key,AES.MODE_ECB)
     return decrypt_main(msg, T, radix, cipher)
