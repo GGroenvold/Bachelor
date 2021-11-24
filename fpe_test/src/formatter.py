@@ -1,11 +1,10 @@
 import mode_selector
-import Format
-from format_translator import *
+from format_translator import Format,text_to_numeral_list,numeral_list_to_text,get_radix_by_format
         
 def encrypt(text,key,tweak,dataFormat,mode):
     if dataFormat == Format.EMAIL:
-        plainNumerals =  text_to_numeral_list(text, Format.EMAIL)
-        radixes = get_radix_by_format(Format.EMAIL)
+        plainNumerals =  text_to_numeral_list(text, dataFormat)
+        radixes = get_radix_by_format(dataFormat)
 
         cipherNumerals = []
 
@@ -18,11 +17,11 @@ def encrypt(text,key,tweak,dataFormat,mode):
                 ''.join([str(x) for x in plainNumerals[1]]) +
                 str(int.from_bytes(key,'big'))))%radixes[2])
 
-        return numeral_list_to_text(cipherNumerals, Format.EMAIL)
+        return numeral_list_to_text(cipherNumerals, dataFormat)
         
     elif dataFormat == Format.CPR:
-        plainNumerals = text_to_numeral_list(text, Format.CPR)
-        radixes = get_radix_by_format(Format.CPR)
+        plainNumerals = text_to_numeral_list(text, dataFormat)
+        radixes = get_radix_by_format(dataFormat)
 
         cipherNumerals = []
 
@@ -34,7 +33,7 @@ def encrypt(text,key,tweak,dataFormat,mode):
                 int(''.join([str(x) for x in plainNumerals[1]]) + 
                 str(int.from_bytes(key,'big'))))%radixes[0])
 
-        return numeral_list_to_text(cipherNumerals, Format.CPR)
+        return numeral_list_to_text(cipherNumerals, dataFormat)
 
     else:
         plainNumerals = text_to_numeral_list(text, dataFormat)
@@ -47,8 +46,8 @@ def encrypt(text,key,tweak,dataFormat,mode):
 
 def decrypt(text,key,tweak,dataFormat,mode):
     if dataFormat == Format.EMAIL:
-        cipherNumerals = text_to_numeral_list(text, Format.EMAIL)
-        radixes = get_radix_by_format(Format.EMAIL)
+        cipherNumerals = text_to_numeral_list(text, dataFormat)
+        radixes = get_radix_by_format(dataFormat)
 
         plainNumerals = []
 
@@ -61,11 +60,11 @@ def decrypt(text,key,tweak,dataFormat,mode):
                 ''.join([str(x) for x in plainNumerals[1]]) +
                 str(int.from_bytes(key,'big'))))%radixes[2])
 
-        return numeral_list_to_text(plainNumerals, Format.EMAIL)
+        return numeral_list_to_text(plainNumerals, dataFormat)
         
     elif dataFormat == Format.CPR:
-        cipherNumerals = text_to_numeral_list(text, Format.CPR)
-        radixes = get_radix_by_format(Format.CPR)
+        cipherNumerals = text_to_numeral_list(text, dataFormat)
+        radixes = get_radix_by_format(dataFormat)
 
         plainNumerals = []
 
@@ -75,7 +74,7 @@ def decrypt(text,key,tweak,dataFormat,mode):
                 (cipherNumerals[0] - 
                 int(''.join([str(x) for x in plainNumerals[0]]) + 
                 str(int.from_bytes(key,'big'))))%radixes[0])
-        return numeral_list_to_text(plainNumerals, Format.CPR)
+        return numeral_list_to_text(plainNumerals, dataFormat)
 
     else:
         radix = get_radix_by_format(dataFormat)

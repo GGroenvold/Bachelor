@@ -2,8 +2,10 @@ import FPE
 import timeit
 import random
 
-names = ['Username','Password','Email','PhoneNumber','Cpr-number','Creditcard']
-formats = [FPE.Format.LETTERS, FPE.Format.STRING, FPE.Format.EMAIL, FPE.Format.DIGITS, FPE.Format.CPR, FPE.Format.CREDITCARD]
+names = ['Username','Password','Email','PhoneNumber','Cpr-number','Creditcard','adress','city','zip','country']
+formats = [FPE.Format.LETTERS, FPE.Format.STRING, FPE.Format.EMAIL, FPE.Format.DIGITS,
+		   FPE.Format.CPR, FPE.Format.CREDITCARD,FPE.Format.STRING,FPE.Format.LETTERS,
+		   FPE.Format.DIGITS,FPE.Format.LETTERS]
 
 def encrypt_something():
 	start = timeit.default_timer()
@@ -38,9 +40,9 @@ if __name__ == '__main__':
 	
 	T = FPE.generate_tweak(7)
 	key = FPE.generate_key()
-	ff1 = FPE.New(key,T,FPE.Mode.FF1)
+	ff3 = FPE.New(key,T,FPE.Mode.FF3)
 	
-	ff1.generateData('src/testData.csv',10000,formats,names)
+	ff3.generateData('src/testData.csv',10000,formats,names)
 	
-	ff1.encryptCSV('src/testData.csv','src/encryptedData.csv',formats)
-	ff1.decryptCSV('src/encryptedData.csv','src/decryptedData.csv',formats)
+	ff3.encryptCSV('src/testData.csv','src/encryptedData.csv',formats)
+	ff3.decryptCSV('src/encryptedData.csv','src/decryptedData.csv',formats)

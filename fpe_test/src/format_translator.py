@@ -1,6 +1,6 @@
-from utils import *
 import Format
 import json
+from numpy import arange
 
 RADIX_DEFAULT = 10
 
@@ -22,6 +22,38 @@ LOWER_LETTER_END = 29
 UPPER_LETTER_END = 58
 INTEGER_END = 68
 EMAIL_SIGNS_END = 85
+
+def map_from_numeral_string(numeral_string, mapping):
+    return [mapping[numeral] for numeral in numeral_string]
+
+
+def map_from_name(name, mapping):
+    return (mapping[(name)])
+
+
+def get_mapping_from_domain(domain):
+    index = list(map(int, arange(0, len(domain)).tolist()))
+    return [dict(zip(domain, index)), dict(zip(index, domain))]
+
+
+def validateCard(cardNumber):
+    sum = 0
+    for index in range(len(cardNumber)):
+        if (index % 2 == 0):
+            sum += (int(cardNumber[index]) * 2) % 9
+        else:
+            sum += int(cardNumber[index])
+    return str((10 - sum) % 10)
+
+def validateCPR(CPR):
+        weights = [4, 3, 2, 7, 6, 5, 4, 3, 2]
+        sum = 0
+        for digit in range(len(CPR)):
+            sum += (int(CPR[digit]) * weights[digit])
+        if(11 - (sum % 11))%11==10:
+            return '0'
+        else:
+            return str((11 - (sum % 11))%11)
 
 mapping_letters = get_mapping_from_domain(DOMAIN[:UPPER_LETTER_END])
 mapping_upper_letters = get_mapping_from_domain(DOMAIN[LOWER_LETTER_END:UPPER_LETTER_END])
