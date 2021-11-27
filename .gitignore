@@ -1,5 +1,8 @@
 .idea
 /.vs
-/fpe_test/src/*.pyd
 /pics
-/fpe_test/src/__pycache__
+/PDF
+/fpe/src/FPE/__pycache__
+/fpe/dist
+/fpe/src/FPE.egg-info
+/fpe/dep/__pycache__
