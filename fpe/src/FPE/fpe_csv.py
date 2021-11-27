@@ -1,7 +1,7 @@
 import csv
 import concurrent.futures
-from FPE import formatter
-from FPE import Format
+import formatter
+import Format
 from timeit import default_timer as timer
 
 dataExample = ['12345678','1112223334445559','CoolUsername','SecurePassword123','Cool@Email.com','1212121211']

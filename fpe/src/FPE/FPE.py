@@ -1,7 +1,7 @@
-from FPE import Format
-from FPE import Mode
-from FPE import formatter
-from FPE import fpe_csv 
+import Format
+import Mode
+import formatter
+import fpe_csv 
 
 def generate_tweak(length):
     return formatter.mode_selector.ff1.get_random_bytes(length)

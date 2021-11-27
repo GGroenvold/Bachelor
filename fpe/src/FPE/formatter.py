@@ -1,6 +1,6 @@
-from FPE import mode_selector
-from FPE import format_translator
-from FPE import Format
+import mode_selector
+import format_translator
+import Format
         
 def encrypt(text,key,tweak,dataFormat,mode):
     if dataFormat == Format.EMAIL:

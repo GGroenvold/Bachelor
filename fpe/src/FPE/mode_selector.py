@@ -1,6 +1,6 @@
-from FPE import ff1
-from FPE import ff3
-from FPE import Mode
+import ff1
+import ff3
+import Mode
 
 def encrypt(plainNumerals,key,tweak,radix,mode):
 	if mode == Mode.FF1:

@@ -1,4 +1,4 @@
-from FPE import Format
+import Format
 from numpy import arange
 
 RADIX_DEFAULT = 10
