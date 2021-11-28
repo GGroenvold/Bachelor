@@ -17,7 +17,7 @@ To generate a key use `FPE.generate_key()`, this will generate a 16 byte key.
 
 To make a cipher object use `cipher = FPE.New(key,tweak,mode)`
 
-Currently supported modes are `FPE.Mode.FF1` and `FPE.Mode.FF3-1`
+Currently supported modes are `Mode.FF1` and `Mode.FF3-1`
 
 To encrypt use `cipher.encrypt(plaintext,format)`
 
