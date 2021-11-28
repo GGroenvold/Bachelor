@@ -291,10 +291,17 @@ INTEGER_END = 68
 EMAIL_SIGNS_END = 85
 
 def map_from_numeral_string(numeral_string, mapping):
-    return [mapping[numeral] for numeral in numeral_string]
+    outputList = []
+    for numeral in numeral_string:
+        if not numeral in mapping:
+            raise ValueError(f"{numeral} is not contained in the format. Accepted values: {mapping.keys()}")
+        outputList.append(mapping[numeral])
+    return outputList
 
 
 def map_from_name(name, mapping):
+    if not name in mapping:
+        raise ValueError(f"{name} is not contained in the format. Accepted values: {mapping.keys()}")
     return (mapping[(name)])
 
 
@@ -334,10 +341,14 @@ mapping_top_lvl_domains = get_mapping_from_domain(top_lvl_domains)
 
 def text_to_numeral_list(text, dataFormat):
     if dataFormat == Format.DIGITS:
+        if not text.isdecimal():
+            raise ValueError(f"{text} is not a valid message for the given format. only numbers are allowed.")
         return [int(x) for x in text]
 
     if dataFormat == Format.CREDITCARD:
         text = text.replace(' ', '')
+        if not text.isdecimal():
+            raise ValueError(f"{text} is not a valid message for the given format. only numbers are allowed.")
 
         if (text[len(text) - 1] != validateCard(text[:len(text) - 1])):
             raise ValueError(f"{text} is not a valid credit card number")
@@ -374,7 +385,7 @@ def text_to_numeral_list(text, dataFormat):
         text1 = text[:4]
 
         numerals1 = map_from_name(text1,mapping_dates[0])
-        numerals2 = [int(x) for x in text[4:9]]
+        numerals2 = [int(x) for x in text[4:]]
 
         return [numerals1, numerals2]
 

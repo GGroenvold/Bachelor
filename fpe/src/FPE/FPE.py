@@ -11,6 +11,16 @@ def generate_key():
 
 class New:
     def __init__(self, key, tweak, mode):
+        if len(key) != 16:
+           raise ValueError(f"{key} is not a valid key, the length must be 128 bit. The length was: {len(key)*8}")
+        if (len(tweak) != 7 and mode == Mode.FF3):
+            raise ValueError(f"{tweak} is not a valid Tweak, the length must be 56 bit. The length was: {len(tweak)*8}")
+        if not Mode.isMode(mode):
+            raise ValueError(f"{mode} is not a valid mode, please use a valid mode. All valid modes can be found in the README")
+    
+        
+        
+        
         self.tweak = tweak
         self.mode = mode
         self.key = key

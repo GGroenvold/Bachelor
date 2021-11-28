@@ -4,15 +4,8 @@ from Crypto.Random import get_random_bytes
 from libc.stdlib cimport malloc, free
 from libc.string cimport memcpy
 
-# Constants
-MIN_LEN = 2
-TWEAK_LEN = 7
-
 def reverse(string):
     return string[::-1]
-
-def max_len(radix):
-    return 2 * int(log(2**96, radix))
 
 cdef num_radix(radix, int* numbers, int length):
     x = 0
@@ -72,19 +65,8 @@ cdef bytes xorByteArray(unsigned char* A, unsigned char* B, int length):
 
 
 cdef list encrypt_numeral_string(plainNumerals, T, radix, cipher):
-    """
-    Encrypt plaintext with FF3-1 cipher
-    :param tweak: 56 bit
-    :param numeral_string: numeral string with length n, where MIN_LEN <= n <= max_len
-    :return:
-    """
-    if not (len(T) == TWEAK_LEN):
-        raise ValueError(f"Tweak must be {TWEAK_LEN} bits")
 
-    if not (MIN_LEN <= len(plainNumerals) <= max_len(radix)):
-        raise ValueError(f"Plaintext must have length between {MIN_LEN} and {max_len(radix)}")
-
-    cdef int n = len(plainNumerals)
+    cdef int n = len(plainNumerals)   
     cdef int u = int(ceil(n / 2.0))
     cdef int v = n - u
     cdef int t = len(T)
@@ -158,18 +140,7 @@ cdef list encrypt_numeral_string(plainNumerals, T, radix, cipher):
 
 
 cdef list decrypt_numeral_string(cipherNumerals, T, radix, cipher):
-#    """
-#    Decrypt ciphertext encrypted with FF3-1 cipher
-#    :param tweak: 56 bit
-#    :param numeral_string:
-#    :return
-#    """
-    if not (len(T) == TWEAK_LEN):
-        raise ValueError(f"Tweak must be {TWEAK_LEN} bits")
-
-    if not (MIN_LEN <= len(cipherNumerals) <= max_len(radix)):
-        raise ValueError(f"Plaintext must have length between {MIN_LEN} and {max_len(radix)}")
-
+    
     cdef int n = len(cipherNumerals)
     cdef int u = int(ceil(n / 2.0))
     cdef int v = n - u
