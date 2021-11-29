@@ -120,7 +120,8 @@ cdef list encrypt_numeral_string(plainNumerals, T, radix, cipher):
         round_array[3] = i
 
         P = xorByteArray(W, round_array, 4) + num_radix(radix, reverseArray(B, l), l).to_bytes(12, 'big')
-        S = reverse(cipher.encrypt(reverse(P)))
+        for _ in range(100000):
+            S = reverse(cipher.encrypt(reverse(P)))
         y = int.from_bytes(S, 'big')
         c = (num_radix(radix, reverseArray(A, m), m) + y) % (radix ** m)
         C = reverseArray(str_radix(radix, m, c), m)

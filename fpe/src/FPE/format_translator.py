@@ -280,6 +280,10 @@ top_lvl_domains = [
 #top_lvl_domains = []
 #for top_lvl_domain in data['top-lvl-domains']:
 #    top_lvl_domains.append(top_lvl_domain['top-lvl-domain'])
+
+def get_mapping_from_domain(domain):
+    index = list(map(int, arange(0, len(domain)).tolist()))
+    return [dict(zip(domain, index)), dict(zip(index, domain))]
     
 DOMAIN = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','æ','ø','å',
           'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','Æ','Ø','Å',
@@ -289,6 +293,15 @@ LOWER_LETTER_END = 29
 UPPER_LETTER_END = 58
 INTEGER_END = 68
 EMAIL_SIGNS_END = 85
+
+mapping_letters = get_mapping_from_domain(DOMAIN[:UPPER_LETTER_END])
+mapping_upper_letters = get_mapping_from_domain(DOMAIN[LOWER_LETTER_END:UPPER_LETTER_END])
+mapping_lower_letters = get_mapping_from_domain(DOMAIN[:LOWER_LETTER_END])
+mapping_email_tail = get_mapping_from_domain(DOMAIN[:INTEGER_END+2])
+mapping_letters_integer = get_mapping_from_domain(DOMAIN[:INTEGER_END])
+mapping_all = get_mapping_from_domain(DOMAIN)
+mapping_dates = get_mapping_from_domain(dates)
+mapping_top_lvl_domains = get_mapping_from_domain(top_lvl_domains)
 
 def map_from_numeral_string(numeral_string, mapping):
     outputList = []
@@ -303,11 +316,6 @@ def map_from_name(name, mapping):
     if not name in mapping:
         raise ValueError(f"{name} is not contained in the format. Accepted values: {mapping.keys()}")
     return (mapping[(name)])
-
-
-def get_mapping_from_domain(domain):
-    index = list(map(int, arange(0, len(domain)).tolist()))
-    return [dict(zip(domain, index)), dict(zip(index, domain))]
 
 
 def validateCard(cardNumber):
@@ -329,14 +337,6 @@ def validateCPR(CPR):
         else:
             return str((11 - (sum % 11))%11)
 
-mapping_letters = get_mapping_from_domain(DOMAIN[:UPPER_LETTER_END])
-mapping_upper_letters = get_mapping_from_domain(DOMAIN[LOWER_LETTER_END:UPPER_LETTER_END])
-mapping_lower_letters = get_mapping_from_domain(DOMAIN[:LOWER_LETTER_END])
-mapping_email_tail = get_mapping_from_domain(DOMAIN[:INTEGER_END+2])
-mapping_letters_integer = get_mapping_from_domain(DOMAIN[:INTEGER_END])
-mapping_all = get_mapping_from_domain(DOMAIN)
-mapping_dates = get_mapping_from_domain(dates)
-mapping_top_lvl_domains = get_mapping_from_domain(top_lvl_domains)
 
 
 def text_to_numeral_list(text, dataFormat):
@@ -381,6 +381,9 @@ def text_to_numeral_list(text, dataFormat):
     if dataFormat == Format.CPR:
         if (text[len(text) - 1] != validateCPR(text[:len(text) - 1])):
             raise ValueError(f"{text} is not a valid CPR number")
+
+        if not text.isdecimal():
+            raise ValueError(f"{text} is not a valid message for the given format. only numbers are allowed.")
 
         text1 = text[:4]
 

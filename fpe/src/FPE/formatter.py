@@ -36,7 +36,7 @@ def encrypt(text,key,tweak,dataFormat,mode):
                         
         cipherNumerals.append(
                 (plainNumerals[2] + 
-                int(''.join([str(x) for x in plainNumerals[0]]) + 
+                int(''.join([str(x) for x in plainNumerals[0]]) +
                 ''.join([str(x) for x in plainNumerals[1]]) +
                 str(int.from_bytes(key,'big'))))%radixes[2])
 
