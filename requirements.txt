@@ -1,7 +1,0 @@
-pycryptodome~=3.10.1
-bitstring~=3.1.9
-pip~=21.2.3
-setuptools~=57.4.0
-pytest~=6.2.5
-py~=1.10.0
-numpy~=1.21.2
